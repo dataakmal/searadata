@@ -240,79 +240,102 @@ export default function App() {
           </div>
         </section>
 
-        {/* Activities Section (Kegiatan Kami) */}
+        {/* Upcoming Programs Section (Kegiatan Kami) */}
         <section className="py-24 px-6 bg-white">
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-4">
               <div>
-                <h3 className="text-3xl md:text-5xl font-bold font-display">Kegiatan Kami</h3>
-                <p className="text-gray-500 mt-2">Intip berbagai aktivitas seru yang sudah dilakukan di Seara Data.</p>
+                <h3 className="text-3xl md:text-5xl font-bold font-display">Program Terdekat</h3>
+                <p className="text-gray-500 mt-2">Jangan lewatkan kesempatan belajar langsung dari expert industri.</p>
               </div>
               <div className="w-20 h-1.5 bg-seara-orange rounded-full hidden md:block"></div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                {
-                  date: "Januari 2026",
-                  title: "Mini Class - Perkenalan Data",
-                  type: "Mini Class"
-                },
-                {
-                  date: "Januari 2026",
-                  title: "Mini Class - Perkenalan dan Alasan Kenapa harus python",
-                  type: "Mini Class"
-                },
-                {
-                  date: "Februari 2026",
-                  title: "Workshop Kecil-kecilan - Belajar python bareng Ghazian Hindami",
-                  type: "Workshop"
-                },
-                {
-                  date: "Februari 2026",
-                  title: "Mini Class - Speak Business, Think Data; How to Win The Boardroom",
-                  type: "Mini Class"
-                },
-                {
-                  date: "Maret 2026",
-                  title: "Mini Class - Data Engineer for New Starters",
-                  type: "Mini Class"
-                },
-                {
-                  date: "April 2026",
-                  title: "Course - Python For Automation",
-                  type: "Course"
-                },
-                {
-                  date: "April 2026",
-                  title: "Course - Data Engineer",
-                  type: "Course"
-                },
-                {
-                  date: "Ongoing",
-                  title: "Mentoring 1-on-1 with several member",
-                  type: "Mentoring"
-                }
-              ].map((kegiatan, idx) => (
-                <motion.div 
-                  key={idx}
-                  className="bg-white p-6 rounded-2xl border border-orange-100/50 shadow-sm hover:shadow-md transition-all group"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.05 }}
-                >
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="bg-orange-50 text-seara-orange text-[9px] font-black uppercase px-2 py-0.5 rounded-full">
-                      {kegiatan.type}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Event 1: Mini Course */}
+              <motion.div 
+                className="group bg-white rounded-[32px] border border-orange-100 overflow-hidden shadow-sm hover:shadow-xl transition-all"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <div className="aspect-[4/5] overflow-hidden bg-orange-50 relative">
+                  <img 
+                    src="./poster-course.png" 
+                    alt="Poster Mini Course Data Engineer 24-26 April" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = 'https://picsum.photos/seed/seara-course/800/1000';
+                    }}
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute top-4 left-4 z-20">
+                    <span className="bg-seara-orange text-white text-[10px] font-black uppercase px-3 py-1 rounded-full shadow-lg">
+                       🚀 Premium Course
                     </span>
-                    <span className="text-[10px] text-gray-400 font-medium">{kegiatan.date}</span>
                   </div>
-                  <h4 className="text-base font-bold text-seara-dark leading-snug group-hover:text-seara-orange transition-colors">
-                    {kegiatan.title}
+                </div>
+                <div className="p-8">
+                  <div className="text-sm text-gray-400 font-bold mb-2">24 - 26 April 2026</div>
+                  <h4 className="text-2xl font-bold text-seara-dark mb-4 leading-tight">
+                    Mini Course: 3 Days to be Data Engineer
                   </h4>
-                </motion.div>
-              ))}
+                  <p className="text-gray-500 text-sm mb-6 leading-relaxed">
+                    Explore API, ETL, Python & Database bareng Mario Caesar (Senior Data Engineer). Dapatkan sertifikat, ready-to-use script, dan real case study.
+                  </p>
+                  <a 
+                    href="https://clicky.id/searadata/dataengineer" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-full bg-seara-orange text-white py-4 rounded-2xl font-bold hover:brightness-95 transition-all shadow-md active:scale-95 gap-2"
+                  >
+                    Daftar Sekarang <ChevronRight className="w-5 h-5" />
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* Event 2: Free Class */}
+              <motion.div 
+                className="group bg-white rounded-[32px] border border-orange-100 overflow-hidden shadow-sm hover:shadow-xl transition-all"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+              >
+                <div className="aspect-[4/5] overflow-hidden bg-green-50 relative">
+                  <img 
+                    src="./poster-free.png" 
+                    alt="Poster Free Mini Class Data Engineer 22 April" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = 'https://picsum.photos/seed/seara-free/800/1000';
+                    }}
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute top-4 left-4 z-20">
+                    <span className="bg-green-500 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full shadow-lg">
+                       ✨ FREE ACCESS
+                    </span>
+                  </div>
+                </div>
+                <div className="p-8">
+                  <div className="text-sm text-gray-400 font-bold mb-2">22 April 2026 | 20:00 - 21:00 WIB</div>
+                  <h4 className="text-2xl font-bold text-seara-dark mb-4 leading-tight">
+                    Mini Class: Career Framework for New Starters
+                  </h4>
+                  <p className="text-gray-500 text-sm mb-6 leading-relaxed">
+                    Belajar data dari 0! Pahami framework berkarier sebagai Data Engineer di industri finansial bersama Senior DE dari Singapore Fintech.
+                  </p>
+                  <a 
+                    href="https://forms.gle/5vbinpepZzvzF7rKA" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-full bg-white border-2 border-seara-orange text-seara-orange py-4 rounded-2xl font-bold hover:bg-orange-50 transition-all shadow-sm active:scale-95 gap-2"
+                  >
+                    Amankan Kursi <ChevronRight className="w-5 h-5" />
+                  </a>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
