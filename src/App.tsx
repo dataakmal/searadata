@@ -261,7 +261,7 @@ export default function App() {
               >
                 <div className="aspect-[4/5] overflow-hidden bg-orange-50 relative">
                   <img 
-                    src="./poster-course.png" 
+                    src="/poster-course.png" 
                     alt="Poster Mini Course Data Engineer 24-26 April" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
@@ -304,7 +304,7 @@ export default function App() {
               >
                 <div className="aspect-[4/5] overflow-hidden bg-green-50 relative">
                   <img 
-                    src="./poster-free.png" 
+                    src="/poster-free.png" 
                     alt="Poster Free Mini Class Data Engineer 22 April" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
