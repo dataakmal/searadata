@@ -49,10 +49,6 @@ export default function App() {
                   className="h-full w-auto object-contain"
                 />
               </div>
-              <h1 className="text-2xl font-bold flex items-center gap-1 cursor-default">
-                <span className="text-seara-orange">Seara</span>
-                <span className="text-seara-dark">Data</span>
-              </h1>
             </div>
             <h1 className="text-2xl font-bold flex items-center gap-1 cursor-default">
               <span className="text-seara-orange">Seara</span>
