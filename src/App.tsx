@@ -40,64 +40,19 @@ export default function App() {
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
             {/* Recreated Logo in SVG to perfectly match the hand-drawn drawing provided */}
-            <div className="w-[140px] h-14 flex items-center justify-start overflow-visible -ml-4">
-              <svg viewBox="0 0 400 350" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                {/* Map Trapezoid - Hand-drawn style with slightly irregular lines */}
-                <path 
-                  d="M125 115 L275 110 L295 190 L105 195 Z" 
-                  fill="none" 
-                  stroke="#F16F53" 
-                  strokeWidth="8" 
-                  strokeLinecap="round"
-                  strokeLinejoin="round" 
+            <div className="flex items-center gap-3">
+              {/* Logo PNG Baru */}
+              <div className="h-12 w-auto flex items-center">
+                <img 
+                  src="/logo-seara.png" 
+                  alt="Logo Seara Data" 
+                  className="h-full w-auto object-contain"
                 />
-                
-                {/* Dashed Line from sketch */}
-                <path 
-                  d="M150 210 Q200 250 240 160" 
-                  fill="none" 
-                  stroke="#F16F53" 
-                  strokeWidth="3" 
-                  strokeDasharray="6 8" 
-                  opacity="0.8" 
-                />
-                
-                {/* Pin Head - Slightly tilted as in drawing */}
-                <g transform="rotate(-5, 200, 70)">
-                  <path d="M200 35 Q175 35 175 65 Q175 115 200 140 Q225 115 225 65 Q225 35 200 35 Z" fill="#F16F53" />
-                  <circle cx="200" cy="65" r="10" fill="#f8f6f0" />
-                </g>
-                
-                {/* SEARA Text - Stylized to match drawing's personality */}
-                <text 
-                  x="200" 
-                  y="285" 
-                  fontSize="110" 
-                  fontWeight="900" 
-                  textAnchor="middle" 
-                  fill="#F16F53" 
-                  style={{ 
-                    fontFamily: '"Comic Sans MS", "Marker Felt", sans-serif', 
-                    letterSpacing: '-2px'
-                  }}
-                >
-                  SEARA
-                </text>
-                
-                {/* DATA Text - Small and spaced out under SEARA */}
-                <text 
-                  x="200" 
-                  y="325" 
-                  fontSize="32" 
-                  fontWeight="800" 
-                  textAnchor="middle" 
-                  fill="#F16F53" 
-                  letterSpacing="18"
-                  style={{ fontFamily: 'monospace' }}
-                >
-                  DATA
-                </text>
-              </svg>
+              </div>
+              <h1 className="text-2xl font-bold flex items-center gap-1 cursor-default">
+                <span className="text-seara-orange">Seara</span>
+                <span className="text-seara-dark">Data</span>
+              </h1>
             </div>
             <h1 className="text-2xl font-bold flex items-center gap-1 cursor-default">
               <span className="text-seara-orange">Seara</span>
