@@ -352,7 +352,9 @@ export default function App() {
               {
                 icon: <MonitorPlay className="w-6 h-6" />,
                 title: "Corporate Training Data",
-                desc: "Program pelatihan data komprehensif yang dirancang khusus untuk kebutuhan korporasi. Membantu tim Anda menguasai pengolahan dan visualisasi data untuk pengambilan keputusan strategis."
+                desc: "Program pelatihan data komprehensif yang dirancang khusus untuk kebutuhan korporasi. Membantu tim Anda menguasai pengolahan dan visualisasi data untuk pengambilan keputusan strategis.",
+                link: "https://wa.me/6281779052788?text=Halo%20Seara%20Data,%20saya%20ingin%20bertanya%20tentang%20program%20Corporate%20Training%20Data",
+                cta: "Tanya Program"
               },
               {
                 icon: <Users className="w-6 h-6" />,
@@ -364,7 +366,9 @@ export default function App() {
               {
                 icon: <MessagesSquare className="w-6 h-6" />,
                 title: "Konsultasi Data",
-                desc: "Pendampingan profesional untuk penyelesaian proyek data bisnis maupun akademis. Kami memberikan solusi teknis yang akurat dan aplikatif untuk setiap tantangan data Anda."
+                desc: "Pendampingan profesional untuk penyelesaian proyek data bisnis maupun akademis. Kami memberikan solusi teknis yang akurat dan aplikatif untuk setiap tantangan data Anda.",
+                link: "https://wa.me/6281779052788?text=Halo%20Seara%20Data,%20saya%20ingin%20konsultasi%20mengenai%20project%20data%20saya",
+                cta: "Mulai Konsultasi"
               },
               {
                 icon: <BookOpen className="w-6 h-6" />,
@@ -376,14 +380,16 @@ export default function App() {
               {
                 icon: <Briefcase className="w-6 h-6" />,
                 title: "Career Accelerator",
-                desc: "Program persiapan karier terintegrasi, mulai dari optimalisasi CV, penyusunan portofolio berbasis proyek nyata, hingga simulasi interview teknis tingkat lanjut."
+                desc: "Program persiapan karier terintegrasi, mulai dari optimalisasi CV, penyusunan portofolio berbasis proyek nyata, hingga simulasi interview teknis tingkat lanjut.",
+                link: "https://wa.me/6281779052788?text=Halo%20Seara%20Data,%20saya%20tertarik%20dengan%20program%20Career%20Accelerator",
+                cta: "Daftar Sekarang"
               },
               {
                 icon: <FileCode className="w-6 h-6" />,
                 title: "Produk Digital",
                 desc: "Kumpulan aset referensi belajar data mandiri, termasuk roadmap kurikulum, dataset eksklusif, dan template portofolio standar industri untuk hasil profesional.",
                 link: "https://lynk.id/akmalfauuzan",
-                cta: "Beli Produk"
+                cta: "Cek Produk Digital"
               }
             ].map((program, idx) => (
               <motion.div
