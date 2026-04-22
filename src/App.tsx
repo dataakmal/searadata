@@ -15,7 +15,8 @@ import {
   FileCode,
   MessagesSquare,
   ExternalLink,
-  Heart
+  Heart,
+  Mail
 } from "lucide-react";
 
 export default function App() {
@@ -298,10 +299,13 @@ export default function App() {
               >
                 <div className="aspect-[4/5] overflow-hidden bg-blue-50 relative">
                   <img 
-                    src="https://picsum.photos/seed/mentoring/800/1000" 
+                    src="/mentoring.png" 
                     alt="Mentoring 1-on-1" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = 'https://picsum.photos/seed/mentoring/800/1000';
+                    }}
                   />
                   <div className="absolute top-4 left-4 z-20">
                     <span className="bg-blue-600 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full shadow-lg">
@@ -431,12 +435,12 @@ export default function App() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { label: "Community", title: "Sharing Session: Memulai Karir Data dari Nol", link: "https://www.linkedin.com/feed/update/urn:li:activity:7446136919501213696" },
-                { label: "Career Path", title: "Membangun Portofolio Data Engineer yang Menarik HRD", link: "https://www.linkedin.com/feed/update/urn:li:activity:7444340258118492160" },
-                { label: "Technical", title: "Best Practice ETL Pipeline untuk Skala Enterprise", link: "https://www.linkedin.com/feed/update/urn:li:activity:7421744521882935296" },
-                { label: "Tips", title: "3 Skill Utama yang Harus Dikuasai Data Engineer di 2026", link: "https://www.linkedin.com/feed/update/urn:li:activity:7418987569864003584" },
-                { label: "Insight", title: "Kenapa Bisnis Perlu Data Engineering Sebelum AI?", link: "https://www.linkedin.com/feed/update/urn:li:activity:7417532253360041984" },
-                { label: "Learning", title: "Roadmap Menjadi Data Engineer dalam 6 Bulan", link: "https://www.linkedin.com/feed/update/urn:li:activity:7382647204173459456" }
+                { label: "Insight", title: "Data Engineer: Sosok 'Arsitek Dapur' di Balik Dashboard", link: "https://www.linkedin.com/feed/update/urn:li:activity:7446136919501213696" },
+                { label: "Career Path", title: "4 Tools Wajib untuk Memulai Karir sebagai Data Analyst", link: "https://www.linkedin.com/feed/update/urn:li:activity:7444340258118492160" },
+                { label: "Mentoring", title: "Modern Workflow 2026: Bedah CV & Portofolio High Impact", link: "https://www.linkedin.com/feed/update/urn:li:activity:7421744521882935296" },
+                { label: "Community", title: "Recap Kelas Gratis: Pengenalan Data untuk Pemula", link: "https://www.linkedin.com/feed/update/urn:li:activity:7418987569864003584" },
+                { label: "Mindset", title: "Mulai Perjalanan Datamu: Konsistensi adalah Kunci", link: "https://www.linkedin.com/feed/update/urn:li:activity:7417532253360041984" },
+                { label: "Corporate", title: "Python for Data Analytics: Keseruan Corporate Training", link: "https://www.linkedin.com/feed/update/urn:li:activity:7382647204173459456" }
               ].map((insight, idx) => (
                 <motion.a 
                   key={idx}
@@ -619,21 +623,28 @@ export default function App() {
               <p className="text-lg text-[#5a5a5a] mb-10 max-w-2xl mx-auto">
                 Gue pernah ada di posisi lo—bingung, kewalahan, dan nggak tau harus mulai dari mana. Di Seara Data, lo bakal dapet bimbingan nyata.
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex flex-col items-center gap-10">
                 <a 
                   href="https://wa.me/6281779052788?text=Halo%20Seara%20Data,%20saya%20ingin%20konsultasi%20mengenai%20project%20data%20saya"
                   className="inline-block bg-seara-orange text-white px-12 py-5 rounded-2xl font-bold text-xl hover:brightness-110 transition-all shadow-xl active:scale-95"
                 >
                   Konsultasi Sekarang
                 </a>
-                <a 
-                  href="https://saweria.co/searadata"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-white text-seara-dark border border-gray-200 px-12 py-5 rounded-2xl font-bold text-xl hover:bg-gray-50 transition-all shadow-sm active:scale-95"
-                >
-                  Dukung Kami <Heart className="w-5 h-5 text-red-500 fill-red-500" />
-                </a>
+                
+                <div className="flex flex-col items-center">
+                  <div className="text-gray-400 font-bold uppercase text-[10px] tracking-[0.3em] mb-6">Cek Sosial Media Kami</div>
+                  <div className="flex gap-8">
+                    <a href="https://www.instagram.com/searadata" target="_blank" rel="noopener noreferrer" className="p-4 bg-white border border-orange-100 rounded-2xl text-pink-600 hover:bg-orange-50 transition-all shadow-sm hover:shadow-md active:scale-90">
+                      <Instagram className="w-8 h-8" />
+                    </a>
+                    <a href="https://www.linkedin.com/company/seara-data" target="_blank" rel="noopener noreferrer" className="p-4 bg-white border border-orange-100 rounded-2xl text-[#0077b5] hover:bg-orange-50 transition-all shadow-sm hover:shadow-md active:scale-90">
+                      <Linkedin className="w-8 h-8" />
+                    </a>
+                    <a href="mailto:searadata@gmail.com" className="p-4 bg-white border border-orange-100 rounded-2xl text-gray-700 hover:bg-orange-50 transition-all shadow-sm hover:shadow-md active:scale-90">
+                      <Mail className="w-8 h-8" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
