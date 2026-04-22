@@ -202,7 +202,7 @@ export default function App() {
               <div className="w-20 h-1.5 bg-seara-orange rounded-full hidden md:block"></div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Event 1: Mini Course */}
               <motion.div 
                 className="group bg-white rounded-[32px] border border-orange-100 overflow-hidden shadow-sm hover:shadow-xl transition-all"
@@ -287,6 +287,46 @@ export default function App() {
                   </a>
                 </div>
               </motion.div>
+
+              {/* Event 3: Mentoring 1-on-1 */}
+              <motion.div 
+                className="group bg-white rounded-[32px] border border-orange-100 overflow-hidden shadow-sm hover:shadow-xl transition-all"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
+                <div className="aspect-[4/5] overflow-hidden bg-blue-50 relative">
+                  <img 
+                    src="https://picsum.photos/seed/mentoring/800/1000" 
+                    alt="Mentoring 1-on-1" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute top-4 left-4 z-20">
+                    <span className="bg-blue-600 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full shadow-lg">
+                       🎯 Personal Coaching
+                    </span>
+                  </div>
+                </div>
+                <div className="p-8">
+                  <div className="text-sm text-gray-400 font-bold mb-2">By Appointment Only</div>
+                  <h4 className="text-2xl font-bold text-seara-dark mb-4 leading-tight">
+                    Mentoring 1-on-1: Karir & Portofolio
+                  </h4>
+                  <p className="text-gray-500 text-sm mb-6 leading-relaxed">
+                    Sesi privat bareng expert untuk review CV, portfolio, hingga persiapan interview. Jadwalkan sesi personalmu sekarang.
+                  </p>
+                  <a 
+                    href="http://lynk.id/akmalfauuzan/90g3jqwpzvp8" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-full bg-seara-dark text-white py-4 rounded-2xl font-bold hover:brightness-110 transition-all shadow-md active:scale-95 gap-2"
+                  >
+                    Booking Sesi <ChevronRight className="w-5 h-5" />
+                  </a>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -313,7 +353,9 @@ export default function App() {
               {
                 icon: <Users className="w-6 h-6" />,
                 title: "Mentoring 1-on-1",
-                desc: "Sesi bimbingan personal yang berfokus pada pengembangan karier dan portofolio. Kami membantu Anda memetakan jalur karier data yang tepat dan membangun personal brand yang kompetitif."
+                desc: "Sesi bimbingan personal yang berfokus pada pengembangan karier dan portofolio. Kami membantu Anda memetakan jalur karier data yang tepat dan membangun personal brand yang kompetitif.",
+                link: "http://lynk.id/akmalfauuzan/90g3jqwpzvp8",
+                cta: "Jadwalkan Sesi"
               },
               {
                 icon: <MessagesSquare className="w-6 h-6" />,
@@ -323,7 +365,9 @@ export default function App() {
               {
                 icon: <BookOpen className="w-6 h-6" />,
                 title: "Mini Course",
-                desc: "Akselerasi skill spesifik melalui 6 modul intensif selama 3 hari. Dirancang untuk memberikan pemahaman mendalam secara sistematis dan praktis dalam waktu singkat."
+                desc: "Akselerasi skill spesifik melalui 6 modul intensif selama 3 hari. Dirancang untuk memberikan pemahaman mendalam secara sistematis dan praktis dalam waktu singkat.",
+                link: "https://clicky.id/searadata",
+                cta: "Lihat Course"
               },
               {
                 icon: <Briefcase className="w-6 h-6" />,
@@ -333,24 +377,38 @@ export default function App() {
               {
                 icon: <FileCode className="w-6 h-6" />,
                 title: "Produk Digital",
-                desc: "Kumpulan aset referensi belajar data mandiri, termasuk roadmap kurikulum, dataset eksklusif, dan template portofolio standar industri untuk hasil profesional."
+                desc: "Kumpulan aset referensi belajar data mandiri, termasuk roadmap kurikulum, dataset eksklusif, dan template portofolio standar industri untuk hasil profesional.",
+                link: "https://lynk.id/akmalfauuzan",
+                cta: "Beli Produk"
               }
             ].map((program, idx) => (
               <motion.div
                 key={idx}
-                className="bg-white p-8 rounded-[32px] border border-transparent hover:border-seara-orange/50 transition-all duration-300 group shadow-sm hover:shadow-md"
+                className="bg-white p-8 rounded-[32px] border border-transparent hover:border-seara-orange/50 transition-all duration-300 group shadow-sm hover:shadow-md flex flex-col justify-between h-full"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
               >
-                <div className="w-12 h-12 bg-seara-cream rounded-xl flex items-center justify-center text-seara-orange mb-6 group-hover:scale-110 transition-transform">
-                  {program.icon}
+                <div>
+                  <div className="w-12 h-12 bg-seara-cream rounded-xl flex items-center justify-center text-seara-orange mb-6 group-hover:scale-110 transition-transform">
+                    {program.icon}
+                  </div>
+                  <h4 className="text-xl font-bold mb-3 text-seara-dark">{program.title}</h4>
+                  <p className="text-sm text-gray-500 leading-relaxed font-medium mb-6">
+                    {program.desc}
+                  </p>
                 </div>
-                <h4 className="text-xl font-bold mb-3 text-seara-dark">{program.title}</h4>
-                <p className="text-sm text-gray-500 leading-relaxed font-medium">
-                  {program.desc}
-                </p>
+                {program.link && (
+                  <a 
+                    href={program.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-full py-3 bg-seara-orange/10 text-seara-orange group-hover:bg-seara-orange group-hover:text-white rounded-xl font-bold transition-all text-sm gap-2"
+                  >
+                    {program.cta} <ChevronRight className="w-4 h-4" />
+                  </a>
+                )}
               </motion.div>
             ))}
           </div>
@@ -371,12 +429,14 @@ export default function App() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { label: "Career Path", title: "Data Engineer for New Starters: Skillset Wajib di 2026", link: "https://www.linkedin.com/company/seara-data" },
-                { label: "Business", title: "How to Win The Boardroom: Menjual Data ke C-Level", link: "https://www.linkedin.com/company/seara-data" },
-                { label: "Programming", title: "Python for Automation: Cara Cerdas Kerja Lebih Efisien", link: "https://www.linkedin.com/company/seara-data" },
-                { label: "Mindset", title: "Speak Business, Think Data: Bridging the Gap", link: "https://www.linkedin.com/company/seara-data" }
+                { label: "Community", title: "Sharing Session: Memulai Karir Data dari Nol", link: "https://www.linkedin.com/feed/update/urn:li:activity:7446136919501213696" },
+                { label: "Career Path", title: "Membangun Portofolio Data Engineer yang Menarik HRD", link: "https://www.linkedin.com/feed/update/urn:li:activity:7444340258118492160" },
+                { label: "Technical", title: "Best Practice ETL Pipeline untuk Skala Enterprise", link: "https://www.linkedin.com/feed/update/urn:li:activity:7421744521882935296" },
+                { label: "Tips", title: "3 Skill Utama yang Harus Dikuasai Data Engineer di 2026", link: "https://www.linkedin.com/feed/update/urn:li:activity:7418987569864003584" },
+                { label: "Insight", title: "Kenapa Bisnis Perlu Data Engineering Sebelum AI?", link: "https://www.linkedin.com/feed/update/urn:li:activity:7417532253360041984" },
+                { label: "Learning", title: "Roadmap Menjadi Data Engineer dalam 6 Bulan", link: "https://www.linkedin.com/feed/update/urn:li:activity:7382647204173459456" }
               ].map((insight, idx) => (
                 <motion.a 
                   key={idx}
@@ -567,7 +627,7 @@ export default function App() {
                   Konsultasi Sekarang
                 </a>
                 <a 
-                  href="https://saweria.co/akmalfauuzan"
+                  href="https://saweria.co/searadata"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-white text-seara-dark border border-gray-200 px-12 py-5 rounded-2xl font-bold text-xl hover:bg-gray-50 transition-all shadow-sm active:scale-95"
