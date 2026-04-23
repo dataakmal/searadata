@@ -203,134 +203,132 @@ export default function App() {
               <div className="w-20 h-1.5 bg-seara-orange rounded-full hidden md:block"></div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Event 1: Mini Course */}
-              <motion.div 
-                className="group bg-white rounded-[32px] border border-orange-100 overflow-hidden shadow-sm hover:shadow-xl transition-all"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
-                <div className="aspect-[4/5] overflow-hidden bg-orange-50 relative">
-                  <img 
-                    src="/poster-course.png" 
-                    alt="Poster Mini Course Data Engineer 24-26 April" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = 'https://picsum.photos/seed/seara-course/800/1000';
-                    }}
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute top-4 left-4 z-20">
-                    <span className="bg-seara-orange text-white text-[10px] font-black uppercase px-3 py-1 rounded-full shadow-lg">
-                       🚀 Premium Course
-                    </span>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  id: "mentoring",
+                  type: "active",
+                  badge: "🎯 Personal Coaching",
+                  badgeColor: "bg-blue-600",
+                  image: "/mentoring.png",
+                  date: "By Appointment Only",
+                  title: "Mentoring 1-on-1: Karir & Portofolio",
+                  desc: "Sesi privat bareng expert untuk review CV, portfolio, hingga persiapan interview. Jadwalkan sesi personalmu sekarang.",
+                  link: "http://lynk.id/akmalfauuzan/90g3jqwpzvp8",
+                  cta: "Booking Sesi",
+                  bgColor: "bg-blue-50"
+                },
+                {
+                  id: "de-course",
+                  type: "active",
+                  badge: "🚀 Premium Course",
+                  badgeColor: "bg-seara-orange",
+                  image: "/poster-course.png",
+                  date: "24 - 26 April 2026",
+                  title: "Mini Course: 3 Days to be Data Engineer",
+                  desc: "Explore API, ETL, Python & Database bareng Mario Caesar (Senior Data Engineer). Dapatkan sertifikat, ready-to-use script, and real case study.",
+                  link: "https://clicky.id/searadata/dataengineer",
+                  cta: "Daftar Sekarang",
+                  bgColor: "bg-orange-50"
+                },
+                {
+                  id: "career-framework",
+                  type: "finished",
+                  badge: "📅 EVENT FINISHED",
+                  badgeColor: "bg-gray-500",
+                  image: "/poster-free.png",
+                  date: "22 April 2026 | 20:00 - 21:00 WIB",
+                  title: "Mini Class: Career Framework for New Starters",
+                  desc: "Belajar data dari 0! Pahami framework berkarier sebagai Data Engineer di industri finansial bersama Senior DE dari Singapore Fintech.",
+                  cta: "Pendaftaran Ditutup",
+                  bgColor: "bg-gray-100"
+                },
+                {
+                  id: "python-automation",
+                  type: "finished",
+                  badge: "📅 EVENT FINISHED",
+                  badgeColor: "bg-gray-500",
+                  image: "/python.png",
+                  date: "14 - 15 Februari 2026",
+                  title: "Mini Course: Python for Automation",
+                  desc: "Otomatisasi pekerjaan harianmu dengan Python. Belajar scripting praktis untuk meningkatkan efisiensi kerja tim data.",
+                  link: "https://clicky.id/searadata/pythonforautomation",
+                  cta: "Pendaftaran Ditutup",
+                  bgColor: "bg-gray-100"
+                },
+                {
+                  id: "win-boardroom",
+                  type: "finished",
+                  badge: "📅 EVENT FINISHED",
+                  badgeColor: "bg-gray-500",
+                  image: "/mini-data.png",
+                  date: "8 Februari 2026",
+                  title: "Speak Business, Think Data: How to Win Boardroom",
+                  desc: "Bagaimana cara 'menjual' hasil analisis data ke C-Level? Pahami framework komunikasi data yang persuasif dan strategis.",
+                  cta: "Pendaftaran Ditutup",
+                  bgColor: "bg-gray-100"
+                }
+              ].map((event, idx) => (
+                <motion.div 
+                  key={event.id}
+                  className="group bg-white rounded-[32px] border border-orange-100 overflow-hidden shadow-sm hover:shadow-xl transition-all"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                >
+                  <div className={`aspect-[4/5] overflow-hidden ${event.bgColor} relative`}>
+                    <img 
+                      src={event.image} 
+                      alt={event.title} 
+                      className={`w-full h-full object-cover transition-transform duration-500 ${event.type === 'finished' ? 'grayscale opacity-60' : 'group-hover:scale-105'}`}
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src = `https://picsum.photos/seed/seara-${event.id}/800/1000`;
+                      }}
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
+                      <span className={`${event.badgeColor} text-white text-[10px] font-black uppercase px-3 py-1 rounded-full shadow-lg`}>
+                         {event.badge}
+                      </span>
+                    </div>
+                    {event.type === 'finished' && (
+                      <div className="absolute inset-0 flex items-center justify-center z-10">
+                        <div className="bg-black/60 text-white px-6 py-2 rounded-lg font-black text-xl rotate-[-12deg] border-4 border-white/40 uppercase tracking-widest shadow-2xl">
+                          Selesai
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </div>
-                <div className="p-8">
-                  <div className="text-sm text-gray-400 font-bold mb-2">24 - 26 April 2026</div>
-                  <h4 className="text-2xl font-bold text-seara-dark mb-4 leading-tight">
-                    Mini Course: 3 Days to be Data Engineer
-                  </h4>
-                  <p className="text-gray-500 text-sm mb-6 leading-relaxed">
-                    Explore API, ETL, Python & Database bareng Mario Caesar (Senior Data Engineer). Dapatkan sertifikat, ready-to-use script, dan real case study.
-                  </p>
-                  <a 
-                    href="https://clicky.id/searadata/dataengineer" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-full bg-seara-orange text-white py-4 rounded-2xl font-bold hover:brightness-95 transition-all shadow-md active:scale-95 gap-2"
-                  >
-                    Daftar Sekarang <ChevronRight className="w-5 h-5" />
-                  </a>
-                </div>
-              </motion.div>
-
-              {/* Event 2: Free Class */}
-              <motion.div 
-                className="group bg-white rounded-[32px] border border-orange-100 overflow-hidden shadow-sm hover:shadow-xl transition-all"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-              >
-                <div className="aspect-[4/5] overflow-hidden bg-green-50 relative">
-                  <img 
-                    src="/poster-free.png" 
-                    alt="Poster Free Mini Class Data Engineer 22 April" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = 'https://picsum.photos/seed/seara-free/800/1000';
-                    }}
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute top-4 left-4 z-20">
-                    <span className="bg-green-500 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full shadow-lg">
-                       ✨ FREE ACCESS
-                    </span>
+                  <div className={`p-8 ${event.type === 'finished' ? 'opacity-75' : ''}`}>
+                    <div className={`text-sm text-gray-400 font-bold mb-2 ${event.type === 'finished' ? 'line-through' : ''}`}>{event.date}</div>
+                    <h4 className={`text-2xl font-bold mb-4 leading-tight ${event.type === 'finished' ? 'text-gray-400' : 'text-seara-dark'}`}>
+                      {event.title}
+                    </h4>
+                    <p className={`text-sm mb-6 leading-relaxed ${event.type === 'finished' ? 'text-gray-400' : 'text-gray-500'}`}>
+                      {event.desc}
+                    </p>
+                    
+                    {event.type === 'active' ? (
+                      <a 
+                        href={event.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center justify-center w-full py-4 rounded-2xl font-bold transition-all shadow-md active:scale-95 gap-2 ${event.id === 'mentoring' ? 'bg-seara-dark text-white hover:brightness-110' : 'bg-seara-orange text-white hover:brightness-95'}`}
+                      >
+                        {event.cta} <ChevronRight className="w-5 h-5" />
+                      </a>
+                    ) : (
+                      <button 
+                        disabled
+                        className="inline-flex items-center justify-center w-full bg-gray-100 border-2 border-gray-200 text-gray-400 py-4 rounded-2xl font-bold cursor-not-allowed gap-2"
+                      >
+                        {event.cta}
+                      </button>
+                    )}
                   </div>
-                </div>
-                <div className="p-8">
-                  <div className="text-sm text-gray-400 font-bold mb-2">22 April 2026 | 20:00 - 21:00 WIB</div>
-                  <h4 className="text-2xl font-bold text-seara-dark mb-4 leading-tight">
-                    Mini Class: Career Framework for New Starters
-                  </h4>
-                  <p className="text-gray-500 text-sm mb-6 leading-relaxed">
-                    Belajar data dari 0! Pahami framework berkarier sebagai Data Engineer di industri finansial bersama Senior DE dari Singapore Fintech.
-                  </p>
-                  <a 
-                    href="https://forms.gle/5vbinpepZzvzF7rKA" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-full bg-white border-2 border-seara-orange text-seara-orange py-4 rounded-2xl font-bold hover:bg-orange-50 transition-all shadow-sm active:scale-95 gap-2"
-                  >
-                    Amankan Kursi <ChevronRight className="w-5 h-5" />
-                  </a>
-                </div>
-              </motion.div>
-
-              {/* Event 3: Mentoring 1-on-1 */}
-              <motion.div 
-                className="group bg-white rounded-[32px] border border-orange-100 overflow-hidden shadow-sm hover:shadow-xl transition-all"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
-                <div className="aspect-[4/5] overflow-hidden bg-blue-50 relative">
-                  <img 
-                    src="/mentoring.png" 
-                    alt="Mentoring 1-on-1" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = 'https://picsum.photos/seed/mentoring/800/1000';
-                    }}
-                  />
-                  <div className="absolute top-4 left-4 z-20">
-                    <span className="bg-blue-600 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full shadow-lg">
-                       🎯 Personal Coaching
-                    </span>
-                  </div>
-                </div>
-                <div className="p-8">
-                  <div className="text-sm text-gray-400 font-bold mb-2">By Appointment Only</div>
-                  <h4 className="text-2xl font-bold text-seara-dark mb-4 leading-tight">
-                    Mentoring 1-on-1: Karir & Portofolio
-                  </h4>
-                  <p className="text-gray-500 text-sm mb-6 leading-relaxed">
-                    Sesi privat bareng expert untuk review CV, portfolio, hingga persiapan interview. Jadwalkan sesi personalmu sekarang.
-                  </p>
-                  <a 
-                    href="http://lynk.id/akmalfauuzan/90g3jqwpzvp8" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-full bg-seara-dark text-white py-4 rounded-2xl font-bold hover:brightness-110 transition-all shadow-md active:scale-95 gap-2"
-                  >
-                    Booking Sesi <ChevronRight className="w-5 h-5" />
-                  </a>
-                </div>
-              </motion.div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
