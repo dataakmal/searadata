@@ -219,17 +219,29 @@ export default function App() {
                   bgColor: "bg-blue-50"
                 },
                 {
-                  id: "de-course",
+                  id: "python-automation",
                   type: "active",
-                  badge: "🚀 Premium Course",
-                  badgeColor: "bg-seara-orange",
-                  image: "/poster-course.png",
-                  date: "24 - 26 April 2026",
-                  title: "Mini Course: 3 Days to be Data Engineer",
-                  desc: "Explore API, ETL, Python & Database bareng Mario Caesar (Senior Data Engineer). Dapatkan sertifikat, ready-to-use script, and real case study.",
-                  link: "https://clicky.id/searadata/dataengineer",
-                  cta: "Daftar Sekarang",
-                  bgColor: "bg-orange-50"
+                  badge: "📹 RECORDING AVAILABLE",
+                  badgeColor: "bg-purple-600",
+                  image: "/python.png",
+                  date: "Recorded Session Hub",
+                  title: "Mini Course: Python for Automation",
+                  desc: "Dapatkan rekaman & materi lengkap cara otomatisasi kerjaan harian dengan Python. Solusi cerdas kerja lebih efisien.",
+                  link: "http://lynk.id/akmalfauuzan/ygxyxm7nd2zl",
+                  cta: "Akses Full Materi Kelas - 66rb",
+                  bgColor: "bg-purple-50"
+                },
+                {
+                  id: "win-boardroom",
+                  type: "finished",
+                  badge: "📅 EVENT FINISHED",
+                  badgeColor: "bg-gray-500",
+                  image: "/mini-data.png",
+                  date: "8 Februari 2026 | 10:00 - 11:00 WIB",
+                  title: "Speak Business, Think Data: How to Win Boardroom",
+                  desc: "Bagaimana cara 'menjual' hasil analisis data ke C-Level? Pahami framework komunikasi data yang persuasif dan strategis.",
+                  cta: "Pendaftaran Ditutup",
+                  bgColor: "bg-gray-100"
                 },
                 {
                   id: "career-framework",
@@ -244,27 +256,15 @@ export default function App() {
                   bgColor: "bg-gray-100"
                 },
                 {
-                  id: "python-automation",
+                  id: "de-course",
                   type: "finished",
                   badge: "📅 EVENT FINISHED",
                   badgeColor: "bg-gray-500",
-                  image: "/python.png",
-                  date: "14 - 15 Februari 2026 | 09:00 - 15:00 WIB",
-                  title: "Mini Course: Python for Automation",
-                  desc: "Otomatisasi pekerjaan harianmu dengan Python. Belajar scripting praktis untuk meningkatkan efisiensi kerja tim data.",
-                  link: "https://clicky.id/searadata/pythonforautomation",
-                  cta: "Pendaftaran Ditutup",
-                  bgColor: "bg-gray-100"
-                },
-                {
-                  id: "win-boardroom",
-                  type: "finished",
-                  badge: "📅 EVENT FINISHED",
-                  badgeColor: "bg-gray-500",
-                  image: "/mini-data.png",
-                  date: "8 Februari 2026 | 10:00 - 11:00 WIB",
-                  title: "Speak Business, Think Data: How to Win Boardroom",
-                  desc: "Bagaimana cara 'menjual' hasil analisis data ke C-Level? Pahami framework komunikasi data yang persuasif dan strategis.",
+                  image: "/poster-course.png",
+                  date: "24 - 26 April 2026",
+                  title: "Mini Course: 3 Days to be Data Engineer",
+                  desc: "Explore API, ETL, Python & Database bareng Mario Caesar (Senior Data Engineer). Dapatkan sertifikat, ready-to-use script, and real case study.",
+                  link: "https://clicky.id/searadata/dataengineer",
                   cta: "Pendaftaran Ditutup",
                   bgColor: "bg-gray-100"
                 }
