@@ -81,9 +81,8 @@ export default function App() {
           >
             {[...Array(6)].map((_, i) => (
               <div key={i} className="flex gap-12 items-center">
-                <span>🔥 Mini Course: Data Engineer 24-26 Apr</span>
-                <span>✨ [FREE] Mini Class Data Engineer</span>
-                <span>🚀 Career Accelerator Program Open Now</span>
+                <span>🔥 Bootcamp Data Analyst 3-20 Jun</span>
+                <span>🎯 Mentoring 1-on-1</span>
               </div>
             ))}
           </motion.div>
@@ -129,7 +128,7 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="bg-seara-orange text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-[0_10px_15px_-3px_rgba(241,111,83,0.2)] hover:brightness-95 hover:-translate-y-1 transition-all flex items-center gap-2"
               >
-                Daftar Mini Course <ChevronRight className="w-5 h-5" />
+                Daftar Bootcamp <ChevronRight className="w-5 h-5" />
               </a>
               <a 
                 href="https://chat.whatsapp.com/IEtToynaCUP2GAwelBolQc" 
@@ -205,6 +204,18 @@ export default function App() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
+                {
+                  id: "bootcamp-da",
+                  type: "active",
+                  badge: "🚀 REGISTRATION SOON",
+                  badgeColor: "bg-seara-orange",
+                  image: "/bootcamp-data-analyst.png",
+                  date: "3 - 20 Juni 2026",
+                  title: "Bootcamp: Data Analyst Specialization",
+                  desc: "Kuasai Excel, Power BI, Python, dan SQL dalam 3 minggu intensif. Siap kerja sebagai Data Analyst di 2026.",
+                  cta: "Coming Soon in June",
+                  bgColor: "bg-orange-50"
+                },
                 {
                   id: "mentoring",
                   type: "active",
@@ -310,14 +321,20 @@ export default function App() {
                     </p>
                     
                     {event.type === 'active' ? (
-                      <a 
-                        href={event.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className={`inline-flex items-center justify-center w-full py-4 rounded-2xl font-bold transition-all shadow-md active:scale-95 gap-2 ${event.id === 'mentoring' ? 'bg-seara-dark text-white hover:brightness-110' : 'bg-seara-orange text-white hover:brightness-95'}`}
-                      >
-                        {event.cta} <ChevronRight className="w-5 h-5" />
-                      </a>
+                      event.link ? (
+                        <a 
+                          href={event.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className={`inline-flex items-center justify-center w-full py-4 rounded-2xl font-bold transition-all shadow-md active:scale-95 gap-2 ${event.id === 'mentoring' ? 'bg-seara-dark text-white hover:brightness-110' : 'bg-seara-orange text-white hover:brightness-95'}`}
+                        >
+                          {event.cta} <ChevronRight className="w-5 h-5" />
+                        </a>
+                      ) : (
+                        <div className={`inline-flex items-center justify-center w-full py-4 rounded-2xl font-bold transition-all shadow-md gap-2 ${event.id === 'mentoring' ? 'bg-seara-dark text-white' : 'bg-seara-orange text-white'}`}>
+                          {event.cta}
+                        </div>
+                      )
                     ) : (
                       <button 
                         disabled
@@ -370,10 +387,10 @@ export default function App() {
               },
               {
                 icon: <BookOpen className="w-6 h-6" />,
-                title: "Mini Course",
+                title: "Bootcamp",
                 desc: "Akselerasi skill spesifik melalui 6 modul intensif selama 3 hari. Dirancang untuk memberikan pemahaman mendalam secara sistematis dan praktis dalam waktu singkat.",
                 link: "https://clicky.id/searadata",
-                cta: "Lihat Course"
+                cta: "Daftar Bootcamp"
               },
               {
                 icon: <Briefcase className="w-6 h-6" />,
