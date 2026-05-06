@@ -107,10 +107,11 @@ export default function App() {
               variants={fadeIn}
               className="text-5xl md:text-7xl font-extrabold mb-10 leading-[1.1] text-seara-dark tracking-tight font-display"
             >
-              Seara, Data yang Bikin <br />
-              <span className="text-seara-orange">Bisnismu Searah</span>
+              Seara, Menemani Perjalanan  <br />
+              <span className="text-seara-orange">Datamu Lebih Terarah</span>
             </motion.h2>
             
+
             <motion.p 
               variants={fadeIn}
               className="text-lg text-[#5a5a5a] mb-12 max-w-2xl mx-auto leading-relaxed"
@@ -123,7 +124,7 @@ export default function App() {
               className="flex flex-wrap justify-center gap-4"
             >
               <a 
-                href="https://clicky.id/searadata/dataengineer" 
+                href="https://clicky.id/searadata/bootcamp-data-analyst" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-seara-orange text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-[0_10px_15px_-3px_rgba(241,111,83,0.2)] hover:brightness-95 hover:-translate-y-1 transition-all flex items-center gap-2"
@@ -207,13 +208,14 @@ export default function App() {
                 {
                   id: "bootcamp-da",
                   type: "active",
-                  badge: "🚀 REGISTRATION SOON",
+                  badge: "🚀 REGISTRATION OPEN",
                   badgeColor: "bg-seara-orange",
                   image: "/bootcamp-data-analyst.png",
                   date: "3 - 20 Juni 2026",
                   title: "Bootcamp: Data Analyst Specialization",
                   desc: "Kuasai Excel, Power BI, Python, dan SQL dalam 3 minggu intensif. Siap kerja sebagai Data Analyst di 2026.",
-                  cta: "Coming Soon in June",
+                  link: "https://clicky.id/searadata/bootcamp-data-analyst",
+                  cta: "Daftar Bootcamp",
                   bgColor: "bg-orange-50"
                 },
                 {
