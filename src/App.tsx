@@ -219,6 +219,19 @@ export default function App() {
                   bgColor: "bg-orange-50"
                 },
                 {
+                  id: "mini-class-excel",
+                  type: "active",
+                  badge: "🎁 FREE MINI CLASS",
+                  badgeColor: "bg-green-600",
+                  image: "/mini-class-excel-powerbi.png",
+                  date: "19 Mei 2026 | 20:00 - 21:00 WIB",
+                  title: "Mini Class: Excel & Power BI (Free)",
+                  desc: "Belajar dasar Excel & Power BI dashboard bareng M. Zahrul Wafi (Bank Danamon). Free rekaman, materi, & e-certificate!",
+                  link: "https://bit.ly/MiniClassSearaData-3",
+                  cta: "Daftar Sekarang — Gratis",
+                  bgColor: "bg-green-50"
+                },
+                {
                   id: "mentoring",
                   type: "active",
                   badge: "🎯 Personal Coaching",
