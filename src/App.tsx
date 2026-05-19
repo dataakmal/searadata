@@ -219,17 +219,30 @@ export default function App() {
                   bgColor: "bg-orange-50"
                 },
                 {
-                  id: "mini-class-excel",
+                  id: "mini-class-sql-python",
                   type: "active",
                   badge: "🎁 FREE MINI CLASS",
                   badgeColor: "bg-green-600",
+                  image: "/mini-class-sql-python.png",
+                  date: "Senin, 25 Mei 2026 | 19:30 - 21:00 WIB",
+                  title: "Mini Class: SQL & Python (Free)",
+                  desc: "Belajar dasar SQL & Python bareng Achmad Kurniansyah Thalib (BI at Dekoruma). Free rekaman, materi, & e-certificate!",
+                  link: "http://bit.ly/MiniClassSearaData-4",
+                  cta: "Daftar Sekarang — Gratis",
+                  bgColor: "bg-green-50"
+                },
+                {
+                  id: "mini-class-excel",
+                  type: "finished",
+                  badge: "📅 EVENT FINISHED",
+                  badgeColor: "bg-gray-500",
                   image: "/mini-class-excel-powerbi.png",
                   date: "19 Mei 2026 | 20:00 - 21:00 WIB",
                   title: "Mini Class: Excel & Power BI (Free)",
                   desc: "Belajar dasar Excel & Power BI dashboard bareng M. Zahrul Wafi (Bank Danamon). Free rekaman, materi, & e-certificate!",
                   link: "https://bit.ly/MiniClassSearaData-3",
-                  cta: "Daftar Sekarang — Gratis",
-                  bgColor: "bg-green-50"
+                  cta: "Pendaftaran Ditutup",
+                  bgColor: "bg-gray-100"
                 },
                 {
                   id: "mentoring",
