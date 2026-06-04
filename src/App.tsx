@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Mentoring from "./pages/Mentoring";
 import Program from "./pages/Program";
 import Komunitas from "./pages/Komunitas";
+import Testimoni from "./pages/Testimoni";
 
 // Scroll to top on route change for smooth user experience
 function ScrollToTop() {
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/program" element={<Program />} />
         <Route path="/komunitas" element={<Komunitas />} />
         <Route path="/mentoring" element={<Mentoring />} />
+        <Route path="/testimoni" element={<Testimoni />} />
       </Routes>
     </Router>
   );

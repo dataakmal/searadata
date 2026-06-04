@@ -209,15 +209,18 @@ export default function Program() {
                   </div>
                 </div>
 
-                <div>
+                <div className="flex flex-col sm:flex-row items-center gap-6">
                   <a 
                     href="https://clicky.id/searadata/bootcamp-data-analyst" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-full md:w-auto justify-center items-center gap-2 bg-seara-orange text-white px-8 py-4 rounded-2xl font-bold text-lg hover:brightness-105 hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-orange-500/10 transition-all text-center"
+                    className="inline-flex w-full md:w-auto justify-center items-center gap-2 bg-seara-orange text-white px-8 py-4 rounded-2xl font-bold text-lg hover:brightness-105 hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-orange-500/10 transition-all text-center h-fit"
                   >
                     Daftar Sekarang <ArrowRight className="w-5 h-5" />
                   </a>
+                  <Link to="/testimoni" className="text-seara-orange hover:underline text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap">
+                    Lihat Testimoni Alumni →
+                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -237,6 +240,11 @@ export default function Program() {
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Kami menyediakan fleksibilitas belajar sesuai timeline dan preferensi belajarmu dari kelas mandiri, sesi singkat, hingga pendampingan intensif.
               </p>
+              <div className="pt-2">
+                <Link to="/testimoni" className="inline-flex items-center gap-2 bg-orange-50/50 hover:bg-orange-50 text-seara-orange border border-orange-100 px-5 py-2.5 rounded-full text-xs font-bold transition-all shadow-sm">
+                  ⭐️ Lihat Testimoni Alumni Seara Data →
+                </Link>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
