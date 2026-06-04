@@ -57,7 +57,7 @@ export default function Home() {
             </h1>
           </div>
           <div className="hidden md:flex items-center gap-8 font-medium">
-            <a href="#program" className="hover:text-seara-orange transition-colors">Program</a>
+            <Link to="/program" className="hover:text-seara-orange transition-colors">Program</Link>
             <a href="#komunitas" className="hover:text-seara-orange transition-colors">Komunitas</a>
             <Link to="/mentoring" className="text-seara-orange hover:underline transition-all">Mentoring</Link>
             <a 

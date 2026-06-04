@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import { useEffect } from "react";
 import Home from "./pages/Home";
 import Mentoring from "./pages/Mentoring";
+import Program from "./pages/Program";
 
 // Scroll to top on route change for smooth user experience
 function ScrollToTop() {
@@ -20,6 +21,7 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/program" element={<Program />} />
         <Route path="/mentoring" element={<Mentoring />} />
       </Routes>
     </Router>
