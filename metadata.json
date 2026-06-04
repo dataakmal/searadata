@@ -2,5 +2,5 @@
   "name": "Seara Data - Menemani Perjalanan Datamu Lebih Searah",
   "description": "Seara Data hadir untuk membimbingmu memahami data—dari belajar, mentoring, hingga tools digital siap pakai.",
   "requestFramePermissions": [],
-  "majorCapabilities": []
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
