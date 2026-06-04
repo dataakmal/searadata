@@ -83,6 +83,7 @@ export default function Program() {
               <Link to="/program" className="text-seara-orange font-bold hover:brightness-110 transition-colors">Program</Link>
               <Link to="/komunitas" className="hover:text-seara-orange transition-colors">Komunitas</Link>
               <Link to="/mentoring" className="hover:text-seara-orange transition-colors">Mentoring</Link>
+              <Link to="/testimoni" className="hover:text-seara-orange transition-colors">Testimoni</Link>
               <a 
                 href="https://wa.me/6281779052788?text=Halo%20Seara%20Data,%20saya%20ingin%20bertanya%20lebih%20lanjut%20mengenai%20layanan%20dan%20program%20di%20Seara%20Data.%20Terima%20kasih!" 
                 target="_blank"

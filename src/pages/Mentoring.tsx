@@ -232,6 +232,7 @@ export default function Mentoring() {
             <Link to="/program" className="hover:text-seara-orange transition-colors">Program</Link>
             <Link to="/komunitas" className="hover:text-seara-orange transition-colors">Komunitas</Link>
             <Link to="/mentoring" className="text-seara-orange font-bold">Mentoring</Link>
+            <Link to="/testimoni" className="hover:text-seara-orange transition-colors">Testimoni</Link>
             <a 
               href="https://wa.me/6281779052788?text=Halo%20Seara%20Data,%20saya%20ingin%20bertanya%20lebih%20lanjut%20mengenai%20layanan%20dan%20program%20di%20Seara%20Data.%20Terima%20kasih!" 
               target="_blank"

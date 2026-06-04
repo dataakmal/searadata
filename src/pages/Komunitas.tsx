@@ -158,6 +158,7 @@ export default function Komunitas() {
               <Link to="/program" className="hover:text-seara-orange transition-colors">Program</Link>
               <Link to="/komunitas" className="text-seara-orange font-bold hover:brightness-110 transition-colors">Komunitas</Link>
               <Link to="/mentoring" className="hover:text-seara-orange transition-colors">Mentoring</Link>
+              <Link to="/testimoni" className="hover:text-seara-orange transition-colors">Testimoni</Link>
               <a 
                 href="https://wa.me/6281779052788?text=Halo%20Seara%20Data,%20saya%20ingin%20gabung%20ke%20komunitas%20Seara%20Data!%20Bisa%20dibantu?" 
                 target="_blank"
