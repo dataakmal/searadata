@@ -51,13 +51,13 @@ export default function Testimoni() {
     },
     {
       nama: "Stevanus Gunawan",
-      pesan: "Penjelasannya mudah dimengerti, tidak terlalu cepat juga jadi bagi yang awam seperti saya pun jadi bisa mengikuti sampai akhir. Saya tunggu course-course yang lainnya ya mas.",
+      pesan: "Penjelasannya mudah dimengerti dan ramah untuk pemula",
       rating: 10,
       program: "Mini Course Python For Automation"
     },
     {
       nama: "Melvia Eriva Ikhsan",
-      pesan: "Materi disampaikan dengan bahasa yang sederhana sehingga konsep yang tadinya terlihat rumit jadi jauh lebih mudah dipahami. Mentornya sangat suportif dan lingkungan belajarnya sangat interaktif.",
+      pesan: "Materi disampaikan dengan bahasa sederhana sehingga konsep yang rumit jadi lebih mudah dipahami",
       rating: 9,
       program: "Mini Course Python For Automation"
     },
@@ -69,56 +69,74 @@ export default function Testimoni() {
     },
     {
       nama: "Reza Maulana",
-      pesan: "Sangat insightful sekali karena materinya menarik dan penyampaiannya detail banget",
+      pesan: "Sangat insightful karena materinya menarik dan penyampaiannya sangat detail",
+      rating: 10,
+      program: "Mini Course Python For Automation"
+    },
+    {
+      nama: "Marcelle",
+      pesan: "Sangat Menarik dan Memberikan pemahaman baru",
       rating: 10,
       program: "Mini Course Python For Automation"
     },
     {
       nama: "Hildanniar Fauzi",
-      pesan: "Sangat membantu memahami python automation untuk pemula",
+      pesan: "Sangat membantu memahami Python Automation untuk pemula",
       rating: 10,
       program: "Mini Course Python For Automation"
     },
     {
+      nama: "Adhyatnika Nugraha",
+      pesan: "Materi menarik, hanya saja fokus pada Airtable terasa sedikit kurang",
+      rating: 9,
+      program: "Mini Course Python For Automation"
+    },
+    {
       nama: "Dania Amelia Ansyori",
-      pesan: "Mini course nya seru, insightful, dan ramah pemula. Saya merasa kami dibimbing banget, dan ga dibedain sama sekali dari yang masih awam banget. Materi dan kebutuhan untuk course juga udah disiapin rapih, untuk harga under 100k sangat worth.",
+      pesan: "Mini course seru, insightful, ramah pemula, dan sangat worth it",
       rating: 10,
       program: "Mini Course Python For Automation"
     },
     {
       nama: "Thoriq Fauzul Azhim",
-      pesan: "Di Mini Course Seara satisfying banget sih, diajarinnya step by step. Use case nya jelas, penjelasannya tidak bertele tele, pokoknya jelas lah, best 9/10.",
+      pesan: "Penjelasan step by step, use case jelas, dan sangat straightforward",
       rating: 9,
       program: "Mini Course Python For Automation"
     },
     {
-      nama: "Nanda Oktaviana",
-      pesan: "Materi dijelaskan dengan sangat baik dan sebagai pemula yang benar-benar awam kelasnya dapat diikuti dengan baik.",
-      rating: 10,
-      program: "Mini Course Python For Automation"
-    },
-    {
-      nama: "Muh. Son Aghni",
-      pesan: "Materi & praktiknya keren. Diajari step by step oleh mentor yang sangat sabar, telaten, & efektif dalam menyampaikan ilmu & praktik tools nya.",
-      rating: 10,
-      program: "Mini Course Python For Automation"
-    },
-    {
-      nama: "Hanif Razin Rahmatullah",
-      pesan: "Seneng banget bisa ikut mini course ini, jadi tambah pengalaman. Jadi tahu apa aja yang dikerjain sama Data Engineer.",
-      rating: 10,
-      program: "Mini Course Python For Automation"
-    },
-    {
-      nama: "Kusuma Pratiwi",
-      pesan: "Trainer benar-benar menjelaskan secara rinci dan telaten, sabar dalam menjelaskan kepada peserta. Semoga kedepannya makin banyak program course data di Seara Data.",
-      rating: 8,
-      program: "Mini Course Python For Automation"
-    },
-    {
       nama: "Priska Rio Saputro",
-      pesan: "Materi on point, cocok untuk pemula",
+      pesan: "Materi on point dan cocok untuk pemula",
       rating: 8,
+      program: "Mini Course Python For Automation"
+    },
+    {
+      nama: "Stevanus Gunawan",
+      pesan: "Materi sangat mudah dipahami dan diajarkan dari nol sampai bisa",
+      rating: 10,
+      program: "Mini Course Python For Automation"
+    },
+    {
+      nama: "Muhammad Rhesa Dhiyaulhaq",
+      pesan: "Ilmunya sangat berdaging bagi yang berkonsentrasi di bidang data analyst",
+      rating: 10,
+      program: "Mini Course Python For Automation"
+    },
+    {
+      nama: "Fatwa Rafiudin",
+      pesan: "Menambah ilmu baru",
+      rating: 8,
+      program: "Mini Course Python For Automation"
+    },
+    {
+      nama: "Muhammad Afnan Yusuf Dhiaulhaq",
+      pesan: "Mantap bang",
+      rating: 10,
+      program: "Mini Course Python For Automation"
+    },
+    {
+      nama: "DIMAS ARIE PRASOJO",
+      pesan: "Mohon maaf tidak maksimal belajarnya karena adik masuk rumah sakit",
+      rating: 10,
       program: "Mini Course Python For Automation"
     },
     {
@@ -127,90 +145,198 @@ export default function Testimoni() {
       rating: 8,
       program: "Mini Course Python For Automation"
     },
+    {
+      nama: "Kusuma Pratiwi",
+      pesan: "Trainer menjelaskan dengan rinci, telaten, dan sabar kepada peserta",
+      rating: 8,
+      program: "Mini Course Python For Automation"
+    },
+    {
+      nama: "Khoirunnisa Mawarni Javinda",
+      pesan: "Seru banget dan sangat detail",
+      rating: 8,
+      program: "Mini Course Python For Automation"
+    },
+    {
+      nama: "Muhammad Reza Barus",
+      pesan: "Materi dan pengajarnya jelas",
+      rating: 8,
+      program: "Mini Course Python For Automation"
+    },
+    {
+      nama: "NANDA OKTAVIANA",
+      pesan: "Materi dijelaskan dengan sangat baik dan mudah diikuti oleh pemula",
+      rating: 10,
+      program: "Mini Course Python For Automation"
+    },
+    {
+      nama: "Muh. Son Aghni",
+      pesan: "Materi dan praktiknya keren, diajarkan step by step oleh mentor yang sabar",
+      rating: 10,
+      program: "Mini Course Python For Automation"
+    },
+    {
+      nama: "Ave Lisa Sihombing",
+      pesan: "Tutor sangat sabar, materi bermanfaat, dan berkesan",
+      rating: 9,
+      program: "Mini Course Python For Automation"
+    },
+    {
+      nama: "Hanif Razin Rahmatullah",
+      pesan: "Menambah pengalaman menggunakan Python and memahami pekerjaan Data Engineer",
+      rating: 10,
+      program: "Mini Course Python For Automation"
+    },
+    {
+      nama: "Amantha Meissy Liando",
+      pesan: "Baik, materi yang diberikan lengkap",
+      rating: 8,
+      program: "Mini Course Python For Automation"
+    },
 
     // KATEGORI 2: Mini Class Data Engineer
     {
       nama: "Cyril Saulnier Mikanen Gultom",
-      pesan: "Cukup mudah untuk diikuti, dan recommended untuk orang yang baru mau terjun menjadi data engineer",
+      pesan: "Cukup mudah diikuti dan sangat direkomendasikan untuk yang baru ingin terjun menjadi Data Engineer",
       rating: 8,
       program: "Mini Class Data Engineer"
     },
     {
       nama: "Azmi Muhammad Nafis",
-      pesan: "Sangat insightful dan juga dibimbing dari 0 banget, pemula friendly banget sukses terus Seara Data",
+      pesan: "Sangat insightful, dibimbing dari nol, dan sangat ramah untuk pemula",
       rating: 9,
       program: "Mini Class Data Engineer"
     },
     {
-      nama: "Dinda Raraswati",
-      pesan: "Dapat insight baru terkait data engineering terkait API dan data pipeline (hands on dan teori). Kak Mario juga ngajarinnya cukup perlahan supaya semua orang paham.",
-      rating: 9,
-      program: "Mini Class Data Engineer"
-    },
-    {
-      nama: "Melvia Eriva Ikhsan",
-      pesan: "Materi berkelas dengan banyak Aha! Moment. Penjelasan yang sistematis sukses memberikan kejelasan pada konsep yang kompleks.",
+      nama: "Mikhael Oktavianus Dulas",
+      pesan: "Mantap",
       rating: 10,
       program: "Mini Class Data Engineer"
     },
     {
+      nama: "Dinda Raraswati",
+      pesan: "Mendapat insight baru terkait API dan data pipeline dengan penjelasan yang mudah dipahami",
+      rating: 9,
+      program: "Mini Class Data Engineer"
+    },
+    {
+      nama: "Akbar Sergio",
+      pesan: "Mantap, meskipun tidak sempat mengikuti karena salah memahami jadwal",
+      rating: 10,
+      program: "Mini Class Data Engineer"
+    },
+    {
+      nama: "Melvia Eriva Ikhsan",
+      pesan: "Materi berkelas dengan banyak aha moment and penjelasan yang sistematis",
+      rating: 10,
+      program: "Mini Class Data Engineer"
+    },
+    {
+      nama: "Moh. Harwin Prayoga",
+      pesan: "Sudah cukup bagus, hanya bagian coding terasa sedikit cepat untuk pemula",
+      rating: 9,
+      program: "Mini Class Data Engineer"
+    },
+    {
       nama: "Nadia Adyutarahma Putri",
-      pesan: "Delivery-nya best jadi paham sama fundamental data engineer. Sesi Q&A-nya juga seru, semua pertanyaan dijawab dengan clear dan to the point.",
+      pesan: "Fundamental Data Engineer dijelaskan dengan sangat baik dan sesi Q&A sangat membantu",
+      rating: 8,
+      program: "Mini Class Data Engineer"
+    },
+    {
+      nama: "Syahrul Munir",
+      pesan: "Keren, semoga ada kelas lanjutan dari beginner ke intermediate",
+      rating: 8,
+      program: "Mini Class Data Engineer"
+    },
+    {
+      nama: "Aulia Firdatunnisa",
+      pesan: "Mudah diikuti dan mudah dipahami bagi yang masih awam tentang Data Engineer",
+      rating: 8,
+      program: "Mini Class Data Engineer"
+    },
+    {
+      nama: "Dimas Ayika",
+      pesan: "Sangat baik",
       rating: 8,
       program: "Mini Class Data Engineer"
     },
     {
       nama: "Antonius Oktavian Tanianto",
-      pesan: "Pembahasannya menarik dan mentornya sangat sabar menjelaskan.",
+      pesan: "Pembahasannya menarik dan mentornya sangat sabar menjelaskan",
       rating: 10,
       program: "Mini Class Data Engineer"
     },
     {
-      nama: "Muhammad Afnan Yusuf Dhiaulhaq",
-      pesan: "Penjelasan dan penyampaian materi dari mas Mario mudah dipahami dan cukup lengkap, sangat membantu untuk orang yang tertarik bekerja di bidang data khususnya role data engineer.",
-      rating: 10,
-      program: "Mini Class Data Engineer"
-    },
-    {
-      nama: "Risky Nirmala Dewi",
-      pesan: "Materinya seru. Aman untuk orang yang baru belajar DE dan tools yang digunakan tidak rumit.",
-      rating: 9,
-      program: "Mini Class Data Engineer"
-    },
-    {
-      nama: "Muh. Son Aghni",
-      pesan: "Serunya bisa belajar fundamental Data Engineering dari yang sudah punya jam terbang tinggi. Speakernya sangat detail & terstruktur dalam penjelasannya serta mudah dipahami bagi pemula.",
-      rating: 9,
-      program: "Mini Class Data Engineer"
-    },
-    {
-      nama: "Rifaldi Dwi Priana",
-      pesan: "Menurut saya secara materi maupun pemateri sudah sangat bagus",
-      rating: 10,
-      program: "Mini Class Data Engineer"
-    },
-    {
-      nama: "Aulia Firdatunnisa",
-      pesan: "Mudah diikuti, mudah dipahami bagi yang awam mengenai data engineer",
+      nama: "Rintaldi Ghazian Hindami",
+      pesan: "Sering-sering mengadakan kegiatan seperti ini lagi",
       rating: 8,
       program: "Mini Class Data Engineer"
     },
     {
-      nama: "Bima Syahrul T",
-      pesan: "Seru & insightful",
+      nama: "Muhammad Afnan Yusuf Dhiaulhaq",
+      pesan: "Penyampaian materi mudah dipahami dan sangat membantu memahami profesi Data Engineer",
+      rating: 10,
+      program: "Mini Class Data Engineer"
+    },
+    {
+      nama: "Sugih Pratama Nugraha",
+      pesan: "Keren",
       rating: 10,
       program: "Mini Class Data Engineer"
     },
     {
       nama: "Muhammad Sidqy Dhiaulhaq",
-      pesan: "Seru banget! Banyak insight dari mas Mario. Suka banget insight API nya",
+      pesan: "Seru banget dan banyak insight terutama mengenai API",
       rating: 8,
       program: "Mini Class Data Engineer"
     },
     {
-      nama: "Moh. Harwin Prayoga",
-      pesan: "Sudah cukup bagus, materi sangat membantu untuk yang tertarik di bidang data engineering.",
+      nama: "Muchammad Muqorrobin",
+      pesan: "Course yang seru dan menambah wawasan mengenai Data Engineer",
       rating: 9,
+      program: "Mini Class Data Engineer"
+    },
+    {
+      nama: "Rifaldi Dwi Priana",
+      pesan: "Materi maupun pemateri sudah sangat baik",
+      rating: 10,
+      program: "Mini Class Data Engineer"
+    },
+    {
+      nama: "Ahmez",
+      pesan: "Menarik",
+      rating: 7,
+      program: "Mini Class Data Engineer"
+    },
+    {
+      nama: "Aulia Nur Joviandi",
+      pesan: "Flow materi sangat baik dan mudah diikuti",
+      rating: 9,
+      program: "Mini Class Data Engineer"
+    },
+    {
+      nama: "Risky Nirmala Dewi",
+      pesan: "Materinya seru dan cocok untuk pemula yang baru belajar Data Engineering",
+      rating: 9,
+      program: "Mini Class Data Engineer"
+    },
+    {
+      nama: "Muh. Son Aghni",
+      pesan: "Belajar fundamental Data Engineering dengan penjelasan yang detail, terstruktur, dan mudah dipahami",
+      rating: 9,
+      program: "Mini Class Data Engineer"
+    },
+    {
+      nama: "Muhammad Fahrul Islam",
+      pesan: "Memberikan insight yang baik",
+      rating: 8,
+      program: "Mini Class Data Engineer"
+    },
+    {
+      nama: "Bima Syahrul T",
+      pesan: "Seru dan insightful",
+      rating: 10,
       program: "Mini Class Data Engineer"
     }
   ];
