@@ -206,8 +206,8 @@ export default function Home() {
                 {
                   id: "bootcamp-da",
                   type: "active",
-                  badge: "🚀 REGISTRATION OPEN",
-                  badgeColor: "bg-seara-orange",
+                  badge: "🔥 SEDANG BERLANGSUNG",
+                  badgeColor: "bg-red-500",
                   image: "/bootcamp-data-analyst.png",
                   date: "3 - 20 Juni 2026",
                   title: "Bootcamp: Data Analyst Specialization",
@@ -218,16 +218,16 @@ export default function Home() {
                 },
                 {
                   id: "mini-class-sql-python",
-                  type: "active",
-                  badge: "🎁 FREE MINI CLASS",
-                  badgeColor: "bg-green-600",
+                  type: "finished",
+                  badge: "📅 EVENT FINISHED",
+                  badgeColor: "bg-gray-500",
                   image: "/mini-class-sql-python.png",
                   date: "Senin, 25 Mei 2026 | 19:30 - 21:00 WIB",
                   title: "Mini Class: SQL & Python (Free)",
                   desc: "Belajar dasar SQL & Python bareng Achmad Kurniansyah Thalib (BI at Dekoruma). Free rekaman, materi, & e-certificate!",
                   link: "http://bit.ly/MiniClassSearaData-4",
-                  cta: "Daftar Sekarang — Gratis",
-                  bgColor: "bg-green-50"
+                  cta: "Pendaftaran Ditutup",
+                  bgColor: "bg-gray-100"
                 },
                 {
                   id: "mini-class-excel",
