@@ -33,33 +33,45 @@ export const MENTORS: Mentor[] = [
   {
     id: "zahrul-wafi",
     name: "Zahrul Wafi",
-    expertise: ["Excel", "Power BI"],
+    expertise: ["Microsoft Excel", "Power BI", "Datastudio", "Tableau"],
     suggestedTopics: [
-      "Dasar Formulas & Pivot Table Excel",
+      "Analisis Data & Pembuatan Formula Kompleks Excel",
       "Membangun Interactive Power BI Dashboard",
-      "Struktur Formula DAX Lanjutan",
-      "Data Cleaning & Querying dengan Power Query"
+      "Visualisasi Laporan Interaktif dengan Looker Studio / Datastudio",
+      "Membangun Interactive Business Dashboard di Tableau"
     ],
-    avatar: "https://picsum.photos/seed/wafi/150/150"
+    avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=150&h=150"
   },
   {
     id: "akmal-fauzan",
     name: "Akmal Fauzan",
-    expertise: ["Python", "Career in Data (Data Analyst / Data Science guidance)"],
+    expertise: ["Python", "SQL", "Airflow", "Career in Data"],
     suggestedTopics: [
-      "Persiapan Karir & Tips Lolos Interview Data Analyst",
-      "Data Analysis & Feature Engineering dengan Python",
-      "Bedah Portfolio & Review CV High-Impact",
-      "Navigasi Menjadi Data Analyst & Data Scientist dari Nol"
+      "Analisis Data Serta Otomatisasi Script dengan Python",
+      "Eksplorasi Query Kompleks & Optimasi Database dengan SQL",
+      "Orchestration Data Pipeline & Otomatisasi Alur Kerja via Apache Airflow",
+      "Persiapan Karir, Review CV & Portfolio Lolos Kerja Bidang Data"
     ],
-    avatar: "https://picsum.photos/seed/akmal/150/150"
+    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=150&h=150"
+  },
+  {
+    id: "achmad-kurniansyah",
+    name: "Achmad Kurniansyah",
+    expertise: ["Excel", "Python", "SQL", "Tableau"],
+    suggestedTopics: [
+      "Analisis Data & Pembuatan Formula Kompleks Excel",
+      "Analisis Data Serta Otomatisasi Script dengan Python",
+      "Eksplorasi Query Kompleks & Optimasi Database dengan SQL",
+      "Membangun Interactive Business Dashboard di Tableau"
+    ],
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150"
   }
 ];
 
 export const PRICING_TARIFFE: Record<number, number> = {
-  30: 75000,
-  60: 125000,
-  90: 150000
+  30: 99000,
+  60: 159000,
+  90: 179000
 };
 
 export const BANK_INFO = {

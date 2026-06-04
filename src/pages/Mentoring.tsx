@@ -91,6 +91,39 @@ export default function Mentoring() {
 
   const selectableDates = getSelectableDates();
 
+  const getDynamicTopics = (mentor: Mentor | null) => {
+    if (!mentor) return [];
+    
+    return mentor.expertise.map(exp => {
+      const lower = exp.toLowerCase().trim();
+      if (lower === "excel" || lower === "microsoft excel") {
+        return "Analisis Data & Pembuatan Formula Kompleks Excel";
+      }
+      if (lower === "python") {
+        return "Analisis Data Serta Otomatisasi Script dengan Python";
+      }
+      if (lower === "sql") {
+        return "Eksplorasi Query Kompleks & Optimasi Database dengan SQL";
+      }
+      if (lower === "tableau") {
+        return "Membangun Interactive Business Dashboard di Tableau";
+      }
+      if (lower === "power bi") {
+        return "Membangun Interactive Power BI Dashboard";
+      }
+      if (lower === "datastudio" || lower === "looker studio") {
+        return "Visualisasi Laporan Interaktif dengan Looker Studio / Datastudio";
+      }
+      if (lower === "airflow" || lower === "apache airflow") {
+        return "Orchestration Data Pipeline & Otomatisasi Alur Kerja via Apache Airflow";
+      }
+      if (lower === "career in data") {
+        return "Persiapan Karir, Review CV & Portfolio Lolos Kerja Bidang Data";
+      }
+      return `Mentoring Terkait dengan ${exp}`;
+    });
+  };
+
   // Validate current step
   const canProceed = () => {
     switch (step) {
@@ -397,7 +430,7 @@ export default function Mentoring() {
                       <span className="text-xs uppercase font-extrabold text-gray-400 tracking-wider block">Kategori Topik Rekomendasi:</span>
                       
                       <div className="grid grid-cols-1 gap-3">
-                        {selectedMentor.suggestedTopics.map((top, key) => {
+                        {getDynamicTopics(selectedMentor).map((top, key) => {
                           const isPicked = predefinedTopic === top && !customTopicSelected;
                           return (
                             <button
