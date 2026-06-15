@@ -199,7 +199,7 @@ export default function Mentoring() {
     const formattedPrice = booking.price.toLocaleString("id-ID");
     const dateLabel = selectableDates.find(d => d.formatted === booking.date)?.label || booking.date;
     
-    let text = `Halo Admin Seara Data, saya telah melakukan pendaftaran mentoring berikut:\n\n` +
+    let text = `Halo Admin Rea, saya telah melakukan pendaftaran mentoring berikut:\n\n` +
                `ID Booking: ${booking.id}\n` +
                `Nama Lengkap: ${booking.fullName}\n` +
                `Kontak: ${booking.contactInfo}\n` +
@@ -334,7 +334,7 @@ export default function Mentoring() {
             <Link to="/mentoring" className="text-seara-orange font-bold">Mentoring</Link>
             <Link to="/testimoni" className="hover:text-seara-orange transition-colors">Testimoni</Link>
             <a 
-              href="https://wa.me/6281779052788?text=Halo%20Seara%20Data,%20saya%20ingin%20bertanya%20lebih%20lanjut%20mengenai%20layanan%20dan%20program%20di%20Seara%20Data.%20Terima%20kasih!" 
+              href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20ingin%20bertanya%20lebih%20lanjut%20mengenai%20layanan%20dan%20program%20di%20Seara%20Data.%20Terima%20kasih!" 
               target="_blank"
               rel="noopener noreferrer"
               className="bg-seara-orange text-white px-6 py-2.5 rounded-full hover:brightness-95 transition-all shadow-md active:scale-95"
@@ -876,7 +876,7 @@ export default function Mentoring() {
                         <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-8 space-y-5 shadow-sm">
                           <div className="space-y-1">
                             <h4 className="font-bold text-base text-seara-dark tracking-tight flex items-center gap-1.5">
-                              Tanya admin Seara Data!
+                              Tanya admin Rea!
                             </h4>
                             <p className="text-xs text-gray-400 font-medium font-sans">
                               Chat admin untuk informasi lebih lanjut dan fast-response konfirmasi
@@ -913,10 +913,10 @@ export default function Mentoring() {
                             <div className="flex items-center justify-between p-4 bg-[#0e3129]/5 border border-[#0e3129]/10 rounded-2xl">
                               <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-full bg-[#0e3129]/15 text-[#0e3129] flex items-center justify-center font-bold font-sans tracking-wide shrink-0">
-                                  AD
+                                  AR
                                 </div>
                                 <div>
-                                  <div className="font-extrabold text-sm text-seara-dark">Admin Seara Mentoring</div>
+                                  <div className="font-extrabold text-sm text-seara-dark">Admin Rea</div>
                                   <div className="text-[11px] font-semibold text-gray-400">+62 878-1185-6600</div>
                                 </div>
                               </div>

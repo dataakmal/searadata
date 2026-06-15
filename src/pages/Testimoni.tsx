@@ -400,7 +400,7 @@ export default function Testimoni() {
               <Link to="/mentoring" className="hover:text-seara-orange transition-colors">Mentoring</Link>
               <Link to="/testimoni" className="text-seara-orange font-bold">Testimoni</Link>
               <a 
-                href="https://wa.me/6281779052788?text=Halo%20Seara%20Data,%20saya%20ingin%20bertanya%20mengenai%20testimoni%20alumni%20atau%20program%20di%20Seara%20Data.%20Terima%20kasih!" 
+                href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20ingin%20bertanya%20mengenai%20testimoni%20alumni%20atau%20program%20di%20Seara%20Data.%20Terima%20kasih!" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-seara-orange text-white px-6 py-2.5 rounded-full hover:brightness-95 transition-all shadow-md active:scale-95"
@@ -592,7 +592,7 @@ export default function Testimoni() {
             <div className="flex gap-6">
               <a href="https://www.instagram.com/searadata" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity"><Instagram className="w-5 h-5" /></a>
               <a href="https://www.linkedin.com/company/seara-data" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity"><Linkedin className="w-5 h-5" /></a>
-              <a href="https://wa.me/6281779052788?text=Halo%20Seara%20Data!" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity"><MessageSquare className="w-5 h-5" /></a>
+              <a href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea!" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity"><MessageSquare className="w-5 h-5" /></a>
             </div>
 
             <p className="text-gray-400 text-[10px] italic opacity-40">

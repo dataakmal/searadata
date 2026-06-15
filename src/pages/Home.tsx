@@ -62,7 +62,7 @@ export default function Home() {
             <Link to="/mentoring" className="hover:text-seara-orange transition-colors">Mentoring</Link>
             <Link to="/testimoni" className="hover:text-seara-orange transition-colors">Testimoni</Link>
             <a 
-              href="https://wa.me/6281779052788?text=Halo%20Seara%20Data,%20saya%20ingin%20bertanya%20lebih%20lanjut%20mengenai%20layanan%20dan%20program%20di%20Seara%20Data.%20Terima%20kasih!" 
+              href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20ingin%20bertanya%20lebih%20lanjut%20mengenai%20layanan%20dan%20program%20di%20Seara%20Data.%20Terima%20kasih!" 
               target="_blank"
               rel="noopener noreferrer"
               className="bg-seara-orange text-white px-6 py-2.5 rounded-full hover:brightness-95 transition-all shadow-md active:scale-95"
@@ -398,7 +398,7 @@ export default function Home() {
                 icon: <MonitorPlay className="w-6 h-6" />,
                 title: "Corporate Training Data",
                 desc: "Program pelatihan data komprehensif yang dirancang khusus untuk kebutuhan korporasi. Membantu tim Anda menguasai pengolahan dan visualisasi data untuk pengambilan keputusan strategis.",
-                link: "https://wa.me/6281779052788?text=Halo%20Seara%20Data,%20saya%20ingin%20bertanya%20tentang%20program%20Corporate%20Training%20Data",
+                link: "https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20ingin%20bertanya%20tentang%20program%20Corporate%20Training%20Data",
                 cta: "Tanya Program"
               },
               {
@@ -412,7 +412,7 @@ export default function Home() {
                 icon: <MessagesSquare className="w-6 h-6" />,
                 title: "Konsultasi Data",
                 desc: "Pendampingan profesional untuk penyelesaian proyek data bisnis maupun akademis. Kami memberikan solusi teknis yang akurat dan aplikatif untuk setiap tantangan data Anda.",
-                link: "https://wa.me/6281779052788?text=Halo%20Seara%20Data,%20saya%20ingin%20konsultasi%20mengenai%20project%20data%20saya",
+                link: "https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20ingin%20konsultasi%20mengenai%20project%20data%20saya",
                 cta: "Mulai Konsultasi"
               },
               {
@@ -426,7 +426,7 @@ export default function Home() {
                 icon: <Briefcase className="w-6 h-6" />,
                 title: "Career Accelerator",
                 desc: "Program persiapan karier terintegrasi, mulai dari optimalisasi CV, penyusunan portofolio berbasis proyek nyata, hingga simulasi interview teknis tingkat lanjut.",
-                link: "https://wa.me/6281779052788?text=Halo%20Seara%20Data,%20saya%20tertarik%20dengan%20program%20Career%20Accelerator",
+                link: "https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20tertarik%20dengan%20program%20Career%20Accelerator",
                 cta: "Daftar Sekarang"
               },
               {
@@ -722,7 +722,7 @@ export default function Home() {
             <div className="flex gap-6">
               <a href="https://www.instagram.com/searadata" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity"><Instagram className="w-5 h-5" /></a>
               <a href="https://www.linkedin.com/company/seara-data" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity"><Linkedin className="w-5 h-5" /></a>
-              <a href="https://wa.me/6281779052788?text=Halo%20Seara%20Data!" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity"><MessageSquare className="w-5 h-5" /></a>
+              <a href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea!" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity"><MessageSquare className="w-5 h-5" /></a>
             </div>
 
             <p className="text-gray-400 text-[10px] italic opacity-40">
