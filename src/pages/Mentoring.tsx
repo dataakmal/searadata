@@ -30,6 +30,8 @@ import {
   Mentor 
 } from "../types";
 
+console.log("Apps Script URL:", (import.meta as any).env.VITE_APPS_SCRIPT_URL)
+
 export default function Mentoring() {
   // Session / Storage Hook
   const [bookings, setBookings] = useState<Booking[]>(() => {
@@ -41,9 +43,6 @@ export default function Mentoring() {
     localStorage.setItem("seara_data_bookings", JSON.stringify(bookings));
   }, [bookings]);
 
-  // UI tabs: 'book' or 'list'
-  const [activeTab, setActiveTab] = useState<"book" | "list">("book");
-  
   // Selection States
   const [step, setStep] = useState<number>(1);
   const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
@@ -62,6 +61,7 @@ export default function Mentoring() {
   const [selectedBookingForPayment, setSelectedBookingForPayment] = useState<Booking | null>(null);
   const [paymentProofName, setPaymentProofName] = useState<string>("");
   const [isUploadingProof, setIsUploadingProof] = useState<boolean>(false);
+  const [additionalNotes, setAdditionalNotes] = useState<string>("");
 
   // Helper values
   const price = PRICING_TARIFFE[duration] || 0;
@@ -157,6 +157,70 @@ export default function Mentoring() {
     setStep(prev => Math.max(1, prev - 1));
   };
 
+  const sendToGoogleSheets = (booking: Booking) => {
+    const url = (import.meta as any).env.VITE_APPS_SCRIPT_URL;
+    if (!url) {
+      console.warn("VITE_APPS_SCRIPT_URL is not defined in environment variables");
+      return;
+    }
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    }).catch(err => {
+      console.warn("Failed to send booking to Google Sheets:", err);
+    });
+  };
+
+  const updateStatusInSheets = (bookingId: string, status: string) => {
+    const url = (import.meta as any).env.VITE_APPS_SCRIPT_URL;
+    if (!url) {
+      console.warn("VITE_APPS_SCRIPT_URL is not defined in environment variables");
+      return;
+    }
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: bookingId,
+        status,
+        _action: "updateStatus"
+      }),
+    }).catch(err => {
+      console.warn("Failed to update status in Google Sheets:", err);
+    });
+  };
+
+  const handleWhatsAppRedirect = (booking: Booking, notes: string = "") => {
+    const formattedPrice = booking.price.toLocaleString("id-ID");
+    const dateLabel = selectableDates.find(d => d.formatted === booking.date)?.label || booking.date;
+    
+    let text = `Halo Admin Seara Data, saya telah melakukan pendaftaran mentoring berikut:\n\n` +
+               `ID Booking: ${booking.id}\n` +
+               `Nama Lengkap: ${booking.fullName}\n` +
+               `Kontak: ${booking.contactInfo}\n` +
+               `Mentor: ${booking.mentorName}\n` +
+               `Topik: ${booking.topic}\n` +
+               `Durasi: ${booking.duration} Menit\n` +
+               `Total Biaya: Rp ${formattedPrice}\n` +
+               `Tanggal Sesi: ${dateLabel}\n` +
+               `Goal Belajar: ${booking.learningGoal}`;
+               
+    if (notes.trim()) {
+      text += `\n\n📝 *Catatan Tambahan:* ${notes.trim()}`;
+    }
+    
+    text += `\n\nMohon konfirmasi pendaftaran dan instruksi selanjutnya. Terima kasih!`;
+    
+    const encodedText = encodeURIComponent(text);
+    const waUrl = `https://wa.me/6287811856600?text=${encodedText}`;
+    window.open(waUrl, "_blank");
+  };
+
   const handleConfirmBooking = () => {
     if (!selectedMentor) return;
     
@@ -178,6 +242,7 @@ export default function Mentoring() {
 
     setBookings(prev => [newBooking, ...prev]);
     setSelectedBookingForPayment(newBooking);
+    sendToGoogleSheets(newBooking);  // tanpa await
     setStep(8); // Move to payment instruction step
   };
 
@@ -209,6 +274,7 @@ export default function Mentoring() {
         };
       });
       setIsUploadingProof(false);
+      updateStatusInSheets(selectedBookingForPayment.id, "Waiting Payment Confirmation");
     }, 1200);
   };
 
@@ -239,6 +305,7 @@ export default function Mentoring() {
     setLearningGoal("");
     setSelectedBookingForPayment(null);
     setPaymentProofName("");
+    setAdditionalNotes("");
   };
 
   return (
@@ -292,28 +359,9 @@ export default function Mentoring() {
             <p className="text-sm text-gray-500 font-medium">Sistem Pemesanan Sesi Belajar Eksklusif 1-on-1</p>
           </div>
 
-          <div className="flex bg-white/60 p-1.5 rounded-2xl border border-orange-100 gap-2">
-            <button
-              onClick={() => { setActiveTab("book"); handleResetForm(); }}
-              className={`px-5 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === "book" ? "bg-seara-orange text-white shadow-sm" : "text-gray-500 hover:text-seara-dark"}`}
-            >
-              Pesan Mentoring
-            </button>
-            <button
-              onClick={() => setActiveTab("list")}
-              className={`px-5 py-2 rounded-xl text-sm font-bold transition-all relative ${activeTab === "list" ? "bg-seara-orange text-white shadow-sm" : "text-gray-500 hover:text-seara-dark"}`}
-            >
-              Lihat Pemesanan ({bookings.length})
-              {bookings.some(b => b.status === BookingStatus.Pending) && (
-                <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-red-500 border-2 border-white rounded-full animate-pulse" />
-              )}
-            </button>
-          </div>
         </div>
 
-        {/* Tab content */}
-        {activeTab === "book" ? (
-          <div className="bg-white rounded-[32px] border border-orange-100/60 shadow-xl overflow-hidden">
+        <div className="bg-white rounded-[32px] border border-orange-100/60 shadow-xl overflow-hidden">
             
             {/* Header Steps Progress Bar */}
             {step <= 7 && (
@@ -822,82 +870,88 @@ export default function Mentoring() {
                         </div>
                       </div>
 
-                      {/* Proof of Payment Upload */}
-                      <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-8 space-y-5">
-                        <h4 className="font-bold text-base text-seara-dark tracking-tight">
-                          Upload Bukti Pembayaran
-                        </h4>
+                      {/* WhatsApp Admin Contact Column */}
+                      <div className="space-y-6">
+                        {/* WhatsApp Direct Redirection Card */}
+                        <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-8 space-y-5 shadow-sm">
+                          <div className="space-y-1">
+                            <h4 className="font-bold text-base text-seara-dark tracking-tight flex items-center gap-1.5">
+                              Tanya admin Seara Data!
+                            </h4>
+                            <p className="text-xs text-gray-400 font-medium font-sans">
+                              Chat admin untuk informasi lebih lanjut dan fast-response konfirmasi
+                            </p>
+                          </div>
 
-                        {selectedBookingForPayment.status === BookingStatus.Pending ? (
-                          <form onSubmit={handleUploadProof} className="space-y-4 font-medium">
-                            <div className="space-y-1.5">
-                              <label className="text-xs text-gray-400 uppercase font-extrabold">Nama File / Bukti Bukti</label>
-                              <input
-                                type="text"
-                                value={paymentProofName}
-                                onChange={(e) => setPaymentProofName(e.target.value)}
-                                placeholder="Contoh: struk-bca-susi.jpg atau Susi Susanti"
-                                required
-                                className="w-full bg-gray-50 border border-gray-200 focus:border-seara-orange focus:outline-none p-3.5 rounded-xl text-sm"
-                              />
+                          {/* Navigation Steps Indicator */}
+                          <div className="flex items-center justify-between px-3 py-1 border-b border-gray-100 pb-3">
+                            <div className="flex items-center gap-1">
+                              <span className="p-1 rounded-full bg-green-50 text-green-600">
+                                <Users className="w-4 h-4 shrink-0" />
+                              </span>
+                              <CheckCircle className="w-3.5 h-3.5 fill-green-500 text-white shrink-0" />
                             </div>
+                            <div className="h-px bg-gray-100 flex-1 mx-2" />
+                            <div className="flex items-center gap-1">
+                              <span className="p-1 rounded-full bg-green-50 text-green-600">
+                                <Calendar className="w-4 h-4 shrink-0" />
+                              </span>
+                              <CheckCircle className="w-3.5 h-3.5 fill-green-500 text-white shrink-0" />
+                            </div>
+                            <div className="h-px bg-gray-100 flex-1 mx-2" />
+                            <div className="flex items-center gap-1">
+                              <span className="p-1 rounded-full bg-[#0e3129]/5 text-[#0e3129]">
+                                <Phone className="w-4 h-4 shrink-0" />
+                              </span>
+                              <CheckCircle className="w-3.5 h-3.5 fill-[#0e3129] text-white shrink-0" />
+                            </div>
+                          </div>
 
-                            <button
-                              type="submit"
-                              disabled={isUploadingProof}
-                              className="w-full bg-seara-orange text-white py-3.5 rounded-xl font-bold text-sm tracking-wide shadow-md hover:brightness-105 active:scale-95 disabled:opacity-60 transition-all flex items-center justify-center gap-2"
-                            >
-                              {isUploadingProof ? "Mengupload Bukti..." : "Kirim Konfirmasi Pembayaran"}
-                            </button>
-                          </form>
-                        ) : (
-                          <div className="space-y-4">
-                            <div className="p-4 bg-green-50 text-green-700 text-xs rounded-2xl font-bold space-y-1">
-                              <div className="flex items-center gap-2">
-                                <CheckCircle className="w-4 h-4" /> Bukti Pembayaran Berhasil Diupload
+                          {/* Admin Selector */}
+                          <div className="space-y-2">
+                            <span className="text-xs uppercase font-extrabold text-gray-400 tracking-wider block">Pilih Admin *</span>
+                            <div className="flex items-center justify-between p-4 bg-[#0e3129]/5 border border-[#0e3129]/10 rounded-2xl">
+                              <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-full bg-[#0e3129]/15 text-[#0e3129] flex items-center justify-center font-bold font-sans tracking-wide shrink-0">
+                                  AD
+                                </div>
+                                <div>
+                                  <div className="font-extrabold text-sm text-seara-dark">Admin Seara Mentoring</div>
+                                  <div className="text-[11px] font-semibold text-gray-400">+62 878-1185-6600</div>
+                                </div>
                               </div>
-                              <p className="text-[11px] font-medium text-green-600/90 mt-1">
-                                Status: Waiting Payment Confirmation. Admin Seara akan melakukan review transfer masuk ke BCA Akmal Fauzan dalam waktu dekat.
-                              </p>
-                            </div>
-
-                            {/* Status Simulator tools to help user inspect flow */}
-                            <div className="border border-green-100 p-4 rounded-2xl bg-green-50/20 space-y-3">
-                              <div className="text-[10px] font-black uppercase tracking-wider text-green-600">Simulasi Console Admin (Penguji Admin)</div>
-                              <div className="flex flex-wrap gap-2">
-                                <button
-                                  onClick={() => handleSimulateStatus(selectedBookingForPayment.id, BookingStatus.Paid)}
-                                  className="text-[11px] bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg font-bold"
-                                >
-                                  Simulasi Set Lunas (Paid)
-                                </button>
-                                <button
-                                  onClick={() => handleSimulateStatus(selectedBookingForPayment.id, BookingStatus.Confirmed)}
-                                  className="text-[11px] bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg font-bold"
-                                >
-                                  Simulasi Konfirmasi Sesi (Confirmed)
-                                </button>
+                              <div className="w-5 h-5 rounded-full bg-[#0e3129] text-white flex items-center justify-center">
+                                <CheckCircle className="w-3.5 h-3.5" />
                               </div>
                             </div>
                           </div>
-                        )}
 
-                        <div className="text-[11px] text-gray-400 font-medium leading-normal bg-gray-50 p-4 rounded-2xl">
-                          💡 Pertanyaan kritis? Ingin fast-track? Hubungi admin searadata dengan menyerahkan id <strong className="text-seara-dark font-mono font-bold">{selectedBookingForPayment.id}</strong> di <a href="https://wa.me/6281779052788" target="_blank" rel="noopener" className="text-seara-orange font-bold hover:underline">WhatsApp (+62-817-7905-2788)</a>.
+                          {/* Catatan Tambahan (Opsional) */}
+                          <div className="space-y-2">
+                            <span className="text-xs uppercase font-extrabold text-gray-400 tracking-wider block">Catatan Tambahan (Opsional)</span>
+                            <textarea
+                              value={additionalNotes}
+                              onChange={(e) => setAdditionalNotes(e.target.value)}
+                              placeholder="Permintaan khusus, pertanyaan, atau informasi tambahan lainnya..."
+                              className="w-full h-24 bg-gray-50 border border-gray-200 focus:border-[#0e3129] focus:ring-0 focus:outline-none p-3.5 rounded-2xl text-xs text-seara-dark resize-none font-medium placeholder-gray-400/90"
+                            />
+                          </div>
+
+                          {/* Redirect button */}
+                          <button
+                            type="button"
+                            onClick={() => handleWhatsAppRedirect(selectedBookingForPayment, additionalNotes)}
+                            className="w-full bg-[#0e3129] hover:bg-[#134237] text-white py-4 rounded-2xl font-black text-sm tracking-wide shadow-md active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+                          >
+                            <Phone className="w-4 h-4" /> Kirim ke WhatsApp
+                          </button>
                         </div>
                       </div>
                     </div>
 
-                    <div className="pt-4 flex justify-center">
-                      <button
-                        onClick={() => {
-                          setActiveTab("list");
-                        }}
-                        className="bg-seara-dark text-white px-8 py-3.5 rounded-2xl font-bold hover:brightness-110 active:scale-95 transition-all text-sm shadow inline-flex items-center gap-2"
-                      >
-                        Lihat Daftar Sesi Saya <ChevronRight className="w-4 h-4" />
-                      </button>
-                    </div>
+
+                    {/* Centered conclusion spacer or spacing */}
+                    <div className="pt-4" />
                   </motion.div>
                 )}
 
@@ -936,159 +990,6 @@ export default function Mentoring() {
 
             </div>
           </div>
-        ) : (
-          
-          /* BOOKING LIST TAB (MY BOOKINGS VIEW) */
-          <div className="space-y-6">
-            <div className="bg-white rounded-[32px] border border-orange-100/60 shadow-xl p-8 md:p-12">
-              <h3 className="text-2xl font-bold font-display text-seara-dark mb-2 flex items-center gap-2">
-                <Bookmark className="text-seara-orange w-6 h-6" /> Sesi Mentoring Terdaftar ({bookings.length})
-              </h3>
-              <p className="text-sm text-gray-500 mb-8 font-medium">
-                Daftar lengkap sesi mentoring privat yang kamu jadwalkan di Seara Data Mentoring Console.
-              </p>
-
-              {bookings.length === 0 ? (
-                <div className="text-center py-16 space-y-4">
-                  <div className="w-16 h-16 bg-orange-50 text-seara-orange rounded-full flex items-center justify-center mx-auto">
-                    <Calendar className="w-8 h-8" />
-                  </div>
-                  <div className="space-y-1">
-                    <h4 className="font-bold text-seara-dark">Belum ada pendaftaran sesi</h4>
-                    <p className="text-xs text-gray-400 max-w-sm mx-auto font-medium">
-                      Kamu belum pernah mendaftarkan sesi mentoring 1-on-1. Silakan ganti tab untuk memesan jadwal pertamamu.
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => setActiveTab("book")}
-                    className="bg-seara-orange text-white px-6 py-2.5 rounded-xl font-bold text-xs hover:brightness-95 transition-all"
-                  >
-                    Pesan Jadwal Sesi Sekarang
-                  </button>
-                </div>
-              ) : (
-                <div className="space-y-6">
-                  {bookings.map((booking) => {
-                    const isPending = booking.status === BookingStatus.Pending;
-                    const isWaiting = booking.status === BookingStatus.WaitingPaymentConfirmation;
-                    const isPaid = booking.status === BookingStatus.Paid;
-                    const isConfirmed = booking.status === BookingStatus.Confirmed;
-
-                    return (
-                      <div
-                        key={booking.id}
-                        className="border border-orange-100 bg-white hover:shadow-md transition-all rounded-3xl p-6 relative overflow-hidden"
-                      >
-                        {/* Header card info */}
-                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-4 mb-4">
-                          <div className="flex items-center gap-3">
-                            <span className="font-mono bg-gray-50 border border-gray-100 text-xs font-bold text-gray-500 rounded px-2.5 py-1">
-                              ID: {booking.id}
-                            </span>
-                            <span className="text-xs font-bold text-gray-400">
-                              Dibuat pada {new Date(booking.createdAt).toLocaleDateString("id-ID")}
-                            </span>
-                          </div>
-
-                          {/* Status pill badge with correct status system */}
-                          <div className="flex flex-wrap gap-2">
-                            {isPending && (
-                              <span className="text-[10px] font-black tracking-wider uppercase px-3 py-1 rounded bg-yellow-100 text-yellow-700">
-                                Pending (Belum Bayar)
-                              </span>
-                            )}
-                            {isWaiting && (
-                              <span className="text-[10px] font-black tracking-wider uppercase px-3 py-1 rounded bg-blue-100 text-blue-700">
-                                Waiting Confirmation
-                              </span>
-                            )}
-                            {isPaid && (
-                              <span className="text-[10px] font-black tracking-wider uppercase px-3 py-1 rounded bg-green-100 text-green-700">
-                                Paid (Pembayaran Lunas)
-                              </span>
-                            )}
-                            {isConfirmed && (
-                              <span className="text-[10px] font-black tracking-wider uppercase px-3 py-1 rounded bg-teal-100 text-teal-800 flex items-center gap-1">
-                                <CheckCircle className="w-3.5 h-3.5 shrink-0" /> Confirmed (Sesi Siap)
-                              </span>
-                            )}
-                          </div>
-                        </div>
-
-                        {/* Booking detail layout */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-medium">
-                          <div>
-                            <span className="text-[10px] text-gray-400 uppercase font-extrabold tracking-wider block mb-0.5">MENTOR / DURASI</span>
-                            <div className="font-bold text-seara-dark text-base">{booking.mentorName}</div>
-                            <div className="text-xs text-gray-400 mt-1">{booking.duration} Menit (Rp {booking.price.toLocaleString("id-ID")})</div>
-                          </div>
-                          <div>
-                            <span className="text-[10px] text-gray-400 uppercase font-extrabold tracking-wider block mb-0.5">TOPIK DISCUSSION</span>
-                            <div className="text-sm font-bold text-seara-dark leading-snug">{booking.topic}</div>
-                          </div>
-                          <div>
-                            <span className="text-[10px] text-gray-400 uppercase font-extrabold tracking-wider block mb-0.5">JADWAL SESI</span>
-                            <div className="text-sm font-bold text-seara-dark flex items-center gap-1.5 mt-0.5">
-                              <Calendar className="w-4 h-4 text-seara-orange shrink-0" />
-                              {selectableDates.find(d => d.formatted === booking.date)?.label || booking.date}
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Student metadata info */}
-                        <div className="mt-4 pt-4 border-t border-gray-50 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                          <div>
-                            <span className="text-[10px] text-gray-400 uppercase font-extrabold tracking-wider block mb-0.5">SISWA</span>
-                            <div className="text-xs font-bold text-seara-dark bg-orange-50/20 py-1.5 px-3 rounded-lg border border-orange-100/30 w-fit">
-                              {booking.fullName} — <span className="font-medium text-gray-500">{booking.contactInfo}</span>
-                            </div>
-                          </div>
-
-                          <div className="flex gap-2 w-full md:w-auto mt-2 md:mt-0">
-                            {isPending && (
-                              <button
-                                onClick={() => {
-                                  setSelectedBookingForPayment(booking);
-                                  setStep(8);
-                                  setActiveTab("book");
-                                }}
-                                className="bg-seara-orange text-white px-5 py-2 rounded-xl text-xs font-bold hover:brightness-105 active:scale-95 transition-all shadow-sm w-full md:w-auto"
-                              >
-                                Selesaikan Pembayaran
-                              </button>
-                            )}
-
-                            {isWaiting && (
-                              <div className="flex gap-2 w-full md:w-auto">
-                                <button
-                                  onClick={() => handleSimulateStatus(booking.id, BookingStatus.Confirmed)}
-                                  className="bg-teal-600 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-teal-700 active:scale-95 transition-all text-center w-full md:w-auto"
-                                >
-                                  Simulasikan Mentor Setuju (Confirm)
-                                </button>
-                              </div>
-                            )}
-
-                            {isConfirmed && (
-                              <a
-                                href="https://meet.google.com/mock-meet-seara"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="bg-seara-dark hover:bg-black text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all inline-flex items-center gap-1.5 justify-center w-full md:w-auto"
-                              >
-                                Gabung Google Meet <ExternalLink className="w-3.5 h-3.5" />
-                              </a>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          </div>
-        )}
 
       </div>
     </div>
