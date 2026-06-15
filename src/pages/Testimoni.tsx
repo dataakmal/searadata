@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import Navbar from "../components/Navbar";
 import { 
   Star, 
   Instagram, 
@@ -375,41 +376,7 @@ export default function Testimoni() {
     <div className="min-h-screen bg-seara-cream text-seara-dark font-sans flex flex-col justify-between">
       <div>
         {/* Navigation */}
-        <nav className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
-          <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <Link to="/" className="flex items-center gap-3">
-              <div className="flex items-center gap-3">
-                {/* Logo PNG */}
-                <div className="h-12 w-auto flex items-center">
-                  <img 
-                    src="/logo-seara.png" 
-                    alt="Logo Seara Data" 
-                    className="h-full w-auto object-contain"
-                  />
-                </div>
-              </div>
-              <h1 className="text-2xl font-bold flex items-center gap-1">
-                <span className="text-seara-orange">Seara</span>
-                <span className="text-seara-dark">Data</span>
-              </h1>
-            </Link>
-            
-            <div className="hidden md:flex items-center gap-8 font-medium">
-              <Link to="/program" className="hover:text-seara-orange transition-colors">Program</Link>
-              <Link to="/komunitas" className="hover:text-seara-orange transition-colors">Komunitas</Link>
-              <Link to="/mentoring" className="hover:text-seara-orange transition-colors">Mentoring</Link>
-              <Link to="/testimoni" className="text-seara-orange font-bold">Testimoni</Link>
-              <a 
-                href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20ingin%20bertanya%20mengenai%20testimoni%20alumni%20atau%20program%20di%20Seara%20Data.%20Terima%20kasih!" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-seara-orange text-white px-6 py-2.5 rounded-full hover:brightness-95 transition-all shadow-md active:scale-95"
-              >
-                Hubungi Kami
-              </a>
-            </div>
-          </div>
-        </nav>
+        <Navbar />
 
         {/* Hero Section */}
         <header className="py-20 px-6 text-center">
