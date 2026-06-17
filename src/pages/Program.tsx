@@ -235,13 +235,13 @@ export default function Program() {
                   </div>
                   <div className="space-y-2 text-xs text-[#5a5a5a] pt-2">
                     <div className="flex items-center gap-2">
-                      <span className="font-extrabold text-seara-orange">Mentor:</span> Zahrul Wafi (Excel & Power BI) & Akmal Fauzan (Python & Career)
+                      <span className="font-extrabold text-seara-orange">Mentor:</span> Zahrul Wafi (Excel & Power BI), Akmal Fauzan (Python & Career) & Achmad Kurniansyah (Excel, Python, SQL, Tableau)
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="font-extrabold text-seara-orange">Durasi:</span> Pilihan Sesi 30 / 60 / 90 Menit
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="font-extrabold text-seara-orange">Harga:</span> Mulai dari Rp75.000 / sesi
+                      <span className="font-extrabold text-seara-orange">Harga:</span> Mulai dari Rp99.000 / sesi
                     </div>
                   </div>
                 </div>
@@ -280,7 +280,7 @@ export default function Program() {
                       <span className="font-extrabold text-seara-orange">Durasi:</span> Sesi Intensif Webinar & Praktik Terbimbing
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="font-extrabold text-seara-orange">Harga:</span> Terjangkau Under Rp100.000!
+                      <span className="font-extrabold text-seara-orange">Harga:</span> Mulai dari Rp125.000
                     </div>
                   </div>
                 </div>
