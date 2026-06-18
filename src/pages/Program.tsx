@@ -18,7 +18,15 @@ import {
   ArrowRight,
   TrendingUp,
   Tag,
-  MonitorPlay
+  MonitorPlay,
+  Globe,
+  Check,
+  Plus,
+  ExternalLink,
+  FileText,
+  AlertCircle,
+  ShieldCheck,
+  Code
 } from "lucide-react";
 
 export default function Program() {
@@ -33,6 +41,16 @@ export default function Program() {
       transition: {
         staggerChildren: 0.1
       }
+    }
+  };
+
+  const cardHover = {
+    hover: {
+      y: -8,
+      scale: 1.02,
+      boxShadow: "0 20px 40px rgba(249, 115, 22, 0.08)",
+      borderColor: "rgb(249, 115, 22)",
+      transition: { duration: 0.3 }
     }
   };
 
@@ -120,8 +138,8 @@ export default function Program() {
               className="bg-white rounded-[32px] border border-orange-100 shadow-xl overflow-hidden p-8 md:p-12 flex flex-col lg:flex-row gap-10 items-center hover:scale-[1.01] transition-transform duration-300"
             >
               <div className="w-full lg:w-1/2 relative">
-                <div className="absolute top-4 left-4 bg-seara-orange text-white text-xs font-black uppercase px-4 py-2 rounded-xl shadow-lg flex items-center gap-1.5 z-10 animate-pulse">
-                  Segera Dimulai 🔥
+                <div className="absolute top-4 left-4 bg-amber-500 text-white text-xs font-black uppercase px-4 py-2 rounded-xl shadow-lg flex items-center gap-1.5 z-10">
+                  Tunggu Batch 2 ⏳
                 </div>
                 <img 
                   src="/bootcamp-data-analyst.png" 
@@ -136,8 +154,8 @@ export default function Program() {
 
               <div className="w-full lg:w-1/2 space-y-6">
                 <div className="space-y-2">
-                  <span className="text-xs font-bold text-seara-orange uppercase tracking-wider bg-orange-50 px-3 py-1 rounded-md">
-                    INTENSIVE BOOTCAMP
+                  <span className="text-xs font-bold text-amber-600 uppercase tracking-wider bg-amber-50 px-3 py-1 rounded-md">
+                    INTENSIVE BOOTCAMP - BATCH 2 SLOTS COMING SOON
                   </span>
                   <h4 className="text-3xl font-bold text-seara-dark leading-snug">
                     Bootcamp Data Analyst Specialization
@@ -152,7 +170,7 @@ export default function Program() {
                     <Calendar className="text-seara-orange w-5 h-5 shrink-0" />
                     <div>
                       <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Tanggal Mulai</div>
-                      <div className="text-xs font-extrabold text-[#5a5a5a]">3 - 20 Juni 2025</div>
+                      <div className="text-xs font-extrabold text-[#5a5a5a]">Segera Diumumkan</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -173,19 +191,19 @@ export default function Program() {
                     <Tag className="text-seara-orange w-5 h-5 shrink-0" />
                     <div>
                       <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Biaya & Promo</div>
-                      <div className="text-xs font-extrabold text-seara-orange">Cek di Pendaftaran</div>
+                      <div className="text-xs font-extrabold text-seara-orange">Tunggu Batch 2</div>
                     </div>
                   </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center gap-6">
                   <a 
-                    href="https://clicky.id/searadata/bootcamp-data-analyst" 
+                    href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20ingin%20bertanya%20mengenai%20jadwal%20dan%20pendaftaran%20Bootcamp%20Data%20Analyst%20Batch%202.%20Terima%20kasih!" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-full md:w-auto justify-center items-center gap-2 bg-seara-orange text-white px-8 py-4 rounded-2xl font-bold text-lg hover:brightness-105 hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-orange-500/10 transition-all text-center h-fit"
+                    className="inline-flex w-full md:w-auto justify-center items-center gap-2 bg-amber-500 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:brightness-105 hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-amber-500/10 transition-all text-center h-fit"
                   >
-                    Daftar Sekarang <ArrowRight className="w-5 h-5" />
+                    Tunggu Batch 2 <ArrowRight className="w-5 h-5" />
                   </a>
                   <Link to="/testimoni" className="text-seara-orange hover:underline text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap">
                     Lihat Testimoni Alumni →
@@ -301,8 +319,11 @@ export default function Program() {
               <motion.div 
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.2 }}
-                className="bg-seara-cream/30 rounded-[32px] border border-orange-100 p-8 flex flex-col justify-between space-y-8 hover:shadow-md transition-shadow"
+                className="bg-seara-cream/30 rounded-[32px] border border-orange-100 p-8 flex flex-col justify-between space-y-8 hover:shadow-md transition-shadow relative"
               >
+                <div className="absolute top-6 right-6 bg-amber-100 text-amber-800 text-[10px] uppercase font-black px-2.5 py-1 rounded-md">
+                  Tunggu Batch 2 ⏳
+                </div>
                 <div className="space-y-4">
                   <div className="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center text-seara-orange">
                     <TrendingUp className="w-6 h-6" />
@@ -328,12 +349,12 @@ export default function Program() {
 
                 <div>
                   <a 
-                    href="https://clicky.id/searadata/bootcamp-data-analyst" 
+                    href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20ingin%20bertanya%20mengenai%20jadwal%20dan%20pendaftaran%20Bootcamp%20Data%20Analyst%20Batch%202.%20Terima%20kasih!" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-full justify-center items-center gap-2 bg-seara-orange text-white py-3.5 rounded-2xl font-bold text-sm hover:brightness-105 active:scale-95 transition-all"
+                    className="inline-flex w-full justify-center items-center gap-2 bg-amber-500 text-white py-3.5 rounded-2xl font-bold text-sm hover:brightness-105 active:scale-95 transition-all text-center"
                   >
-                    Lihat Bootcamp <ArrowRight className="w-4 h-4" />
+                    Tunggu Batch 2 (WhatsApp) <ArrowRight className="w-4 h-4" />
                   </a>
                 </div>
               </motion.div>
@@ -376,6 +397,385 @@ export default function Program() {
                 </div>
               </motion.div>
             </div>
+          </div>
+        </section>
+
+        {/* SECTION 3: Website Portfolio Pricelist */}
+        <section className="py-24 px-6 bg-[#fdfdfb] border-t border-orange-100/50">
+          <div className="max-w-6xl mx-auto">
+            
+            {/* Header */}
+            <div className="text-center mb-16 space-y-4">
+              <span className="text-xs font-black uppercase text-seara-orange tracking-widest bg-orange-50 px-4 py-1.5 rounded-full inline-flex items-center gap-1.5">
+                <Globe className="w-3.5 h-3.5 text-seara-orange" /> SERVICE PORTFOLIO
+              </span>
+              <h3 className="text-3xl md:text-5xl font-extrabold font-display text-seara-dark">
+                Pricelist Website Portfolio <span className="text-seara-orange">by Seara Data</span> 🌐
+              </h3>
+              <p className="text-gray-500 max-w-2xl mx-auto text-sm md:text-base">
+                Tampilkan kepribadian profesional, pencapaian terbaik, dan portofolio premium dengan website personal responsif berkecapatan tinggi tanpa biaya bulanan.
+              </p>
+            </div>
+
+            {/* Packages Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+              
+              {/* Card 1: Starter */}
+              <motion.div 
+                whileHover="hover"
+                variants={cardHover}
+                className="bg-white rounded-[32px] border border-orange-100 p-8 flex flex-col justify-between relative overflow-hidden shadow-sm"
+              >
+                <div className="space-y-6">
+                  <div className="flex justify-between items-start">
+                    <span className="text-xs font-bold text-amber-600 uppercase bg-amber-50 px-3 py-1 rounded-md">
+                      Starter Package
+                    </span>
+                  </div>
+                  <div>
+                    <div className="text-4xl font-extrabold text-seara-dark">Rp500.000</div>
+                    <p className="text-xs text-gray-400 mt-1">Satu kali bayar • Akses Seumur Hidup</p>
+                  </div>
+                  <hr className="border-orange-50" />
+                  
+                  {/* Features */}
+                  <div className="space-y-3">
+                    <div className="text-xs font-extrabold text-gray-400 uppercase tracking-widest">Fitur Utama</div>
+                    <ul className="space-y-2.5 text-sm text-[#5a5a5a]">
+                      <li className="flex items-start gap-2.5">
+                        <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <span><strong>1 Halaman</strong> (One Page)</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <span>Responsive Design (Desktop & Mobile)</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <span>Deploy Online (Vercel)</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <span><strong>Lifetime Access</strong> <span className="text-[11px] text-gray-400">(Akses Seumur Hidup, tidak ada biaya bulanan)</span></span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <span>2x revisi minor</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Sections */}
+                  <div className="space-y-2 pt-2">
+                    <div className="text-xs font-extrabold text-gray-400 uppercase tracking-widest">Section Terintegrasi</div>
+                    <p className="text-xs text-[#5a5a5a] bg-orange-50/40 p-3 rounded-xl border border-orange-100/50 leading-relaxed font-semibold">
+                      Home, About Me, Experience, Projects, Certifications, Contact
+                    </p>
+                  </div>
+
+                  {/* Bonus Maintenance */}
+                  <div className="pt-2 bg-emerald-50/50 p-4 rounded-2xl border border-emerald-100/50">
+                    <div className="text-xs font-bold text-emerald-700 flex items-center gap-1.5 mb-1">
+                      <span>🎁 Maintenance Bonus</span>
+                    </div>
+                    <p className="text-xs text-emerald-800 leading-relaxed font-medium">
+                      1x update Project, Experience, atau Sertifikasi setelah website selesai.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-8">
+                  <a 
+                    href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20tertarik%20dengan%20Website%20Portfolio%20*Starter%20Package*%20(Rp500.000).%20Mohon%2520bantu%2520informasi%2520selanjutnya.%2520Terima%2520kasih!" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-full justify-center items-center gap-2 bg-[#fafaf8] border border-orange-200 text-seara-orange py-3.5 rounded-2xl font-bold text-sm hover:bg-seara-orange hover:text-white transition-all text-center"
+                  >
+                    Pilih Starter <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* Card 2: Professional - RECOMMENDED */}
+              <motion.div 
+                whileHover="hover"
+                variants={cardHover}
+                className="bg-white rounded-[32px] border-2 border-seara-orange p-8 flex flex-col justify-between relative overflow-hidden shadow-md shadow-orange-500/5"
+              >
+                <div className="absolute top-0 right-0 bg-seara-orange text-white text-[10px] font-black uppercase px-4 py-1.5 rounded-bl-3xl tracking-widest">
+                  POPULAR ⭐
+                </div>
+                
+                <div className="space-y-6">
+                  <div className="flex justify-between items-start">
+                    <span className="text-xs font-bold text-seara-orange uppercase bg-orange-50 px-3 py-1 rounded-md">
+                      Professional Package
+                    </span>
+                  </div>
+                  <div>
+                    <div className="text-4xl font-extrabold text-seara-dark">Rp900.000</div>
+                    <p className="text-xs text-gray-400 mt-1">Satu kali bayar • Akses Seumur Hidup</p>
+                  </div>
+                  <hr className="border-orange-100" />
+                  
+                  {/* Features */}
+                  <div className="space-y-3">
+                    <div className="text-xs font-extrabold text-gray-400 uppercase tracking-widest">Semua Fitur Starter, Ditambah:</div>
+                    <ul className="space-y-2.5 text-sm text-[#5a5a5a]">
+                      <li className="flex items-start gap-2.5">
+                        <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <span><strong>Multi-Page Website</strong></span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <span>Interactive <strong>Project Showcase</strong></span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <span><strong>Vercel Analytics Setup</strong></span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <span>3x revisi minor</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Sections */}
+                  <div className="space-y-2 pt-2">
+                    <div className="text-xs font-extrabold text-gray-400 uppercase tracking-widest">Halaman Terintegrasi</div>
+                    <p className="text-xs text-[#5a5a5a] bg-orange-50/40 p-3 rounded-xl border border-orange-100/50 leading-relaxed font-semibold">
+                      Home, About Me, Experience, Projects, Certifications, Contact
+                    </p>
+                  </div>
+
+                  {/* Bonus Maintenance */}
+                  <div className="pt-2 bg-emerald-50/50 p-4 rounded-2xl border border-emerald-100/50">
+                    <div className="text-xs font-bold text-emerald-700 flex items-center gap-1.5 mb-1">
+                      <span>🎁 Maintenance Bonus</span>
+                    </div>
+                    <p className="text-xs text-emerald-800 leading-relaxed font-medium">
+                      Update Project, Experience, atau Sertifikasi <strong>setiap 3 bulan selama 1 tahun</strong> (maks 4x).
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-8">
+                  <a 
+                    href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20tertarik%20dengan%20Website%20Portfolio%20*Professional%20Package*%20(Rp900.000).%20Mohon%2520bantu%2520informasi%2520selanjutnya.%2520Terima%2520kasih!" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-full justify-center items-center gap-2 bg-seara-orange text-white py-3.5 rounded-2xl font-bold text-sm hover:brightness-105 active:scale-95 transition-all text-center shadow-md"
+                  >
+                    Pilih Professional <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* Card 3: Professional Plus */}
+              <motion.div 
+                whileHover="hover"
+                variants={cardHover}
+                className="bg-white rounded-[32px] border border-orange-100 p-8 flex flex-col justify-between relative overflow-hidden shadow-sm"
+              >
+                <div className="absolute top-0 right-0 bg-indigo-600 text-white text-[10px] font-black uppercase px-4 py-1.5 rounded-bl-3xl tracking-widest">
+                  ULTIMATE COMPLETE ✨
+                </div>
+                
+                <div className="space-y-6">
+                  <div className="flex justify-between items-start">
+                    <span className="text-xs font-bold text-indigo-600 uppercase bg-indigo-50 px-3 py-1 rounded-md">
+                      Professional Plus
+                    </span>
+                  </div>
+                  <div>
+                    <div className="text-4xl font-extrabold text-seara-dark">Rp1.100.000</div>
+                    <p className="text-xs text-gray-400 mt-1">Satu kali bayar • Akses Seumur Hidup</p>
+                  </div>
+                  <hr className="border-orange-50" />
+                  
+                  {/* Features */}
+                  <div className="space-y-3">
+                    <div className="text-xs font-extrabold text-gray-400 uppercase tracking-widest">Fitur Premium Lengkap</div>
+                    <ul className="space-y-2.5 text-sm text-[#5a5a5a]">
+                      <li className="flex items-start gap-2.5">
+                        <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <span><strong>LinkedIn Audit & Feedback Tertulis</strong> <span className="text-[11px] text-gray-400">(Headline, About, Experience, Skills, Featured)</span></span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <span><strong>CV Review & Recommendations</strong></span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <span><strong>Personal Branding Brief</strong> <span className="text-[11px] text-gray-400">(tone, bio, dan tagline yang konsisten)</span></span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <span><strong>Priority Response via WhatsApp</strong> <span className="text-[11px] text-gray-400">(1x24 jam kerja)</span></span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Sections */}
+                  <div className="space-y-2 pt-2">
+                    <div className="text-xs font-extrabold text-gray-400 uppercase tracking-widest">Halaman Terintegrasi</div>
+                    <p className="text-xs text-[#5a5a5a] bg-orange-50/40 p-3 rounded-xl border border-orange-100/50 leading-relaxed font-semibold">
+                      Home, About Me, Experience, Projects, Certifications, Contact
+                    </p>
+                  </div>
+
+                  {/* Bonus Maintenance */}
+                  <div className="pt-2 bg-emerald-50/50 p-4 rounded-2xl border border-emerald-100/50">
+                    <div className="text-xs font-bold text-emerald-700 flex items-center gap-1.5 mb-1">
+                      <span>🎁 Maintenance Bonus</span>
+                    </div>
+                    <p className="text-xs text-emerald-800 leading-relaxed font-medium">
+                      Update Project, Experience, atau Sertifikasi <strong>setiap 3 bulan selama 1 tahun</strong> (maks 4x).
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-8">
+                  <a 
+                    href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20tertarik%20dengan%20Website%20Portfolio%20*Professional%20Plus%20Package*%20(Rp1.100.000).%20Mohon%2520bantu%2520informasi%2520selanjutnya.%2520Terima%2520kasih!" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-full justify-center items-center gap-2 bg-[#fafaf8] border border-orange-200 text-indigo-600 py-3.5 rounded-2xl font-bold text-sm hover:bg-indigo-600 hover:text-white transition-all text-center"
+                  >
+                    Pilih Professional Plus <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </motion.div>
+
+            </div>
+
+            {/* Grid 2: Add-on & Extra Details (Requirements, revision policy, timelines) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+              
+              {/* Optional Add-ons */}
+              <div className="bg-white rounded-[32px] border border-orange-100 p-8 shadow-sm">
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-seara-orange">
+                    <Plus className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-seara-dark">➕ Add-on (Opsional)</h4>
+                    <p className="text-xs text-gray-400">Pilihan tambahan fungsionalitas untuk mengoptimalkan branding kamu</p>
+                  </div>
+                </div>
+
+                <div className="space-y-3.5 text-xs md:text-sm">
+                  <div className="flex justify-between items-center py-2.5 border-b border-orange-50">
+                    <div className="text-[#5a5a5a] font-medium">🔹 Extra revisi minor <span className="text-[10px] text-gray-400">(selama masa pengerjaan, per sesi)</span></div>
+                    <div className="font-extrabold text-[#5a5a5a]">Rp75.000</div>
+                  </div>
+                  <div className="flex justify-between items-center py-2.5 border-b border-orange-50">
+                    <div className="text-[#5a5a5a] font-medium">🔹 Update konten di luar jadwal <span className="text-[10px] text-gray-400">(setelah website diserahkan)</span></div>
+                    <div className="font-extrabold text-[#5a5a5a]">Rp100.000</div>
+                  </div>
+                  <div className="flex justify-between items-center py-2.5 border-b border-orange-50">
+                    <div className="text-[#5a5a5a] font-medium">🔹 Perpanjangan maintenance tahun ke-2</div>
+                    <div className="font-extrabold text-[#5a5a5a]">Rp200.000</div>
+                  </div>
+                  <div className="flex justify-between items-center py-2.5 border-b border-orange-50">
+                    <div className="text-[#5a5a5a] font-medium">🔹 GitHub Profile Cleanup & README Setup</div>
+                    <div className="font-extrabold text-[#5a5a5a]">Rp150.000</div>
+                  </div>
+                  <div className="flex justify-between items-center py-2.5">
+                    <div className="text-[#5a5a5a] font-medium">🔹 Custom Domain .com <span className="text-[10px] text-gray-400">(include pembelian domain & konfigurasi)</span></div>
+                    <div className="font-extrabold text-seara-orange">Rp300.000 / tahun</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Requirement & Revision Policy */}
+              <div className="flex flex-col gap-6">
+                
+                {/* Requirements & Timeline */}
+                <div className="bg-white rounded-[24px] border border-orange-100 p-6 shadow-sm flex-1">
+                  <div className="flex items-center gap-3 mb-4">
+                    <FileText className="text-seara-orange w-5 h-5 shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-seara-dark">📋 Yang Perlu Disiapkan</h4>
+                      <div className="text-xs font-semibold text-emerald-600">⏳ Estimasi Pengerjaan: 5–7 Hari Kerja</div>
+                    </div>
+                  </div>
+                  <ul className="text-xs md:text-sm text-[#5a5a5a] space-y-2 list-none font-semibold">
+                    <li className="flex items-center gap-2">🟢 Curriculum Vitae (CV)</li>
+                    <li className="flex items-center gap-2">🟢 Tautan Profil LinkedIn Active</li>
+                    <li className="flex items-center gap-2">🟢 Project Portfolio <span className="text-[10px] text-gray-400">(About Me, Experience, Projects, Certifications, Contact)</span></li>
+                    <li className="flex items-center gap-2">🟢 Foto Profesional Resolusi Tinggi</li>
+                    <li className="flex items-center gap-2">🟢 Berkas Sertifikasi Pendukung <span className="text-[10px] text-gray-400">(opsional)</span></li>
+                  </ul>
+                </div>
+
+                {/* Revision Note */}
+                <div className="bg-amber-50/55 rounded-[24px] border border-amber-200/50 p-6 shadow-sm">
+                  <div className="flex items-start gap-3">
+                    <AlertCircle className="text-amber-500 w-5 h-5 shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="font-bold text-amber-900 text-sm">📌 Catatan Revisi Penting</h4>
+                      <p className="text-xs text-amber-800 mt-1 leading-relaxed font-semibold">
+                        Revisi minor mencakup: perubahan teks, penggantian foto, atau penyesuaian warna. Tidak termasuk perubahan layout dasar, penambahan halaman baru di luar paket, atau perubahan struktur konten utama.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Showcase & Examples */}
+            <div className="bg-orange-50/20 rounded-[32px] border border-orange-100 p-8 md:p-12 text-center relative overflow-hidden mb-8">
+              <div className="max-w-xl mx-auto space-y-6">
+                <span className="text-[10px] font-bold text-seara-orange uppercase tracking-widest bg-orange-100/50 px-3 py-1 rounded-md">
+                  🖥️ CONTOH LIVE WEBSITE PORTFOLIO
+                </span>
+                <h4 className="text-2xl font-bold font-display text-seara-dark">
+                  Contoh Website yang Sudah Kami Buat
+                </h4>
+                <p className="text-sm text-[#5a5a5a] leading-relaxed font-medium">
+                  Lihat contoh nyata website portofolio premium yang di-deploy gratis online menggunakan paket Professional.
+                </p>
+                <div className="pt-2">
+                  <a 
+                    href="https://azmi-nafis.vercel.app/" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-white text-seara-dark hover:text-seara-orange border border-orange-200 px-6 py-3 rounded-full text-xs md:text-sm font-bold transition-all shadow-sm group active:scale-95"
+                  >
+                    <span>🔗 Azmi Nafis Portfolio Website</span>
+                    <span className="text-xs text-emerald-500 font-bold bg-emerald-50 py-0.5 px-2.5 rounded-full">Professional Package</span>
+                    <ExternalLink className="w-4 h-4 text-seara-orange group-hover:translate-x-0.5 transition-transform" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Section CTA */}
+            <div className="bg-seara-dark text-white rounded-[32px] p-8 md:p-12 text-center relative overflow-hidden shadow-xl">
+              <div className="max-w-xl mx-auto space-y-6 relative z-10">
+                <h4 className="text-2xl md:text-3xl font-extrabold leading-tight">
+                  Konsultasikan Profil Portofolio Karirmu
+                </h4>
+                <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+                  📩 Kirim CV atau LinkedIn kamu untuk mendapatkan rekomendasi paket yang sesuai.
+                </p>
+                <div className="pt-2">
+                  <a 
+                    href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20ingin%2520berkonsultasi%2520mengenai%2520rekomendasi%2520paket%2520Website%2520Portfolio%2520Seara%2520Data.%2520Berikut%252520tautan%252520LinkedIn/CV%252520saya..." 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2.5 bg-seara-orange text-white px-8 py-4 rounded-2xl font-bold text-sm md:text-base hover:brightness-105 active:scale-95 transition-all shadow-lg shadow-orange-500/10"
+                  >
+                    Kirim CV / LinkedIn via WhatsApp <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-seara-orange/15 blur-[120px] rounded-full pointer-events-none"></div>
+            </div>
+
           </div>
         </section>
 
