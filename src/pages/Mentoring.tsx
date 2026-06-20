@@ -802,52 +802,22 @@ export default function Mentoring() {
                         Pemesanan Berhasil Terdaftar!
                       </h3>
                       <p className="text-sm text-gray-500 max-w-xl mx-auto font-medium">
-                        ID Pemesanan Kamu adalah <strong className="text-seara-dark font-mono bg-gray-50 px-2 py-0.5 rounded border border-gray-100">{selectedBookingForPayment.id}</strong>. Silakan selesaikan pembayaran manual di bawah agar sesi dikonfirmasi mentor.
+                        ID Pemesanan Kamu adalah <strong className="text-seara-dark font-mono bg-gray-50 px-2 py-0.5 rounded border border-gray-100">{selectedBookingForPayment.id}</strong>. Silakan hubungi WhatsApp Admin di bawah untuk mendapatkan rincian pembayaran dan konfirmasi sesi bersama mentor.
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                    <div className="max-w-xl mx-auto w-full">
                       
-                      {/* Bank Details */}
-                      <div className="bg-orange-50/30 border border-orange-100/60 rounded-3xl p-6 md:p-8 space-y-6">
-                        <h4 className="font-bold text-base text-seara-dark tracking-tight flex items-center gap-2">
-                          <CreditCard className="text-seara-orange w-5 h-5" /> Instruksi Pembayaran Transfer
-                        </h4>
-                        
-                        <div className="space-y-4">
-                          <div>
-                            <span className="text-[10px] uppercase font-extrabold text-gray-400">BANK TRANSFER</span>
-                            <div className="text-xl font-black text-seara-dark">{BANK_INFO.bankName}</div>
-                          </div>
-                          <div>
-                            <span className="text-[10px] uppercase font-extrabold text-gray-400">NOMOR REKENING</span>
-                            <div className="text-2xl font-mono font-black text-seara-orange tracking-wider">
-                              {BANK_INFO.accountNumber}
-                            </div>
-                          </div>
-                          <div>
-                            <span className="text-[10px] uppercase font-extrabold text-gray-400">NAMA REKENING</span>
-                            <div className="text-base font-bold text-seara-dark">{BANK_INFO.accountName}</div>
-                          </div>
-                          <div className="border-t border-orange-200/40 pt-4">
-                            <span className="text-[10px] uppercase font-extrabold text-gray-400">JUMLAH TRANSFER</span>
-                            <div className="text-2xl font-black text-seara-dark">
-                              Rp {selectedBookingForPayment.price.toLocaleString("id-ID")}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* WhatsApp Admin Contact Column */}
+                      {/* WhatsApp Admin Contact Column - Centered and Wider */}
                       <div className="space-y-6">
                         {/* WhatsApp Direct Redirection Card */}
                         <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-8 space-y-5 shadow-sm">
                           <div className="space-y-1">
                             <h4 className="font-bold text-base text-seara-dark tracking-tight flex items-center gap-1.5">
-                              Tanya admin Rea!
+                              Hubungi Admin Rea
                             </h4>
                             <p className="text-xs text-gray-400 font-medium font-sans">
-                              Chat admin untuk informasi lebih lanjut dan fast-response konfirmasi
+                              Informasi rincian pembayaran akan diberikan oleh admin langsung via personal chat WhatsApp
                             </p>
                           </div>
 
