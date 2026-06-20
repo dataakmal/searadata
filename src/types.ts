@@ -40,7 +40,7 @@ export const MENTORS: Mentor[] = [
       "Visualisasi Laporan Interaktif dengan Looker Studio / Datastudio",
       "Membangun Interactive Business Dashboard di Tableau"
     ],
-    avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=150&h=150"
+    avatar: "/zahrulwafi.jpeg"
   },
   {
     id: "akmal-fauzan",
@@ -52,7 +52,7 @@ export const MENTORS: Mentor[] = [
       "Orchestration Data Pipeline & Otomatisasi Alur Kerja via Apache Airflow",
       "Persiapan Karir, Review CV & Portfolio Lolos Kerja Bidang Data"
     ],
-    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=150&h=150"
+    avatar: "/akmalfauzan.jpeg"
   },
   {
     id: "achmad-kurniansyah",
@@ -64,7 +64,7 @@ export const MENTORS: Mentor[] = [
       "Eksplorasi Query Kompleks & Optimasi Database dengan SQL",
       "Membangun Interactive Business Dashboard di Tableau"
     ],
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150"
+    avatar: "/achmadkurniansyah.jpeg"
   }
 ];
 

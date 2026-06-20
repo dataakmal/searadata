@@ -397,7 +397,7 @@ export default function Mentoring() {
                                 <div>
                                   <h4 className="font-bold text-lg text-seara-dark">{m.name}</h4>
                                   <span className="text-xs font-black uppercase text-seara-orange tracking-wider bg-orange-100 px-2.5 py-1 rounded-md">
-                                    DATA EXPERT
+                                    DATA MENTOR
                                   </span>
                                 </div>
                               </div>
@@ -738,7 +738,7 @@ export default function Mentoring() {
                     <div className="bg-gray-50 border border-gray-200/50 rounded-3xl p-8 space-y-5">
                       <div className="flex border-b border-gray-200 pb-4 justify-between items-center">
                         <div>
-                          <span className="text-xs uppercase font-extrabold text-gray-400 block mb-0.5">MENTOR EXPERT</span>
+                          <span className="text-xs uppercase font-extrabold text-gray-400 block mb-0.5">DATA MENTOR</span>
                           <span className="font-bold text-seara-dark text-lg">{selectedMentor?.name}</span>
                         </div>
                         <span className="text-xs font-black uppercase text-seara-orange tracking-wider bg-orange-100 px-2.5 py-1 rounded-md">
