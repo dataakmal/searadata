@@ -56,12 +56,12 @@ export default function Komunitas() {
     {
       title: "🎓 Bootcamp Data Analyst",
       description: "Program intensif belajar Excel, SQL, Python, Power BI, hingga membangun portfolio project premium.",
-      badge: "Berbayar — Rp249.000",
+      badge: "Berbayar — Batch 2 Open",
       badgeColor: "bg-orange-100 text-seara-orange font-bold",
-      info: "Jadwal: 3–20 Juni 2026",
+      info: "Jadwal: Sesuai Pilihan Sesi",
       hasCta: true,
       ctaText: "Daftar",
-      ctaLink: "https://clicky.id/searadata/bootcamp-data-analyst"
+      ctaLink: "https://clicky.id/searadata"
     },
     {
       title: "📊 Fresh Graduate",

@@ -51,7 +51,7 @@ export default function Home() {
           >
             {[...Array(6)].map((_, i) => (
               <div key={i} className="flex gap-12 items-center">
-                <span>🔥 Bootcamp Data Analyst 3-20 Jun</span>
+                <span>🔥 Bootcamp Data Analyst Batch 2 Pendaftaran Dibuka!</span>
                 <span>🎯 Mentoring 1-on-1</span>
               </div>
             ))}
@@ -93,12 +93,12 @@ export default function Home() {
               className="flex flex-wrap justify-center gap-4"
             >
               <a 
-                href="https://clicky.id/searadata/bootcamp-data-analyst" 
+                href="https://clicky.id/searadata" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-seara-orange text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-[0_10px_15px_-3px_rgba(241,111,83,0.2)] hover:brightness-95 hover:-translate-y-1 transition-all flex items-center gap-2"
               >
-                Daftar Bootcamp <ChevronRight className="w-5 h-5" />
+                Daftar Bootcamp Batch 2 <ChevronRight className="w-5 h-5" />
               </a>
               <Link 
                 to="/mentoring" 
@@ -173,17 +173,30 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
-                  id: "bootcamp-da",
+                  id: "bootcamp-da-batch2",
                   type: "active",
-                  badge: "🔥 SEDANG BERLANGSUNG",
-                  badgeColor: "bg-red-500",
+                  badge: "🚀 PENDAFTARAN DIBUKA",
+                  badgeColor: "bg-seara-orange",
+                  image: "/bootcamp-data-analyst-batch2.png",
+                  date: "Batch 2 Sekarang Dibuka!",
+                  title: "Bootcamp: Data Analyst Specialization (Batch 2)",
+                  desc: "Kuasai Excel, Power BI, Python, dan SQL dalam program intensif interaktif. Siap kerja sebagai Data Analyst profesional.",
+                  link: "https://clicky.id/searadata",
+                  cta: "Daftar Batch 2",
+                  bgColor: "bg-orange-50"
+                },
+                {
+                  id: "bootcamp-da",
+                  type: "finished",
+                  badge: "📅 EVENT FINISHED",
+                  badgeColor: "bg-gray-500",
                   image: "/bootcamp-data-analyst.png",
                   date: "3 - 20 Juni 2026",
-                  title: "Bootcamp: Data Analyst Specialization",
+                  title: "Bootcamp: Data Analyst Specialization (Batch 1)",
                   desc: "Kuasai Excel, Power BI, Python, dan SQL dalam 3 minggu intensif. Siap kerja sebagai Data Analyst di 2026.",
                   link: "https://clicky.id/searadata/bootcamp-data-analyst",
-                  cta: "Daftar Bootcamp",
-                  bgColor: "bg-orange-50"
+                  cta: "Pendaftaran Ditutup",
+                  bgColor: "bg-gray-100"
                 },
                 {
                   id: "mini-class-sql-python",

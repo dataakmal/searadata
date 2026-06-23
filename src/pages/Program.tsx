@@ -138,12 +138,12 @@ export default function Program() {
               className="bg-white rounded-[32px] border border-orange-100 shadow-xl overflow-hidden p-8 md:p-12 flex flex-col lg:flex-row gap-10 items-center hover:scale-[1.01] transition-transform duration-300"
             >
               <div className="w-full lg:w-1/2 relative">
-                <div className="absolute top-4 left-4 bg-amber-500 text-white text-xs font-black uppercase px-4 py-2 rounded-xl shadow-lg flex items-center gap-1.5 z-10">
-                  Tunggu Batch 2 ⏳
+                <div className="absolute top-4 left-4 bg-seara-orange text-white text-xs font-black uppercase px-4 py-2 rounded-xl shadow-lg flex items-center gap-1.5 z-10">
+                  Batch 2 Pendaftaran Dibuka 🚀
                 </div>
                 <img 
-                  src="/bootcamp-data-analyst.png" 
-                  alt="Bootcamp Data Analyst" 
+                  src="/bootcamp-data-analyst-batch2.png" 
+                  alt="Bootcamp Data Analyst Batch 2" 
                   className="w-full aspect-[4/3] object-cover rounded-[24px] border border-orange-50 shadow-inner"
                   onError={(e) => {
                     (e.currentTarget as HTMLImageElement).src = "https://picsum.photos/seed/bootcamp/800/600";
@@ -154,14 +154,14 @@ export default function Program() {
 
               <div className="w-full lg:w-1/2 space-y-6">
                 <div className="space-y-2">
-                  <span className="text-xs font-bold text-amber-600 uppercase tracking-wider bg-amber-50 px-3 py-1 rounded-md">
-                    INTENSIVE BOOTCAMP - BATCH 2 SLOTS COMING SOON
+                  <span className="text-xs font-bold text-seara-orange uppercase tracking-wider bg-orange-100 px-3 py-1 rounded-md">
+                    INTENSIVE BOOTCAMP - BATCH 2 SLOTS AVAILABLE
                   </span>
                   <h4 className="text-3xl font-bold text-seara-dark leading-snug">
-                    Bootcamp Data Analyst Specialization
+                    Bootcamp Data Analyst Specialization (Batch 2)
                   </h4>
                   <p className="text-[#5a5a5a] text-sm leading-relaxed">
-                    Kuasai metodologi analisis data riil, mulai dari data querying, visualisasi dinamis, hingga persiapan portofolio premium yang diakui industri.
+                    Kuasai metodologi analisis data riil, mulai dari data querying, visualisasi dinamis, hingga persiapan portofolio premium yang diakui industri. Amankan slot bimbingan intensifmu sekarang di Batch 2!
                   </p>
                 </div>
 
@@ -169,8 +169,8 @@ export default function Program() {
                   <div className="flex items-center gap-3">
                     <Calendar className="text-seara-orange w-5 h-5 shrink-0" />
                     <div>
-                      <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Tanggal Mulai</div>
-                      <div className="text-xs font-extrabold text-[#5a5a5a]">Segera Diumumkan</div>
+                      <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Periode Kelas</div>
+                      <div className="text-xs font-extrabold text-[#5a5a5a]">Pendaftaran Aktif</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -184,26 +184,26 @@ export default function Program() {
                     <Clock className="text-seara-orange w-5 h-5 shrink-0" />
                     <div>
                       <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Durasi Kelas</div>
-                      <div className="text-xs font-extrabold text-[#5a5a5a]">~3 Minggu Intensif</div>
+                      <div className="text-xs font-extrabold text-[#5a5a5a]">~4 Minggu Intensif</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
                     <Tag className="text-seara-orange w-5 h-5 shrink-0" />
                     <div>
                       <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Biaya & Promo</div>
-                      <div className="text-xs font-extrabold text-seara-orange">Tunggu Batch 2</div>
+                      <div className="text-xs font-extrabold text-seara-orange">Mulai Baru (Batch 2)</div>
                     </div>
                   </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center gap-6">
                   <a 
-                    href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20ingin%20bertanya%20mengenai%20jadwal%20dan%20pendaftaran%20Bootcamp%20Data%20Analyst%20Batch%202.%20Terima%20kasih!" 
+                    href="https://clicky.id/searadata" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-full md:w-auto justify-center items-center gap-2 bg-amber-500 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:brightness-105 hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-amber-500/10 transition-all text-center h-fit"
+                    className="inline-flex w-full md:w-auto justify-center items-center gap-2 bg-seara-orange text-white px-8 py-4 rounded-2xl font-bold text-lg hover:brightness-105 hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-orange-500/10 transition-all text-center h-fit"
                   >
-                    Tunggu Batch 2 <ArrowRight className="w-5 h-5" />
+                    Daftar Batch 2 Sekarang <ArrowRight className="w-5 h-5" />
                   </a>
                   <Link to="/testimoni" className="text-seara-orange hover:underline text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap">
                     Lihat Testimoni Alumni →
@@ -321,8 +321,8 @@ export default function Program() {
                 transition={{ duration: 0.2 }}
                 className="bg-seara-cream/30 rounded-[32px] border border-orange-100 p-8 flex flex-col justify-between space-y-8 hover:shadow-md transition-shadow relative"
               >
-                <div className="absolute top-6 right-6 bg-amber-100 text-amber-800 text-[10px] uppercase font-black px-2.5 py-1 rounded-md">
-                  Tunggu Batch 2 ⏳
+                <div className="absolute top-6 right-6 bg-seara-orange text-white text-[10px] uppercase font-black px-2.5 py-1 rounded-md">
+                  Pendaftaran Dibuka 🚀
                 </div>
                 <div className="space-y-4">
                   <div className="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center text-seara-orange">
@@ -331,7 +331,7 @@ export default function Program() {
                   <div>
                     <h4 className="text-2xl font-bold text-seara-dark">Bootcamp</h4>
                     <p className="text-[#5a5a5a] text-sm mt-2 leading-relaxed">
-                      Program belajar komprehensif berdurasi multi-minggu yang memadukan teori, project nyata, review personal, dan bimbingan karier.
+                      Program belajar komprehensif berdurasi multi-minggu (Batch 2) yang memadukan teori, project nyata, review personal, dan bimbingan karier.
                     </p>
                   </div>
                   <div className="space-y-2 text-xs text-[#5a5a5a] pt-2">
@@ -349,12 +349,12 @@ export default function Program() {
 
                 <div>
                   <a 
-                    href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20ingin%20bertanya%20mengenai%20jadwal%20dan%20pendaftaran%20Bootcamp%20Data%20Analyst%20Batch%202.%20Terima%20kasih!" 
+                    href="https://clicky.id/searadata" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-full justify-center items-center gap-2 bg-amber-500 text-white py-3.5 rounded-2xl font-bold text-sm hover:brightness-105 active:scale-95 transition-all text-center"
+                    className="inline-flex w-full justify-center items-center gap-2 bg-seara-orange text-white py-3.5 rounded-2xl font-bold text-sm hover:brightness-105 active:scale-95 transition-all text-center"
                   >
-                    Tunggu Batch 2 (WhatsApp) <ArrowRight className="w-4 h-4" />
+                    Daftar Batch 2 <ArrowRight className="w-4 h-4" />
                   </a>
                 </div>
               </motion.div>
