@@ -31,7 +31,7 @@ import {
   Mentor 
 } from "../types";
 
-console.log("Apps Script URL:", (import.meta as any).env.VITE_APPS_SCRIPT_URL)
+console.log("Apps Script URL:", import.meta.env.VITE_APPS_SCRIPT_URL)
 
 export default function Mentoring() {
   // Session / Storage Hook
@@ -119,7 +119,10 @@ export default function Mentoring() {
         return "Orchestration Data Pipeline & Otomatisasi Alur Kerja via Apache Airflow";
       }
       if (lower === "career in data") {
-        return "Persiapan Karir, Review CV & Portfolio Lolos Kerja Bidang Data";
+        return "Persiapan Karir Lolos Kerja Bidang Data";
+      }
+      if (lower === "cv & portfolio") {
+        return "Review CV & Portfolio";
       }
       return `Mentoring Terkait dengan ${exp}`;
     });
@@ -159,7 +162,7 @@ export default function Mentoring() {
   };
 
   const sendToGoogleSheets = (booking: Booking) => {
-    const url = (import.meta as any).env.VITE_APPS_SCRIPT_URL;
+    const url = import.meta.env.VITE_APPS_SCRIPT_URL;
     if (!url) {
       console.warn("VITE_APPS_SCRIPT_URL is not defined in environment variables");
       return;
@@ -176,7 +179,7 @@ export default function Mentoring() {
   };
 
   const updateStatusInSheets = (bookingId: string, status: string) => {
-    const url = (import.meta as any).env.VITE_APPS_SCRIPT_URL;
+    const url = import.meta.env.VITE_APPS_SCRIPT_URL;
     if (!url) {
       console.warn("VITE_APPS_SCRIPT_URL is not defined in environment variables");
       return;

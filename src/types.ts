@@ -45,12 +45,13 @@ export const MENTORS: Mentor[] = [
   {
     id: "akmal-fauzan",
     name: "Akmal Fauzan",
-    expertise: ["Python", "SQL", "Airflow", "Career in Data"],
+    expertise: ["Python", "SQL", "Airflow", "Career in Data", "CV & Portfolio"],
     suggestedTopics: [
       "Analisis Data Serta Otomatisasi Script dengan Python",
       "Eksplorasi Query Kompleks & Optimasi Database dengan SQL",
       "Orchestration Data Pipeline & Otomatisasi Alur Kerja via Apache Airflow",
-      "Persiapan Karir, Review CV & Portfolio Lolos Kerja Bidang Data"
+      "Persiapan Karir Lolos Kerja Bidang Data",
+      "Review CV & Portfolio"
     ],
     avatar: "/akmalfauzan.jpeg"
   },
