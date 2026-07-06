@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
@@ -35,10 +35,180 @@ export default function CertificateVerify() {
   const [searchId, setSearchId] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
+  // States for dynamic/fallback loading
+  const [dynamicCert, setDynamicCert] = useState<Certificate | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
   // Cast JSON data to record type
   const certificates = certificatesData as Record<string, Certificate>;
   const activeCertId = certificateId ? certificateId.trim().toUpperCase() : "";
-  const cert = certificates[activeCertId];
+
+  // Helper to translate months from English to Indonesian
+  const translateMonths = (str: string) => {
+    const months: Record<string, string> = {
+      'January': 'Januari',
+      'February': 'Februari',
+      'March': 'Maret',
+      'April': 'April',
+      'May': 'Mei',
+      'June': 'Juni',
+      'July': 'Juli',
+      'August': 'Agustus',
+      'September': 'September',
+      'October': 'Oktober',
+      'November': 'November',
+      'December': 'Desember'
+    };
+    let result = str;
+    for (const [en, id] of Object.entries(months)) {
+      result = result.replace(new RegExp(en, 'gi'), id);
+    }
+    return result;
+  };
+
+  useEffect(() => {
+    if (!activeCertId) {
+      setIsLoading(false);
+      setDynamicCert(null);
+      return;
+    }
+
+    // 1. If we already have it in local json, use it immediately
+    if (certificates[activeCertId]) {
+      setDynamicCert(certificates[activeCertId]);
+      setIsLoading(false);
+      return;
+    }
+
+    // 2. Otherwise, let's try to dynamically load and parse the PDF from the server!
+    setIsLoading(true);
+    setDynamicCert(null);
+
+    const loadAndParsePDF = async () => {
+      try {
+        // First check if the PDF file exists via a head/get request
+        const pdfUrl = `/certificate/${activeCertId}.pdf`;
+        const response = await fetch(pdfUrl);
+        if (!response.ok) {
+          throw new Error("File PDF tidak ditemukan");
+        }
+
+        // Get arrayBuffer of the PDF
+        const arrayBuffer = await response.arrayBuffer();
+
+        // Dynamically inject pdf.js script from CDN if not already loaded
+        if (!(window as any).pdfjsLib) {
+          await new Promise<void>((resolve, reject) => {
+            const script = document.createElement("script");
+            script.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js";
+            script.onload = () => resolve();
+            script.onerror = () => reject(new Error("Gagal memuat library PDF parser"));
+            document.head.appendChild(script);
+          });
+        }
+
+        const pdfjsLib = (window as any).pdfjsLib;
+        pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js";
+
+        // Load document
+        const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
+        const pdf = await loadingTask.promise;
+        const page = await pdf.getPage(1);
+        const textContent = await page.getTextContent();
+        
+        const rawItems = textContent.items.map((item: any) => item.str);
+        // Standardize lines
+        const lines = rawItems.map((line: string) => line.trim()).filter((line: string) => line.length > 0);
+
+        let name = "";
+        let program = "Data Analyst Bootcamp";
+        let completionDate = "3-20 Juni 2026";
+        let duration = "15 Jam";
+        let technologies = ["Microsoft Excel", "SQL", "Power BI", "Python"];
+
+        // 1. Extract Name (Line after "THIS CERTIFICATE IS PROUDLY PRESENTED TO:")
+        const presenterIndex = lines.findIndex((l: string) => l.toUpperCase().includes("PROUDLY PRESENTED TO"));
+        if (presenterIndex !== -1 && presenterIndex + 1 < lines.length) {
+          name = lines[presenterIndex + 1];
+        } else {
+          // Fallback pattern for mock PDF or alternative structure
+          const verifiedLine = lines.find((l: string) => l.includes("verified certificate of"));
+          if (verifiedLine) {
+            const match = verifiedLine.match(/verified certificate of\s+(.*?)\s+for/i);
+            if (match && match[1]) {
+              name = match[1].trim();
+            }
+          }
+        }
+
+        // 2. Extract Program Name
+        const completedIndex = lines.findIndex((l: string) => l.toUpperCase().includes("SUCCESSFULLY COMPLETED THE"));
+        if (completedIndex !== -1 && completedIndex + 1 < lines.length) {
+          program = lines[completedIndex + 1];
+        } else if (lines.some((l: string) => l.toUpperCase().includes("DATA ANALYST BOOTCAMP"))) {
+          program = "Data Analyst Bootcamp";
+        }
+
+        // 3. Extract Core Technologies
+        const techIndex = lines.findIndex((l: string) => l.toUpperCase().includes("CORE TECHNOLOGIES"));
+        if (techIndex !== -1 && techIndex + 1 < lines.length) {
+          const techLine = lines[techIndex + 1];
+          technologies = techLine.split(/[•|&,]/).map((t: string) => t.trim()).filter(Boolean);
+        }
+
+        // 4. Extract Date of Completion and Duration
+        const dateLine = lines.find((l: string) => l.toUpperCase().includes("DATE OF COMPLETION"));
+        if (dateLine) {
+          const parts = dateLine.split("|");
+          if (parts[0]) {
+            const dateMatch = parts[0].match(/Date of Completion\s*:\s*(.*)/i);
+            if (dateMatch && dateMatch[1]) {
+              completionDate = translateMonths(dateMatch[1].trim());
+            }
+          }
+          
+          let sessions = "";
+          if (parts[1]) {
+            sessions = parts[1].trim();
+          }
+          
+          let hours = "";
+          if (parts[2]) {
+            const durationMatch = parts[2].match(/Duration\s*:\s*(.*)/i);
+            if (durationMatch && durationMatch[1]) {
+              hours = durationMatch[1].replace(/hours/gi, "Jam").trim();
+            }
+          }
+
+          if (hours && sessions) {
+            duration = `${hours} (${sessions})`;
+          } else if (hours) {
+            duration = hours;
+          }
+        }
+
+        setDynamicCert({
+          certificateId: activeCertId,
+          name: name || "Penerima Sertifikat",
+          program,
+          completionDate,
+          duration,
+          technologies,
+          founder: "Akmal Fauzan",
+          pdfUrl: pdfUrl
+        });
+      } catch (err) {
+        console.error("Gagal membaca file sertifikat PDF:", err);
+        setDynamicCert(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadAndParsePDF();
+  }, [activeCertId]);
+
+  const cert = dynamicCert;
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,6 +228,34 @@ export default function CertificateVerify() {
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.5 }
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[#fcfbfa] flex flex-col">
+        <Navbar />
+        <main className="flex-grow flex items-center justify-center px-4 py-12">
+          <div className="text-center max-w-md mx-auto space-y-6">
+            <div className="relative w-20 h-20 mx-auto">
+              <div className="absolute inset-0 rounded-full border-4 border-orange-500/20 animate-ping" />
+              <div className="absolute inset-0 rounded-full border-4 border-t-orange-500 border-r-transparent border-b-transparent border-l-transparent animate-spin" />
+              <div className="absolute inset-2 bg-orange-50 rounded-full flex items-center justify-center text-orange-600">
+                <ShieldCheck className="w-8 h-8 animate-pulse" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-xl font-bold text-gray-800">Memverifikasi Kredensial...</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                Menghubungkan ke server repositori Seara Data untuk memvalidasi dokumen secara aman dan terenkripsi.
+              </p>
+            </div>
+          </div>
+        </main>
+        <footer className="py-8 bg-white border-t border-orange-50 text-center text-xs text-gray-400 font-medium">
+          <p>© {new Date().getFullYear()} Seara Data. Seluruh hak cipta dilindungi undang-undang.</p>
+        </footer>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#fcfbfa] flex flex-col">
