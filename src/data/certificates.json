@@ -1,0 +1,32 @@
+{
+  "SD-DA-B1-001": {
+    "certificateId": "SD-DA-B1-001",
+    "name": "Rian Adi Pratama",
+    "program": "Bootcamp: Data Analyst Specialization (Batch 1)",
+    "completionDate": "20 Juni 2026",
+    "duration": "3 Minggu Intensif",
+    "technologies": ["Microsoft Excel", "SQL (PostgreSQL)", "Python Programming", "Power BI Dashboarding"],
+    "founder": "Akmal Fauzan",
+    "pdfUrl": "/certificate/SD-DA-B1-001.pdf"
+  },
+  "SD-DA-B1-002": {
+    "certificateId": "SD-DA-B1-002",
+    "name": "Amanda Putri",
+    "program": "Bootcamp: Data Analyst Specialization (Batch 1)",
+    "completionDate": "20 Juni 2026",
+    "duration": "3 Minggu Intensif",
+    "technologies": ["Microsoft Excel", "SQL (PostgreSQL)", "Python Programming", "Power BI Dashboarding"],
+    "founder": "Akmal Fauzan",
+    "pdfUrl": "https://drive.google.com/file/d/1-example-drive-id-2/view"
+  },
+  "SD-DA-B2-001": {
+    "certificateId": "SD-DA-B2-001",
+    "name": "Reza Kurniawan",
+    "program": "Bootcamp: Data Analyst Specialization (Batch 2)",
+    "completionDate": "25 Juli 2026",
+    "duration": "4 Minggu Intensif",
+    "technologies": ["Microsoft Excel", "SQL (PostgreSQL)", "Python (Pandas & Numpy)", "Power BI Interactive"],
+    "founder": "Akmal Fauzan",
+    "pdfUrl": "https://drive.google.com/file/d/1-example-drive-id-3/view"
+  }
+}
