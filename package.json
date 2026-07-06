@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node -e \"import('fs').then(f => f.existsSync('scripts/generate-certificates.js') && import('child_process').then(c => c.execSync('node scripts/generate-certificates.js', {stdio: 'inherit'})))\" && vite --port=3000 --host=0.0.0.0",
-    "build": "node -e \"import('fs').then(f => f.existsSync('scripts/generate-certificates.js') && import('child_process').then(c => c.execSync('node scripts/generate-certificates.js', {stdio: 'inherit'})))\" && vite build",
+    "dev": "node --input-type=module -e \"import fs from 'fs'; import { execSync } from 'child_process'; if (fs.existsSync('scripts/generate-certificates.js')) { execSync('node scripts/generate-certificates.js', { stdio: 'inherit' }); }\" && vite --port=3000 --host=0.0.0.0",
+    "build": "node --input-type=module -e \"import fs from 'fs'; import { execSync } from 'child_process'; if (fs.existsSync('scripts/generate-certificates.js')) { execSync('node scripts/generate-certificates.js', { stdio: 'inherit' }); }\" && vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit"
