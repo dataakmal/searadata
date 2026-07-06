@@ -1,11 +1,11 @@
 {
   "SD-DA-B1-001": {
     "certificateId": "SD-DA-B1-001",
-    "name": "Rian Adi Pratama",
-    "program": "Bootcamp: Data Analyst Specialization (Batch 1)",
-    "completionDate": "20 Juni 2026",
-    "duration": "3 Minggu Intensif",
-    "technologies": ["Microsoft Excel", "SQL (PostgreSQL)", "Python Programming", "Power BI Dashboarding"],
+    "name": "Yasril Jahja",
+    "program": "Data Analyst Bootcamp",
+    "completionDate": "3-20 Juni 2026",
+    "duration": "15 Jam (6 + 1 Live Sessions)",
+    "technologies": ["Microsoft Excel", "SQL", "Power BI", "Python"],
     "founder": "Akmal Fauzan",
     "pdfUrl": "/certificate/SD-DA-B1-001.pdf"
   },
