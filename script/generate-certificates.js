@@ -70,6 +70,9 @@ async function main() {
       let duration = '15 Jam';
       let technologies = ['Microsoft Excel', 'SQL', 'Power BI', 'Python'];
 
+      const isInstructor = certificateId.includes('-INS-') || text.toUpperCase().includes('INSTRUCTOR') || text.toUpperCase().includes('APPRECIATION');
+      const role = isInstructor ? 'instructor' : 'participant';
+
       // 1. Ekstrak Nama (Baris setelah kalimat "THIS CERTIFICATE IS PROUDLY PRESENTED TO:")
       const presenterIndex = lines.findIndex(l => l.toUpperCase().includes('PROUDLY PRESENTED TO'));
       if (presenterIndex !== -1 && presenterIndex + 1 < lines.length) {
@@ -86,49 +89,100 @@ async function main() {
       }
 
       // 2. Ekstrak Nama Program
-      const completedIndex = lines.findIndex(l => l.toUpperCase().includes('SUCCESSFULLY COMPLETED THE'));
-      if (completedIndex !== -1 && completedIndex + 1 < lines.length) {
-        program = lines[completedIndex + 1];
-      } else if (lines.some(l => l.toUpperCase().includes('DATA ANALYST BOOTCAMP'))) {
-        program = 'Data Analyst Bootcamp';
+      if (isInstructor) {
+        program = 'Instructor - Data Analyst Bootcamp';
+        const contributionIndex = lines.findIndex(l => l.toUpperCase().includes('CONTRIBUTION AS'));
+        if (contributionIndex !== -1 && contributionIndex + 1 < lines.length) {
+          let progLine = lines[contributionIndex + 1];
+          if (progLine.toUpperCase().startsWith('INSTRUCTOR')) {
+            if (contributionIndex + 2 < lines.length && lines[contributionIndex + 2].toUpperCase().includes('BOOTCAMP')) {
+              progLine += ' ' + lines[contributionIndex + 2];
+            }
+          }
+          // Standarisasi kapitalisasi
+          program = progLine.split('-').map(part => part.trim().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ')).join(' - ');
+        }
+      } else {
+        const completedIndex = lines.findIndex(l => l.toUpperCase().includes('SUCCESSFULLY COMPLETED THE'));
+        if (completedIndex !== -1 && completedIndex + 1 < lines.length) {
+          program = lines[completedIndex + 1];
+        } else if (lines.some(l => l.toUpperCase().includes('DATA ANALYST BOOTCAMP'))) {
+          program = 'Data Analyst Bootcamp';
+        }
       }
 
-      // 3. Ekstrak Core Technologies
-      const techIndex = lines.findIndex(l => l.toUpperCase().includes('CORE TECHNOLOGIES'));
-      if (techIndex !== -1 && techIndex + 1 < lines.length) {
-        const techLine = lines[techIndex + 1];
-        technologies = techLine.split(/[•|&,]/).map(t => t.trim()).filter(Boolean);
+      // 3. Ekstrak Core Technologies atau Topics Delivered
+      if (isInstructor) {
+        const topicsIndex = lines.findIndex(l => l.toUpperCase().includes('TOPICS DELIVERED'));
+        if (topicsIndex !== -1 && topicsIndex + 1 < lines.length) {
+          const topicsLine = lines[topicsIndex + 1];
+          technologies = topicsLine.split(/[•|]/).map(t => t.trim()).filter(Boolean);
+        }
+      } else {
+        const techIndex = lines.findIndex(l => l.toUpperCase().includes('CORE TECHNOLOGIES'));
+        if (techIndex !== -1 && techIndex + 1 < lines.length) {
+          const techLine = lines[techIndex + 1];
+          technologies = techLine.split(/[•|&,]/).map(t => t.trim()).filter(Boolean);
+        }
       }
 
-      // 4. Ekstrak Tanggal Kelulusan dan Durasi
-      const dateLine = lines.find(l => l.toUpperCase().includes('DATE OF COMPLETION'));
-      if (dateLine) {
-        // Contoh: "Date of Completion : 3-20 June 2026 | 6 + 1 Live Sessions | Duration : 15 hours"
-        const parts = dateLine.split('|');
-        if (parts[0]) {
-          const dateMatch = parts[0].match(/Date of Completion\s*:\s*(.*)/i);
-          if (dateMatch && dateMatch[1]) {
-            completionDate = translateMonths(dateMatch[1].trim());
-          }
-        }
-        
-        let sessions = '';
-        if (parts[1]) {
-          sessions = parts[1].trim();
-        }
-        
-        let hours = '';
-        if (parts[2]) {
-          const durationMatch = parts[2].match(/Duration\s*:\s*(.*)/i);
-          if (durationMatch && durationMatch[1]) {
-            hours = durationMatch[1].replace(/hours/gi, 'Jam').trim();
-          }
+      // 4. Ekstrak Tanggal Kelulusan/Kontribusi dan Durasi
+      if (isInstructor) {
+        // Cari tanggal berdasarkan nama bulan
+        const monthRegex = /(January|February|March|April|May|June|July|August|September|October|November|December)/i;
+        const dateLine = lines.find(l => monthRegex.test(l) && !l.toUpperCase().includes('PROUDLY') && !l.toUpperCase().includes('CONTRIBUTION'));
+        if (dateLine) {
+          completionDate = translateMonths(dateLine.trim());
         }
 
-        if (hours && sessions) {
-          duration = `${hours} (${sessions})`;
-        } else if (hours) {
-          duration = hours;
+        // Cari durasi & sesi
+        const hoursLine = lines.find(l => l.toUpperCase().includes('HOURS') || l.toUpperCase().includes('JAM'));
+        const sessionsLine = lines.find(l => l.toUpperCase().includes('LIVE SESSIONS') || l.toUpperCase().includes('SESI'));
+        let hoursStr = '';
+        let sessionsStr = '';
+        if (hoursLine) {
+          hoursStr = hoursLine.toUpperCase().replace(/HOURS|HOUR/gi, 'Jam').trim();
+        }
+        if (sessionsLine) {
+          sessionsStr = sessionsLine.replace(/LIVE SESSIONS|LIVE SESSION/gi, 'Live Sessions').trim();
+        }
+        if (hoursStr && sessionsStr) {
+          duration = `${hoursStr} (${sessionsStr})`;
+        } else if (hoursStr) {
+          duration = hoursStr;
+        } else if (sessionsStr) {
+          duration = sessionsStr;
+        }
+      } else {
+        const dateLine = lines.find(l => l.toUpperCase().includes('DATE OF COMPLETION'));
+        if (dateLine) {
+          // Contoh: "Date of Completion : 3-20 June 2026 | 6 + 1 Live Sessions | Duration : 15 hours"
+          const parts = dateLine.split('|');
+          if (parts[0]) {
+            const dateMatch = parts[0].match(/Date of Completion\s*:\s*(.*)/i);
+            if (dateMatch && dateMatch[1]) {
+              completionDate = translateMonths(dateMatch[1].trim());
+            }
+          }
+          
+          let sessions = '';
+          if (parts[1]) {
+            sessions = parts[1].trim();
+          }
+          
+          let hours = '';
+          if (parts[2]) {
+            const durationMatch = parts[2].match(/Duration\s*:\s*(.*)/i);
+            if (durationMatch && durationMatch[1]) {
+              hours = durationMatch[1].replace(/hours/gi, 'Jam').trim();
+            }
+          }
+
+          if (hours && sessions) {
+            duration = `${hours} (${sessions})`;
+          } else if (hours) {
+            duration = hours;
+          }
         }
       }
 
@@ -141,7 +195,8 @@ async function main() {
         duration,
         technologies,
         founder: 'Akmal Fauzan',
-        pdfUrl: `/certificate/${file}` // Link publik ke file PDF asli
+        pdfUrl: `/certificate/${file}`, // Link publik ke file PDF asli
+        role
       };
 
       console.log(`✅ Berhasil mengekstrak [${certificateId}]: ${name}`);
