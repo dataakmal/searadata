@@ -90,18 +90,34 @@ async function main() {
 
       // 2. Ekstrak Nama Program
       if (isInstructor) {
-        program = 'Instructor - Data Analyst Bootcamp';
-        const contributionIndex = lines.findIndex(l => l.toUpperCase().includes('CONTRIBUTION AS'));
-        if (contributionIndex !== -1 && contributionIndex + 1 < lines.length) {
-          let progLine = lines[contributionIndex + 1];
-          if (progLine.toUpperCase().startsWith('INSTRUCTOR')) {
-            if (contributionIndex + 2 < lines.length && lines[contributionIndex + 2].toUpperCase().includes('BOOTCAMP')) {
-              progLine += ' ' + lines[contributionIndex + 2];
-            }
+        // Find index of "valuable contribution" or "contribution as"
+        const contribIndex = lines.findIndex(l => l.toUpperCase().includes('VALUABLE CONTRIBUTION') || l.toUpperCase().includes('CONTRIBUTION AS'));
+        const recognitionIndex = lines.findIndex(l => l.toUpperCase().includes('IN RECOGNITION') || l.toUpperCase().includes('DEDICATION, EXPERTISE'));
+        
+        let progParts = [];
+        if (contribIndex !== -1) {
+          const endIdx = recognitionIndex !== -1 ? recognitionIndex : contribIndex + 3;
+          for (let i = contribIndex + 1; i < endIdx; i++) {
+            progParts.push(lines[i]);
           }
-          // Standarisasi kapitalisasi
-          program = progLine.split('-').map(part => part.trim().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ')).join(' - ');
         }
+        
+        let rawProg = progParts.join(' ').replace(/\s+/g, ' ').trim();
+        if (!rawProg) {
+          rawProg = 'INSTRUCTOR - DATA ANALYST BOOTCAMP';
+        }
+        
+        rawProg = rawProg.toUpperCase();
+        
+        // Extract Batch from certificate ID (e.g. SD-DA-B1-INS-001 contains B1)
+        const batchMatch = certificateId.match(/-B(\d+)-/i);
+        const batchStr = batchMatch ? ` BATCH ${parseInt(batchMatch[1])}` : '';
+        
+        if (!rawProg.includes('BATCH') && batchStr) {
+          rawProg = `${rawProg}${batchStr}`;
+        }
+        
+        program = rawProg;
       } else {
         const completedIndex = lines.findIndex(l => l.toUpperCase().includes('SUCCESSFULLY COMPLETED THE'));
         if (completedIndex !== -1 && completedIndex + 1 < lines.length) {
@@ -114,10 +130,21 @@ async function main() {
       // 3. Ekstrak Core Technologies atau Topics Delivered
       if (isInstructor) {
         const topicsIndex = lines.findIndex(l => l.toUpperCase().includes('TOPICS DELIVERED'));
-        if (topicsIndex !== -1 && topicsIndex + 1 < lines.length) {
-          const topicsLine = lines[topicsIndex + 1];
-          technologies = topicsLine.split(/[•|]/).map(t => t.trim()).filter(Boolean);
+        const founderIndex = lines.findIndex(l => l.toUpperCase().includes('FOUNDER') || l.toUpperCase().includes('AKMAL FAUZAN'));
+        
+        let topicLines = [];
+        if (topicsIndex !== -1) {
+          const endIdx = founderIndex !== -1 ? founderIndex : topicsIndex + 3;
+          for (let i = topicsIndex + 1; i < endIdx; i++) {
+            topicLines.push(lines[i]);
+          }
         }
+        
+        const topicsText = topicLines.join(' ');
+        technologies = topicsText
+          .split(/[•|]/)
+          .map(t => t.trim())
+          .filter(t => t.length > 0 && !t.toUpperCase().includes('FOUNDER') && !t.toUpperCase().includes('AKMAL'));
       } else {
         const techIndex = lines.findIndex(l => l.toUpperCase().includes('CORE TECHNOLOGIES'));
         if (techIndex !== -1 && techIndex + 1 < lines.length) {
