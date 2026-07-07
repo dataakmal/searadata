@@ -166,6 +166,10 @@ export default function CertificateVerify() {
           
           rawProg = rawProg.toUpperCase();
           
+          // Hapus kata-kata penutup atau huruf sisa yang tidak sengaja terbawa dari baris berikutnya
+          // Seperti "I", "IN", "FOR", "OF", "AS" di akhir nama program sebelum Batch ditambahkan
+          rawProg = rawProg.replace(/\b(I|IN|FOR|OF|AS)\s*$/gi, "").replace(/\s+/g, " ").trim();
+          
           // Extract Batch from certificate ID
           const batchMatch = activeCertId.match(/-B(\d+)-/i);
           const batchStr = batchMatch ? ` BATCH ${parseInt(batchMatch[1])}` : "";
@@ -200,8 +204,8 @@ export default function CertificateVerify() {
           const topicsText = topicLines.join(" ");
           technologies = topicsText
             .split(/[•|]/)
-            .map((t: string) => t.trim())
-            .filter((t: string) => t.length > 0 && !t.toUpperCase().includes("FOUNDER") && !t.toUpperCase().includes("AKMAL"));
+            .map((t: string) => t.replace(/Founder\s+Seara\s+Data/gi, "").replace(/AKMAL\s+FAUZAN/gi, "").trim())
+            .filter((t: string) => t.length > 0 && t.toUpperCase() !== "FOUNDER" && t.toUpperCase() !== "AKMAL FAUZAN");
         } else {
           const techIndex = lines.findIndex((l: string) => l.toUpperCase().includes("CORE TECHNOLOGIES"));
           if (techIndex !== -1 && techIndex + 1 < lines.length) {

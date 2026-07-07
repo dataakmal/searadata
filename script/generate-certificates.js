@@ -109,6 +109,10 @@ async function main() {
         
         rawProg = rawProg.toUpperCase();
         
+        // Hapus kata-kata penutup atau huruf sisa yang tidak sengaja terbawa dari baris berikutnya
+        // Seperti "I", "IN", "FOR", "OF", "AS" di akhir nama program sebelum Batch ditambahkan
+        rawProg = rawProg.replace(/\b(I|IN|FOR|OF|AS)\s*$/gi, '').replace(/\s+/g, ' ').trim();
+        
         // Extract Batch from certificate ID (e.g. SD-DA-B1-INS-001 contains B1)
         const batchMatch = certificateId.match(/-B(\d+)-/i);
         const batchStr = batchMatch ? ` BATCH ${parseInt(batchMatch[1])}` : '';
@@ -143,8 +147,8 @@ async function main() {
         const topicsText = topicLines.join(' ');
         technologies = topicsText
           .split(/[•|]/)
-          .map(t => t.trim())
-          .filter(t => t.length > 0 && !t.toUpperCase().includes('FOUNDER') && !t.toUpperCase().includes('AKMAL'));
+          .map(t => t.replace(/Founder\s+Seara\s+Data/gi, '').replace(/AKMAL\s+FAUZAN/gi, '').trim())
+          .filter(t => t.length > 0 && t.toUpperCase() !== 'FOUNDER' && t.toUpperCase() !== 'AKMAL FAUZAN');
       } else {
         const techIndex = lines.findIndex(l => l.toUpperCase().includes('CORE TECHNOLOGIES'));
         if (techIndex !== -1 && techIndex + 1 < lines.length) {
