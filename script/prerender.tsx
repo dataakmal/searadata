@@ -2,7 +2,7 @@ import React from "react";
 import { renderToString } from "react-dom/server";
 import fs from "fs";
 import path from "path";
-import { ServerApp } from "../src/AppRoutes";
+import { ServerApp } from "../src/AppRoutes.tsx";
 
 const DIST_DIR = path.resolve(process.cwd(), "dist");
 const INDEX_HTML_PATH = path.resolve(DIST_DIR, "index.html");
