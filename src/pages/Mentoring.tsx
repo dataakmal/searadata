@@ -31,11 +31,12 @@ import {
   Mentor 
 } from "../types";
 
-console.log("Apps Script URL:", import.meta.env.VITE_APPS_SCRIPT_URL)
+console.log("Apps Script URL:", import.meta.env?.VITE_APPS_SCRIPT_URL)
 
 export default function Mentoring() {
   // Session / Storage Hook
   const [bookings, setBookings] = useState<Booking[]>(() => {
+    if (typeof window === "undefined") return [];
     const saved = localStorage.getItem("seara_data_bookings");
     return saved ? JSON.parse(saved) : [];
   });

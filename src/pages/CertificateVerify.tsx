@@ -36,13 +36,23 @@ export default function CertificateVerify() {
   const [searchId, setSearchId] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
-  // States for dynamic/fallback loading
-  const [dynamicCert, setDynamicCert] = useState<Certificate | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
   // Cast JSON data to record type
   const certificates = certificatesData as Record<string, Certificate>;
   const activeCertId = certificateId ? certificateId.trim().toUpperCase() : "";
+
+  // States for dynamic/fallback loading
+  const [dynamicCert, setDynamicCert] = useState<Certificate | null>(() => {
+    if (activeCertId && certificates[activeCertId]) {
+      return certificates[activeCertId];
+    }
+    return null;
+  });
+
+  const [isLoading, setIsLoading] = useState<boolean>(() => {
+    if (!activeCertId) return false;
+    if (certificates[activeCertId]) return false;
+    return true;
+  });
 
   // Helper to translate months from English to Indonesian
   const translateMonths = (str: string) => {
