@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { 
   CheckCircle2, 
   ExternalLink, 
@@ -572,10 +573,7 @@ export default function CertificateVerify() {
       </main>
 
       {/* Branded simple credentials footer */}
-      <footer className="py-8 bg-white border-t border-orange-50 text-center text-xs text-gray-400 font-medium">
-        <p>© {new Date().getFullYear()} Seara Data. Seluruh hak cipta dilindungi undang-undang.</p>
-        <p className="mt-1">Sistem Verifikasi Sertifikat & Validasi Kredensial Independen.</p>
-      </footer>
+      <Footer />
     </div>
   );
 }

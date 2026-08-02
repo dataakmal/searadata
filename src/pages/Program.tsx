@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { 
   Users, 
   ChevronRight, 
@@ -831,25 +832,7 @@ export default function Program() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-seara-dark text-white py-12 font-sans mt-12 w-full">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
-            <div className="text-xs opacity-60 italic font-display">
-              Mulai perjalanan datamu hari ini
-            </div>
-            
-            <div className="flex gap-6">
-              <a href="https://www.instagram.com/searadata" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity"><Instagram className="w-5 h-5" /></a>
-              <a href="https://www.linkedin.com/company/seara-data" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity"><Linkedin className="w-5 h-5" /></a>
-              <a href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea!" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity"><MessageSquare className="w-5 h-5" /></a>
-            </div>
-
-            <p className="text-gray-400 text-[10px] italic opacity-40">
-              &copy; 2026 <span className="font-bold">Seara Data Community</span>. Semua hak dilindungi.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

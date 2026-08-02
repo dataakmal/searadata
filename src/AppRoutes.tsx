@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation, MemoryRouter } from "react-router-dom";
 import { useEffect } from "react";
 import Home from "./pages/Home";
+import About from "./pages/About";
 import Mentoring from "./pages/Mentoring";
 import Program from "./pages/Program";
 import Komunitas from "./pages/Komunitas";
@@ -31,6 +32,7 @@ export function AppRoutes() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/program" element={<Program />} />
         <Route path="/komunitas" element={<Komunitas />} />
         <Route path="/mentoring" element={<Mentoring />} />

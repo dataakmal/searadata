@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { 
   Users, 
   ChevronRight, 
@@ -934,6 +935,7 @@ export default function Mentoring() {
           </div>
 
       </div>
+      <Footer />
     </div>
   );
 }
