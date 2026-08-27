@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation, MemoryRouter } from "react-router-dom";
+import { Routes, Route, useLocation, MemoryRouter, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -35,8 +35,8 @@ export function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/program" element={<Program />} />
-        <Route path="/fgseara" element={<FGSeara />} />
-        <Route path="/fgseara" element={<FGSeara />} />
+        <Route path="/fg-seara" element={<FGSeara />} />
+        <Route path="/fgseara" element={<Navigate to="/fg-seara" replace />} />
         <Route path="/komunitas" element={<Komunitas />} />
         <Route path="/mentoring" element={<Mentoring />} />
         <Route path="/testimoni" element={<Testimoni />} />

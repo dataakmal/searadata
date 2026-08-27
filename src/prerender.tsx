@@ -36,6 +36,7 @@ async function prerender() {
     "/",
     "/about",
     "/program",
+    "/fg-seara",
     "/komunitas",
     "/mentoring",
     "/testimoni",
