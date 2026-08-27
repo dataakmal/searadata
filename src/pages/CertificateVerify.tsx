@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -8,7 +8,6 @@ import {
   ExternalLink, 
   Clock, 
   BookOpen, 
-  User, 
   Award, 
   Calendar, 
   FileText,

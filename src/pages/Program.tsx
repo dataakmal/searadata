@@ -5,29 +5,22 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { 
   Users, 
-  ChevronRight, 
   Calendar, 
   Clock, 
   BookOpen, 
-  Instagram, 
-  Linkedin, 
-  Mail, 
-  MessageSquare,
-  HelpCircle,
-  Sparkles,
-  ChevronDown,
-  ArrowRight,
-  TrendingUp,
-  Tag,
-  MonitorPlay,
-  Globe,
-  Check,
-  Plus,
-  ExternalLink,
-  FileText,
-  AlertCircle,
-  ShieldCheck,
-  Code
+  HelpCircle, 
+  Sparkles, 
+  ChevronDown, 
+  ArrowRight, 
+  TrendingUp, 
+  Tag, 
+  MonitorPlay, 
+  Globe, 
+  Check, 
+  Plus, 
+  ExternalLink, 
+  FileText, 
+  AlertCircle
 } from "lucide-react";
 
 export default function Program() {

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, ChevronDown, BarChart2, GraduationCap, Globe, UserCheck, Building2, PackageCheck, Sparkles, MessageSquare } from "lucide-react";
+import { Menu, X, ChevronDown, GraduationCap, Globe, UserCheck, Building2, PackageCheck, Sparkles, MessageSquare } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {

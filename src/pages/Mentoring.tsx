@@ -12,27 +12,18 @@ import {
   BookOpen, 
   Smile, 
   Phone, 
-  Target, 
-  CreditCard, 
   CheckCircle, 
   Sparkles, 
-  AlertCircle,
   TrendingUp,
-  FileText,
-  Bookmark,
-  ExternalLink,
-  ChevronUp
+  FileText
 } from "lucide-react";
 import { 
   MENTORS, 
   PRICING_TARIFFE, 
-  BANK_INFO, 
   BookingStatus, 
   Booking, 
   Mentor 
 } from "../types";
-
-console.log("Apps Script URL:", import.meta.env?.VITE_APPS_SCRIPT_URL)
 
 export default function Mentoring() {
   // Session / Storage Hook
@@ -60,10 +51,8 @@ export default function Mentoring() {
   const [contactInfo, setContactInfo] = useState<string>("");
   const [learningGoal, setLearningGoal] = useState<string>("");
 
-  // Payment proof simulation
+  // Payment confirmation & notes
   const [selectedBookingForPayment, setSelectedBookingForPayment] = useState<Booking | null>(null);
-  const [paymentProofName, setPaymentProofName] = useState<string>("");
-  const [isUploadingProof, setIsUploadingProof] = useState<boolean>(false);
   const [additionalNotes, setAdditionalNotes] = useState<string>("");
 
   // Helper values
@@ -180,27 +169,6 @@ export default function Mentoring() {
     });
   };
 
-  const updateStatusInSheets = (bookingId: string, status: string) => {
-    const url = import.meta.env.VITE_APPS_SCRIPT_URL;
-    if (!url) {
-      console.warn("VITE_APPS_SCRIPT_URL is not defined in environment variables");
-      return;
-    }
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: bookingId,
-        status,
-        _action: "updateStatus"
-      }),
-    }).catch(err => {
-      console.warn("Failed to update status in Google Sheets:", err);
-    });
-  };
-
   const handleWhatsAppRedirect = (booking: Booking, notes: string = "") => {
     const formattedPrice = booking.price.toLocaleString("id-ID");
     const dateLabel = selectableDates.find(d => d.formatted === booking.date)?.label || booking.date;
@@ -250,68 +218,6 @@ export default function Mentoring() {
     setSelectedBookingForPayment(newBooking);
     sendToGoogleSheets(newBooking);  // tanpa await
     setStep(8); // Move to payment instruction step
-  };
-
-  const handleUploadProof = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!selectedBookingForPayment || !paymentProofName) return;
-
-    setIsUploadingProof(true);
-
-    setTimeout(() => {
-      setBookings(prev => prev.map(b => {
-        if (b.id === selectedBookingForPayment.id) {
-          return {
-            ...b,
-            status: BookingStatus.WaitingPaymentConfirmation,
-            proofUploaded: true
-          };
-        }
-        return b;
-      }));
-      
-      // Update local state copy
-      setSelectedBookingForPayment(prev => {
-        if (!prev) return null;
-        return {
-          ...prev,
-          status: BookingStatus.WaitingPaymentConfirmation,
-          proofUploaded: true
-        };
-      });
-      setIsUploadingProof(false);
-      updateStatusInSheets(selectedBookingForPayment.id, "Waiting Payment Confirmation");
-    }, 1200);
-  };
-
-  // Simulation controls to allow testing the system status
-  const handleSimulateStatus = (bookingId: string, nextStatus: BookingStatus) => {
-    setBookings(prev => prev.map(b => {
-      if (b.id === bookingId) {
-        return { ...b, status: nextStatus };
-      }
-      return b;
-    }));
-    if (selectedBookingForPayment && selectedBookingForPayment.id === bookingId) {
-      setSelectedBookingForPayment(prev => prev ? { ...prev, status: nextStatus } : null);
-    }
-  };
-
-  // Reset booking form
-  const handleResetForm = () => {
-    setStep(1);
-    setSelectedMentor(null);
-    setTopic("");
-    setPredefinedTopic("");
-    setCustomTopicSelected(false);
-    setDuration(60);
-    setBookingDate("");
-    setFullName("");
-    setContactInfo("");
-    setLearningGoal("");
-    setSelectedBookingForPayment(null);
-    setPaymentProofName("");
-    setAdditionalNotes("");
   };
 
   return (

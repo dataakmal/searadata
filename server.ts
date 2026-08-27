@@ -8,7 +8,7 @@ async function startServer() {
   const PORT = 3000;
 
   // API or health check routes
-  app.get("/api/health", (req, res) => {
+  app.get("/api/health", (_req, res) => {
     res.json({ status: "ok" });
   });
 

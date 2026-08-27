@@ -3,10 +3,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { 
   Award, 
-  BookOpen, 
   CheckCircle2, 
   ExternalLink, 
-  GraduationCap, 
   Linkedin, 
   Users, 
   Target, 
@@ -15,7 +13,6 @@ import {
   Briefcase, 
   Code, 
   Database, 
-  Layers,
   Globe,
   ArrowRight,
   MessageSquare

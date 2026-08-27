@@ -35,7 +35,7 @@ export function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/program" element={<Program />} />
-        <Route path="/fg-seara" element={<FGSeara />} />
+        <Route path="/fgseara" element={<FGSeara />} />
         <Route path="/fgseara" element={<FGSeara />} />
         <Route path="/komunitas" element={<Komunitas />} />
         <Route path="/mentoring" element={<Mentoring />} />

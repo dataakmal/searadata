@@ -1,12 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { 
-  BarChart2, 
-  GraduationCap, 
-  Globe, 
   UserCheck, 
   Building2, 
   PackageCheck, 
@@ -21,15 +17,7 @@ import {
   ArrowRight, 
   ExternalLink, 
   Zap,
-  Check,
-  Calendar,
-  Clock,
-  Award,
-  FileText,
-  ShieldCheck,
-  Target,
-  Layers,
-  Sparkle
+  Check
 } from "lucide-react";
 
 export default function Home() {

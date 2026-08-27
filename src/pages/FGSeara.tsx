@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -9,16 +8,9 @@ import {
   FileText, 
   ExternalLink, 
   CheckCircle2, 
-  BookOpen, 
   Users, 
-  Award, 
   Briefcase, 
-  Code, 
-  Database, 
-  BarChart2, 
   ChevronDown, 
-  ShieldCheck, 
-  GraduationCap, 
   Clock, 
   Calendar, 
   Video, 
@@ -47,7 +39,7 @@ export default function FGSeara() {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleOpenRegistration = (e: React.MouseEvent) => {
+  const handleOpenRegistration = () => {
     // Open in new tab explicitly to ensure reliable navigation in iframe/sandboxed environments
     window.open(REGISTRATION_URL, "_blank", "noopener,noreferrer");
   };

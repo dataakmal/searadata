@@ -5,12 +5,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { 
   Star, 
-  Instagram, 
-  Linkedin, 
-  MessageSquare, 
-  Sparkles, 
   ArrowRight,
-  TrendingUp,
   Award,
   Users
 } from "lucide-react";
