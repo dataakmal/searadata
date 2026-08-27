@@ -52,9 +52,16 @@ async function prerender() {
       );
 
       // Inject rendered markup into <div id="root">
-      const renderedHtml = templateHtml.replace(
+      let renderedHtml = templateHtml.replace(
         '<div id="root"></div>',
         `<div id="root">${appHtml}</div>`
+      );
+
+      // Replace og:url with current route URL
+      const currentUrl = route === "/" ? "https://searadata.vercel.app/" : `https://searadata.vercel.app${route}`;
+      renderedHtml = renderedHtml.replace(
+        /<meta property="og:url" content="[^"]*" \/>/g,
+        `<meta property="og:url" content="${currentUrl}" />`
       );
 
       if (route === "/") {
