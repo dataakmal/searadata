@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -300,7 +301,7 @@ export default function Home() {
               Overview Ringkas
             </span>
             <h2 className="text-3xl sm:text-5xl font-black text-seara-dark font-display tracking-tight mt-3">
-              6 Program Utama Seara Data
+              5 Program Utama Seara Data
             </h2>
             <p className="text-gray-600 text-sm md:text-base mt-3 leading-relaxed">
               Pilih program yang kamu butuhkan. Klik tombol untuk langsung mendaftar/konsultasi atau melihat rincian penjelasan di bawah.
@@ -361,54 +362,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* 2. FG Seara (Fresh Graduate Acceleration) */}
-            <motion.div 
-              {...fadeIn}
-              className="bg-seara-dark text-white rounded-3xl p-6 shadow-md flex flex-col justify-between"
-            >
-              <div className="space-y-4">
-                <div className="flex justify-between items-start">
-                  <div className="w-12 h-12 rounded-2xl bg-white/10 text-seara-orange flex items-center justify-center font-bold text-xl">
-                    ✨
-                  </div>
-                  <span className="text-[11px] font-bold bg-seara-orange text-white px-2.5 py-1 rounded-full">
-                    Launching Soon
-                  </span>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold font-display text-white">
-                    FG Seara Acceleration
-                  </h3>
-                  <p className="text-xs text-gray-300 mt-1 line-clamp-2">
-                    Program akselerasi talenta data khusus fresh graduate untuk persiapan kerja.
-                  </p>
-                </div>
-                <div className="pt-2 border-t border-white/10">
-                  <span className="text-xs text-gray-400 font-semibold block">Status:</span>
-                  <span className="text-sm font-extrabold text-seara-orange">Interest List Dibuka</span>
-                </div>
-              </div>
-
-              <div className="pt-6 space-y-2">
-                <a 
-                  href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20tertarik%20masuk%20Interest%20List%20FG%20Seara!" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-full bg-seara-orange text-white text-center py-2.5 rounded-xl font-bold text-xs shadow-md hover:brightness-105 transition-all block"
-                >
-                  Daftar Interest List
-                </a>
-                <button 
-                  onClick={() => scrollToDetail("detail-fg")}
-                  className="w-full text-gray-300 text-center py-1.5 font-bold text-xs hover:underline cursor-pointer flex items-center justify-center gap-1"
-                >
-                  <span>Lihat Penjelasan Detail</span>
-                  <ChevronDown className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </motion.div>
-
-            {/* 3. Mentoring Private 1-on-1 */}
+            {/* 2. Mentoring Private 1-on-1 */}
             <motion.div 
               {...fadeIn}
               className="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-orange-300 transition-all flex flex-col justify-between"
@@ -739,68 +693,7 @@ export default function Home() {
             </motion.div>
 
             {/* ────────────────────────────────────────────────────── */}
-            {/* 2️⃣ FG SEARA (FRESH GRADUATE ACCELERATION) */}
-            {/* ────────────────────────────────────────────────────── */}
-            <motion.div 
-              id="detail-fg" 
-              {...fadeIn}
-              className="bg-seara-dark text-white rounded-3xl p-8 sm:p-10 shadow-lg scroll-mt-28 space-y-6"
-            >
-              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10">
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-white/10 text-seara-orange flex items-center justify-center text-3xl font-bold shadow-sm">
-                    ✨
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold text-seara-orange uppercase tracking-wide">Program 2</span>
-                    <h3 className="text-2xl sm:text-3xl font-black text-white font-display">
-                      FG SEARA (FRESH GRADUATE ACCELERATION)
-                    </h3>
-                  </div>
-                </div>
-                <span className="bg-seara-orange text-white font-bold text-xs px-4 py-1.5 rounded-full shadow-sm">
-                  Interest List Open
-                </span>
-              </div>
-
-              <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                Program akselerasi talenta data khusus bagi mahasiswa tingkat akhir dan fresh graduate untuk mendapatkan pembekalan intensif, bimbingan pembuatan portofolio industri, serta rekomendasi ke jaringan hiring partner Seara Data.
-              </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-2">
-                <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
-                  <span className="text-[11px] font-bold text-gray-400 uppercase block">STATUS PROGRAM</span>
-                  <p className="text-sm font-extrabold text-seara-orange mt-1">Launching Soon</p>
-                  <p className="text-[11px] text-gray-400 mt-0.5">Interest List & Waitlist Dibuka</p>
-                </div>
-                <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
-                  <span className="text-[11px] font-bold text-gray-400 uppercase block">TARGET PESERTA</span>
-                  <p className="text-sm font-extrabold text-white mt-1">Fresh Graduate & Mahasiswa</p>
-                  <p className="text-[11px] text-gray-400 mt-0.5">Persiapan karir data 0 - 2 tahun</p>
-                </div>
-                <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
-                  <span className="text-[11px] font-bold text-gray-400 uppercase block">BENEFIT KUNCI</span>
-                  <p className="text-sm font-extrabold text-white mt-1">Hiring Partner Network</p>
-                  <p className="text-[11px] text-gray-400 mt-0.5">Rekomendasi CV & Portofolio</p>
-                </div>
-              </div>
-
-              <div className="pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-white/10">
-                <p className="text-xs text-gray-300">Dapatkan notifikasi pertama saat pendaftaran angkatan pertama dibuka.</p>
-                <a 
-                  href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20tertarik%20masuk%20Interest%20List%20FG%20Seara!" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="bg-seara-orange text-white px-6 py-3 rounded-xl font-bold text-xs hover:brightness-110 transition-all flex items-center gap-2 shadow-md"
-                >
-                  <Sparkles className="w-4 h-4" />
-                  <span>Daftar Interest List FG Seara</span>
-                </a>
-              </div>
-            </motion.div>
-
-            {/* ────────────────────────────────────────────────────── */}
-            {/* 3️⃣ MENTORING PRIVATE 1-ON-1 */}
+            {/* 2️⃣ MENTORING PRIVATE 1-ON-1 */}
             {/* ────────────────────────────────────────────────────── */}
             <motion.div 
               id="detail-mentoring" 
@@ -813,7 +706,7 @@ export default function Home() {
                     🎯
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-amber-600 uppercase tracking-wide">Program 3</span>
+                    <span className="text-xs font-bold text-amber-600 uppercase tracking-wide">Program 2</span>
                     <h3 className="text-2xl sm:text-3xl font-black text-seara-dark font-display">
                       MENTORING PRIVATE 1-ON-1
                     </h3>
@@ -893,7 +786,7 @@ export default function Home() {
             </motion.div>
 
             {/* ────────────────────────────────────────────────────── */}
-            {/* 4️⃣ DIGITAL PRODUCT & TOOLS */}
+            {/* 3️⃣ DIGITAL PRODUCT & TOOLS */}
             {/* ────────────────────────────────────────────────────── */}
             <motion.div 
               id="detail-digital" 
@@ -906,7 +799,7 @@ export default function Home() {
                     📦
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-indigo-600 uppercase tracking-wide">Program 4</span>
+                    <span className="text-xs font-bold text-indigo-600 uppercase tracking-wide">Program 3</span>
                     <h3 className="text-2xl sm:text-3xl font-black text-seara-dark font-display">
                       DIGITAL PRODUCT & TOOLS
                     </h3>
@@ -957,7 +850,7 @@ export default function Home() {
             </motion.div>
 
             {/* ────────────────────────────────────────────────────── */}
-            {/* 5️⃣ PORTFOLIO WEBSITE DATA ANALYST */}
+            {/* 4️⃣ PORTFOLIO WEBSITE DATA ANALYST */}
             {/* ────────────────────────────────────────────────────── */}
             <motion.div 
               id="detail-portfolio" 
@@ -970,7 +863,7 @@ export default function Home() {
                     💼
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-purple-600 uppercase tracking-wide">Program 5</span>
+                    <span className="text-xs font-bold text-purple-600 uppercase tracking-wide">Program 4</span>
                     <h3 className="text-2xl sm:text-3xl font-black text-seara-dark font-display">
                       PORTFOLIO WEBSITE DATA ANALYST
                     </h3>
@@ -1037,7 +930,7 @@ export default function Home() {
             </motion.div>
 
             {/* ────────────────────────────────────────────────────── */}
-            {/* 6️⃣ TRAINING CORPORATE */}
+            {/* 5️⃣ TRAINING CORPORATE */}
             {/* ────────────────────────────────────────────────────── */}
             <motion.div 
               id="detail-training" 
@@ -1050,7 +943,7 @@ export default function Home() {
                     🏢
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-emerald-600 uppercase tracking-wide">Program 6</span>
+                    <span className="text-xs font-bold text-emerald-600 uppercase tracking-wide">Program 5</span>
                     <h3 className="text-2xl sm:text-3xl font-black text-seara-dark font-display">
                       TRAINING CORPORATE
                     </h3>
@@ -1313,42 +1206,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 8. KONSULTASI SECTION */}
-        <section id="konsultasi" className="py-20 px-6 bg-neutral-50/80">
-          <div className="max-w-4xl mx-auto bg-white p-8 sm:p-12 rounded-3xl border border-gray-200 shadow-md text-center space-y-6">
-            <span className="text-xs font-bold text-seara-orange uppercase tracking-wider bg-orange-100 px-3.5 py-1 rounded-full">
-              Konsultasi & Tanya Jawab
-            </span>
-
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-seara-dark font-display">
-              Butuh Rekomendasi Program yang Pas Buatmu?
-            </h2>
-
-            <p className="text-gray-600 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-              Tim Admin Rea dan Mentor Seara Data siap membantu menjawab pertanyaan seputar kurikulum, pembayaran, atau kebutuhan khusus perusahaanmu.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-4 pt-2">
-              <a 
-                href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20ingin%20konsultasi%20layanan%20Seara%20Data." 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-2xl font-bold text-sm shadow-md transition-all flex items-center gap-2 active:scale-95"
-              >
-                <MessageSquare className="w-5 h-5" />
-                <span>Konsultasi via WhatsApp Admin Rea</span>
-              </a>
-
-              <a 
-                href="mailto:searadata@gmail.com" 
-                className="bg-white border border-gray-200 text-seara-dark px-8 py-4 rounded-2xl font-bold text-sm shadow-sm hover:bg-gray-50 transition-all flex items-center gap-2 active:scale-95"
-              >
-                <MessageSquare className="w-5 h-5 text-seara-orange" />
-                <span>Kirim Email Ke Admin</span>
-              </a>
-            </div>
-          </div>
-        </section>
 
         {/* 9. FINAL CTA SECTION */}
         <section className="py-20 px-6 text-center bg-gradient-to-tr from-orange-600 via-seara-orange to-amber-500 text-white relative overflow-hidden">

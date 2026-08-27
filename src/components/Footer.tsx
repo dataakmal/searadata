@@ -38,16 +38,19 @@ export default function Footer() {
                 <Link to="/" className="hover:text-seara-orange transition-colors">Beranda</Link>
               </li>
               <li>
-                <Link to="/#program" className="hover:text-seara-orange transition-colors">7 Layanan Program</Link>
+                <Link to="/fg-seara" className="hover:text-seara-orange transition-colors font-medium text-orange-200">FG Seara (Fresh Graduate)</Link>
+              </li>
+              <li>
+                <Link to="/program" className="hover:text-seara-orange transition-colors">5 Layanan Program</Link>
               </li>
               <li>
                 <Link to="/about" className="hover:text-seara-orange transition-colors">About (Tentang Kami)</Link>
               </li>
               <li>
-                <Link to="/komunitas" className="hover:text-seara-orange transition-colors">Komunitas WA</Link>
+                <Link to="/mentoring" className="hover:text-seara-orange transition-colors">Mentoring Private</Link>
               </li>
               <li>
-                <Link to="/mentoring" className="hover:text-seara-orange transition-colors">Mentoring Private</Link>
+                <Link to="/komunitas" className="hover:text-seara-orange transition-colors">Komunitas WA</Link>
               </li>
               <li>
                 <Link to="/testimoni" className="hover:text-seara-orange transition-colors">Testimoni Alumni</Link>
@@ -59,6 +62,16 @@ export default function Footer() {
           <div className="space-y-3">
             <h4 className="text-sm font-bold text-seara-orange uppercase tracking-wider font-display">Produk & Akses</h4>
             <ul className="space-y-2.5 text-sm text-gray-300">
+              <li>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfHNIef1-k3DL2PE7V3LJvb2mfB9S9ub-GrYyRAnt5TYmCrxw/viewform" target="_blank" rel="noopener noreferrer" className="hover:text-seara-orange transition-colors text-orange-200 font-medium">
+                  Pendaftaran FG Seara (s.id/FGSeara)
+                </a>
+              </li>
+              <li>
+                <a href="https://docs.google.com/document/d/1LKaBcIYusO5GcHQlH0cZzWJ0NzcGx9zc08AUug2t51w/edit?usp=sharing" target="_blank" rel="noopener noreferrer" className="hover:text-seara-orange transition-colors">
+                  Silabus Kurikulum FG Seara
+                </a>
+              </li>
               <li>
                 <a href="https://clicky.id/searadata" target="_blank" rel="noopener noreferrer" className="hover:text-seara-orange transition-colors">
                   Bootcamp Batch 2

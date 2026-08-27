@@ -6,6 +6,7 @@ import Mentoring from "./pages/Mentoring";
 import Program from "./pages/Program";
 import Komunitas from "./pages/Komunitas";
 import Testimoni from "./pages/Testimoni";
+import FGSeara from "./pages/FGSeara";
 import CertificateVerify from "./pages/CertificateVerify";
 
 // Scroll to top on route change for smooth user experience
@@ -34,6 +35,8 @@ export function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/program" element={<Program />} />
+        <Route path="/fg-seara" element={<FGSeara />} />
+        <Route path="/fgseara" element={<FGSeara />} />
         <Route path="/komunitas" element={<Komunitas />} />
         <Route path="/mentoring" element={<Mentoring />} />
         <Route path="/testimoni" element={<Testimoni />} />

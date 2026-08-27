@@ -34,13 +34,7 @@ export default function Navbar() {
       desc: "Program intensif skill Python, SQL, Excel, Power BI",
       icon: GraduationCap,
       badge: "Batch 2",
-    },
-    {
-      id: "fg",
-      title: "FG Seara (Fresh Graduate Acceleration)",
-      desc: "Akselerasi talenta data masa depan",
-      icon: Sparkles,
-      badge: "Launching Soon",
+      route: "/program",
     },
     {
       id: "mentoring",
@@ -48,6 +42,7 @@ export default function Navbar() {
       desc: "CV review, interview prep & ML mentoring",
       icon: UserCheck,
       badge: "Personal",
+      route: "/mentoring",
     },
     {
       id: "digital",
@@ -74,6 +69,10 @@ export default function Navbar() {
 
   const handleProgramClick = (id: string) => {
     handleClose();
+    if (id === "mentoring") {
+      navigate("/mentoring");
+      return;
+    }
     if (location.pathname === "/") {
       const element = document.getElementById(`detail-${id}`) || document.getElementById(`program-${id}`);
       if (element) {
@@ -84,21 +83,6 @@ export default function Navbar() {
       }
     } else {
       navigate(`/#detail-${id}`);
-    }
-  };
-
-  const handleKonsultasiClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    handleClose();
-    if (location.pathname === "/") {
-      const el = document.getElementById("konsultasi");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      } else {
-        window.open("https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20ingin%20konsultasi%20layanan%20Seara%20Data", "_blank");
-      }
-    } else {
-      navigate("/#konsultasi");
     }
   };
 
@@ -127,6 +111,22 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8 font-medium">
+          {/* FG Seara Standalone Link */}
+          <Link
+            to="/fg-seara"
+            className={`flex items-center gap-1.5 py-2 text-base transition-colors ${
+              isActive("/fg-seara") || isActive("/fgseara")
+                ? "text-seara-orange font-bold"
+                : "text-seara-dark hover:text-seara-orange font-semibold"
+            }`}
+          >
+            <Sparkles className="w-4 h-4 text-seara-orange" />
+            <span>FG Seara</span>
+            <span className="text-[10px] font-extrabold bg-seara-orange text-white px-2 py-0.5 rounded-full shadow-sm">
+              per Batch
+            </span>
+          </Link>
+
           {/* Program Dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button
@@ -154,7 +154,7 @@ export default function Navbar() {
                   className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[420px] bg-white rounded-2xl shadow-xl border border-gray-100 p-3 z-50 grid grid-cols-1 gap-1"
                 >
                   <div className="px-3 py-1.5 mb-1 border-b border-gray-50 flex justify-between items-center">
-                    <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">6 Program & Layanan</span>
+                    <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">5 Program & Layanan</span>
                     <Link 
                       to="/#program-section" 
                       onClick={() => setDropdownOpen(false)}
@@ -195,14 +195,6 @@ export default function Navbar() {
               )}
             </AnimatePresence>
           </div>
-
-          {/* Konsultasi Link */}
-          <button
-            onClick={handleKonsultasiClick}
-            className="text-base text-seara-dark hover:text-seara-orange transition-colors font-medium"
-          >
-            Konsultasi
-          </button>
 
           {/* About Link */}
           <Link
@@ -252,15 +244,34 @@ export default function Navbar() {
             className="md:hidden bg-white border-t border-gray-100 overflow-hidden shadow-lg max-h-[85vh] overflow-y-auto"
           >
             <div className="px-5 py-4 flex flex-col gap-2 font-medium text-sm">
+              {/* Standalone FG Seara on Mobile */}
+              <Link
+                to="/fg-seara"
+                onClick={handleClose}
+                className={`py-2.5 px-3 rounded-xl text-base flex items-center justify-between ${
+                  isActive("/fg-seara") || isActive("/fgseara")
+                    ? "text-seara-orange bg-orange-50 font-bold"
+                    : "text-seara-dark font-semibold hover:bg-gray-50"
+                }`}
+              >
+                <span className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-seara-orange" />
+                  <span>FG Seara (Fresh Graduate)</span>
+                </span>
+                <span className="text-[10px] font-extrabold bg-seara-orange text-white px-2 py-0.5 rounded-full">
+                  per Batch
+                </span>
+              </Link>
+
               {/* Program Mobile Section */}
               <div className="py-1">
                 <button
                   onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="w-full flex justify-between items-center py-2 text-seara-dark font-bold text-base"
+                  className="w-full flex justify-between items-center py-2 px-2 text-seara-dark font-bold text-base rounded-xl hover:bg-gray-50"
                 >
                   <span className="flex items-center gap-2">
                     <GraduationCap className="w-4 h-4 text-seara-orange" />
-                    <span>Program & Layanan (6)</span>
+                    <span>Program & Layanan (5)</span>
                   </span>
                   <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${dropdownOpen ? "rotate-180 text-seara-orange" : ""}`} />
                 </button>
@@ -283,13 +294,6 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
-
-              <button
-                onClick={handleKonsultasiClick}
-                className="py-2.5 px-2 text-left font-medium text-seara-dark hover:text-seara-orange text-base"
-              >
-                Konsultasi
-              </button>
 
               <Link
                 to="/about"
