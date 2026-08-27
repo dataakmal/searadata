@@ -38,6 +38,9 @@ export default function Footer() {
                 <Link to="/" className="hover:text-seara-orange transition-colors">Beranda</Link>
               </li>
               <li>
+                <Link to="/bootcamp" className="hover:text-seara-orange transition-colors font-medium text-orange-200">Bootcamp Data Analyst</Link>
+              </li>
+              <li>
                 <Link to="/fg-seara" className="hover:text-seara-orange transition-colors font-medium text-orange-200">FG Seara (Fresh Graduate)</Link>
               </li>
               <li>

@@ -190,18 +190,21 @@ export default function Program() {
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center gap-6">
+                <div className="flex flex-col sm:flex-row items-center gap-4">
+                  <Link 
+                    to="/bootcamp" 
+                    className="inline-flex w-full sm:w-auto justify-center items-center gap-2 bg-seara-orange text-white px-7 py-3.5 rounded-2xl font-bold text-base hover:brightness-105 hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-orange-500/10 transition-all text-center"
+                  >
+                    Jelajahi Bootcamp (Batch 1-3) <ArrowRight className="w-4 h-4" />
+                  </Link>
                   <a 
                     href="https://clicky.id/searadata" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-full md:w-auto justify-center items-center gap-2 bg-seara-orange text-white px-8 py-4 rounded-2xl font-bold text-lg hover:brightness-105 hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-orange-500/10 transition-all text-center h-fit"
+                    className="inline-flex w-full sm:w-auto justify-center items-center gap-2 bg-white border border-gray-200 text-seara-dark hover:border-seara-orange hover:text-seara-orange px-6 py-3.5 rounded-2xl font-bold text-sm transition-all text-center"
                   >
-                    Daftar Batch 2 Sekarang <ArrowRight className="w-5 h-5" />
+                    Daftar di Clicky.id <ExternalLink className="w-4 h-4" />
                   </a>
-                  <Link to="/testimoni" className="text-seara-orange hover:underline text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap">
-                    Lihat Testimoni Alumni →
-                  </Link>
                 </div>
               </div>
             </motion.div>

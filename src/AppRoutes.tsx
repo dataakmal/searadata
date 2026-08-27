@@ -7,6 +7,7 @@ import Program from "./pages/Program";
 import Komunitas from "./pages/Komunitas";
 import Testimoni from "./pages/Testimoni";
 import FGSeara from "./pages/FGSeara";
+import Bootcamp from "./pages/Bootcamp";
 import CertificateVerify from "./pages/CertificateVerify";
 
 // Scroll to top on route change for smooth user experience
@@ -35,6 +36,8 @@ export function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/program" element={<Program />} />
+        <Route path="/bootcamp" element={<Bootcamp />} />
+        <Route path="/bootcamp-data-analyst" element={<Navigate to="/bootcamp" replace />} />
         <Route path="/fg-seara" element={<FGSeara />} />
         <Route path="/fgseara" element={<Navigate to="/fg-seara" replace />} />
         <Route path="/komunitas" element={<Komunitas />} />

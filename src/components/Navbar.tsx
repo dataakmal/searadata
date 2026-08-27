@@ -30,11 +30,11 @@ export default function Navbar() {
   const programList = [
     {
       id: "bootcamp",
-      title: "Bootcamp & Mini Course",
+      title: "Bootcamp Data Analyst",
       desc: "Program intensif skill Python, SQL, Excel, Power BI",
       icon: GraduationCap,
-      badge: "Batch 2",
-      route: "/program",
+      badge: "Batch 3 Soon",
+      route: "/bootcamp",
     },
     {
       id: "mentoring",
@@ -69,6 +69,10 @@ export default function Navbar() {
 
   const handleProgramClick = (id: string) => {
     handleClose();
+    if (id === "bootcamp") {
+      navigate("/bootcamp");
+      return;
+    }
     if (id === "mentoring") {
       navigate("/mentoring");
       return;
@@ -110,7 +114,20 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8 font-medium">
+        <div className="hidden md:flex items-center gap-7 font-medium">
+          {/* Bootcamp Standalone Link */}
+          <Link
+            to="/bootcamp"
+            className={`flex items-center gap-1.5 py-2 text-base transition-colors ${
+              isActive("/bootcamp") || isActive("/bootcamp-data-analyst")
+                ? "text-seara-orange font-bold"
+                : "text-seara-dark hover:text-seara-orange font-semibold"
+            }`}
+          >
+            <GraduationCap className="w-4 h-4 text-seara-orange" />
+            <span>Bootcamp</span>
+          </Link>
+
           {/* FG Seara Standalone Link */}
           <Link
             to="/fg-seara"
@@ -122,9 +139,6 @@ export default function Navbar() {
           >
             <Sparkles className="w-4 h-4 text-seara-orange" />
             <span>FG Seara</span>
-            <span className="text-[10px] font-extrabold bg-seara-orange text-white px-2 py-0.5 rounded-full shadow-sm">
-              per Batch
-            </span>
           </Link>
 
           {/* Program Dropdown */}
@@ -244,6 +258,25 @@ export default function Navbar() {
             className="md:hidden bg-white border-t border-gray-100 overflow-hidden shadow-lg max-h-[85vh] overflow-y-auto"
           >
             <div className="px-5 py-4 flex flex-col gap-2 font-medium text-sm">
+              {/* Standalone Bootcamp on Mobile */}
+              <Link
+                to="/bootcamp"
+                onClick={handleClose}
+                className={`py-2.5 px-3 rounded-xl text-base flex items-center justify-between ${
+                  isActive("/bootcamp") || isActive("/bootcamp-data-analyst")
+                    ? "text-seara-orange bg-orange-50 font-bold"
+                    : "text-seara-dark font-semibold hover:bg-gray-50"
+                }`}
+              >
+                <span className="flex items-center gap-2">
+                  <GraduationCap className="w-4 h-4 text-seara-orange" />
+                  <span>Bootcamp Data Analyst</span>
+                </span>
+                <span className="text-[10px] font-bold text-gray-400">
+                  Batch 1-3
+                </span>
+              </Link>
+
               {/* Standalone FG Seara on Mobile */}
               <Link
                 to="/fg-seara"
@@ -257,9 +290,6 @@ export default function Navbar() {
                 <span className="flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-seara-orange" />
                   <span>FG Seara (Fresh Graduate)</span>
-                </span>
-                <span className="text-[10px] font-extrabold bg-seara-orange text-white px-2 py-0.5 rounded-full">
-                  per Batch
                 </span>
               </Link>
 

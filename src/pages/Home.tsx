@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -332,19 +333,17 @@ export default function Home() {
               </div>
 
               <div className="pt-6 space-y-2">
-                <a 
-                  href="https://clicky.id/searadata" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                <Link
+                  to="/bootcamp"
                   className="w-full bg-seara-orange text-white text-center py-2.5 rounded-xl font-bold text-xs shadow-md hover:brightness-95 transition-all block"
                 >
-                  Daftar di Clicky.id
-                </a>
+                  Lihat Bootcamp Journey (Batch 1-3)
+                </Link>
                 <button 
                   onClick={() => scrollToDetail("detail-bootcamp")}
                   className="w-full text-seara-dark text-center py-1.5 font-bold text-xs hover:underline cursor-pointer flex items-center justify-center gap-1"
                 >
-                  <span>Lihat Penjelasan Detail</span>
+                  <span>Lihat Penjelasan Singkat</span>
                   <ChevronDown className="w-3.5 h-3.5" />
                 </button>
               </div>
@@ -666,7 +665,14 @@ export default function Home() {
 
               <div className="pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-gray-100">
                 <p className="text-xs text-gray-500">Pendaftaran langsung diproses secara otomatis via platform Clicky.id</p>
-                <div className="flex gap-3">
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    to="/bootcamp"
+                    className="bg-white border border-gray-300 text-seara-dark hover:border-seara-orange hover:text-seara-orange px-5 py-3 rounded-xl font-bold text-xs transition-all flex items-center gap-2"
+                  >
+                    <span>Explore Bootcamp Journey (Batch 1-3)</span>
+                    <ArrowRight className="w-4 h-4 text-seara-orange" />
+                  </Link>
                   <a 
                     href="https://clicky.id/searadata" 
                     target="_blank" 
