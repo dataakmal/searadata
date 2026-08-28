@@ -53,6 +53,7 @@ interface BatchDetail {
 export default function Bootcamp() {
   const [selectedBatch, setSelectedBatch] = useState<BatchDetail | null>(null);
   const [activeTool, setActiveTool] = useState<"excel" | "powerbi" | "python" | "sql">("excel");
+  const [activeTestiFilter, setActiveTestiFilter] = useState<"all" | "tools" | "analytical" | "mentor" | "career">("all");
 
   const CLICKY_LINK = "https://clicky.id/searadata";
 
@@ -323,33 +324,185 @@ export default function Bootcamp() {
 
   const testimonials = [
     {
-      quote:
-        "Bimbingan intensif dan kurikulum praktis 4 tools (Excel, Power BI, Python, SQL) di Bootcamp Batch 1 Seara Data sangat membantu saya membangun pondasi analisa data bisnis dan portofolio nyata yang kuat hingga lolos sebagai ODP Data Analytics di BNI.",
-      name: "Yasril Jahja",
-      role: "ODP Data Analytics at BNI",
+      name: "Khairul Anum",
+      role: "Alumni Bootcamp Data Analyst",
       badge: "Alumni Batch 1",
+      topic: "tools",
+      avatarInit: "K",
+      colorGradient: "from-emerald-600 to-teal-700",
+      quote: "Alhamdulillah, bootcamp ini sangat membantu saya, terutama sebagai seseorang yang baru mulai terjun ke bidang data. Materi yang disampaikan cukup mudah diikuti, dan saya juga merasa terbantu dengan mentor yang sangat sabar serta suportif dalam menjelaskan materi. Dari bootcamp ini, saya mengalami banyak perkembangan, terutama dalam pemahaman tools seperti Power BI dan Python. Sebelumnya saya tidak pernah membayangkan bisa belajar dan memahami tools tersebut, namun sekarang justru saya semakin tertarik untuk memperdalam bidang data lebih jauh lagi.",
+      rating: 8,
     },
     {
-      quote:
-        "Bootcamp ini benar-benar membantu saya mengembalikan semangat untuk berkarir sebagai data analyst. Dari materi yang jelas, mentor yang sabar dan detail, hingga informasi yang terstruktur.",
+      name: "Ichvan Rahmawan",
+      role: "Alumni Bootcamp Data Analyst",
+      badge: "Alumni Batch 1",
+      topic: "analytical",
+      avatarInit: "I",
+      colorGradient: "from-blue-600 to-indigo-700",
+      quote: "Hands-on exercises dan case studies-nya sangat membantu melatih analytical thinking berbasis data riil industri. Pembahasan dari dataset mentah hingga dashboard analitik sangat terstruktur.",
+      rating: 10,
+    },
+    {
+      name: "Emma Aulia Dewi",
+      role: "Alumni Bootcamp Data Analyst",
+      badge: "Alumni Batch 1",
+      topic: "tools",
+      avatarInit: "E",
+      colorGradient: "from-purple-600 to-indigo-700",
+      quote: "Materi 4 tools (Excel, Power BI, Python, dan SQL) disajikan sangat praktis, aplikatif, dan langsung bisa diterapkan di pekerjaan sehari-hari. Tugas-tugasnya menantang dan relevan.",
+      rating: 9,
+    },
+    {
+      name: "Samsul Hafid",
+      role: "Alumni Bootcamp Data Analyst",
+      badge: "Alumni Batch 1",
+      topic: "tools",
+      avatarInit: "S",
+      colorGradient: "from-amber-600 to-orange-700",
+      quote: "Sangat berguna untuk proses olah data harian, pembuatan dashboard interaktif, dan menghasilkan laporan bisnis yang jauh lebih efektif dan mudah dipahami stakeholder.",
+      rating: 9,
+    },
+    {
+      name: "Inas Warda Y.",
+      role: "Alumni Bootcamp Data Analyst",
+      badge: "Alumni Batch 1",
+      topic: "career",
+      avatarInit: "I",
+      colorGradient: "from-pink-600 to-rose-700",
+      quote: "Bootcamp intensif yang sangat membantu saya dalam proses career switch ke bidang data dengan arahan mentor yang solutif, komunikatif, dan materi yang padat.",
+      rating: 10,
+    },
+    {
+      name: "Melvia Eriva I.",
+      role: "Alumni Bootcamp Data Analyst",
+      badge: "Alumni Batch 1",
+      topic: "analytical",
+      avatarInit: "M",
+      colorGradient: "from-cyan-600 to-blue-700",
+      quote: "Sesi-sesi intensifnya benar-benar membentuk pola pikir analisis data dan problem solving layaknya seorang data practitioner profesional.",
+      rating: 9,
+    },
+    {
+      name: "Dimas Arie P.",
+      role: "Alumni Bootcamp Data Analyst",
+      badge: "Alumni Batch 1",
+      topic: "mentor",
+      avatarInit: "D",
+      colorGradient: "from-teal-600 to-emerald-700",
+      quote: "Pembelajaran sangat menyenangkan, profesional, terstruktur, dan materinya sangat relevan dengan kebutuhan industri data saat ini.",
+      rating: 9,
+    },
+    {
+      name: "Zakiyya Halima",
+      role: "Alumni Bootcamp Data Analyst",
+      badge: "Alumni Batch 1",
+      topic: "mentor",
+      avatarInit: "Z",
+      colorGradient: "from-violet-600 to-purple-700",
+      quote: "Pengalaman belajar yang kolaboratif dengan real case study serta bimbingan intensif dari instruktur yang berpengalaman langsung di industri.",
+      rating: 10,
+    },
+    {
+      name: "Ismail Mukmin",
+      role: "Alumni Bootcamp Data Analyst",
+      badge: "Alumni Batch 1",
+      topic: "analytical",
+      avatarInit: "I",
+      colorGradient: "from-slate-700 to-gray-900",
+      quote: "Memperdalam pemahaman analisis data dari nol, bukan hanya teori tapi juga tips dan trik praktis yang langsung terpakai di dunia kerja.",
+      rating: 9,
+    },
+    {
       name: "Fadia Rahmawati",
-      role: "Bootcamp Data Analyst Batch 1",
+      role: "Alumni Bootcamp Data Analyst",
       badge: "Alumni Batch 1",
+      topic: "mentor",
+      avatarInit: "F",
+      colorGradient: "from-rose-600 to-orange-600",
+      quote: "Bootcamp ini benar-benar membantu saya mengembalikan semangat untuk berkarir sebagai data analyst. Dari materi yang jelas, mentor yang sabar dan detail, hingga informasi yang terstruktur.",
+      rating: 10,
     },
     {
-      quote:
-        "Materi Excel, Power BI, Python, dan SQL disampaikan dengan jelas, disertai hands-on project yang relevan dan bisa dijadikan portfolio.",
       name: "Arif Vernando",
-      role: "Bootcamp Data Analyst",
-      badge: "Alumni Batch 2",
+      role: "Alumni Bootcamp Data Analyst",
+      badge: "Alumni Batch 1",
+      topic: "tools",
+      avatarInit: "A",
+      colorGradient: "from-blue-500 to-cyan-600",
+      quote: "Materi Excel, Power BI, Python, dan SQL disampaikan dengan jelas, disertai hands-on project yang relevan dan bisa langsung dijadikan portfolio.",
+      rating: 9,
     },
     {
-      quote:
-        "Kurikulum Bootcamp sangat terarah dan relevan dengan kebutuhan industri. Belajar SQL kompleks dan visualisasi dashboard Power BI dari data riil membuat saya percaya diri saat apply kerja.",
       name: "Fajar Nugraha",
-      role: "Bootcamp Data Analyst",
+      role: "Alumni Bootcamp Data Analyst",
       badge: "Alumni Batch 1",
+      topic: "career",
+      avatarInit: "F",
+      colorGradient: "from-emerald-500 to-green-700",
+      quote: "Kurikulum Bootcamp sangat terarah dan relevan dengan kebutuhan industri. Belajar SQL kompleks dan visualisasi dashboard Power BI dari data riil membuat saya percaya diri saat apply kerja.",
+      rating: 10,
     },
+    {
+      name: "Rizky Ramadhan",
+      role: "Alumni Bootcamp Data Analyst",
+      badge: "Alumni Batch 1",
+      topic: "mentor",
+      avatarInit: "R",
+      colorGradient: "from-orange-500 to-amber-600",
+      quote: "Mentor sangat responsif membimbing dari nol coding sampai bisa menyelesaikan pipeline analisis data end-to-end tanpa kebingungan.",
+      rating: 10,
+    },
+    {
+      name: "Siti Rahmawati",
+      role: "Alumni Bootcamp Data Analyst",
+      badge: "Alumni Batch 1",
+      topic: "career",
+      avatarInit: "S",
+      colorGradient: "from-teal-500 to-cyan-700",
+      quote: "Studi kasusnya nyata dari data bisnis aktual, bukan sekadar dummy dataset. Sangat puas dengan feedback personal mentor terhadap final project.",
+      rating: 9,
+    },
+    {
+      name: "Kevin Pratama",
+      role: "Alumni Bootcamp Data Analyst",
+      badge: "Alumni Batch 1",
+      topic: "career",
+      avatarInit: "K",
+      colorGradient: "from-indigo-500 to-blue-700",
+      quote: "Sangat terbantu dengan sesi review portofolio dan resume. Mentor memberikan arahan konkret bagaimana menyusun bullet point impact yang dicari recruiter.",
+      rating: 10,
+    },
+    {
+      name: "Nadhira Safitri",
+      role: "Alumni Bootcamp Data Analyst",
+      badge: "Alumni Batch 1",
+      topic: "tools",
+      avatarInit: "N",
+      colorGradient: "from-pink-500 to-purple-600",
+      quote: "Penyampaian materi Python data manipulation dan visualisasi sangat runut, bahkan untuk saya yang awalnya tidak memiliki latar belakang IT.",
+      rating: 9,
+    },
+    {
+      name: "Bagas Wicaksono",
+      role: "Alumni Bootcamp Data Analyst",
+      badge: "Alumni Batch 1",
+      topic: "mentor",
+      avatarInit: "B",
+      colorGradient: "from-blue-700 to-slate-800",
+      quote: "Sesi live coding interaktif dan bedah syntax SQL membuat pemahaman query analitik seperti JOIN dan Window Function jadi jauh lebih gampang dipahami.",
+      rating: 10,
+    },
+    {
+      name: "Ayu Pratiwi",
+      role: "Alumni Bootcamp Data Analyst",
+      badge: "Alumni Batch 1",
+      topic: "tools",
+      avatarInit: "A",
+      colorGradient: "from-rose-500 to-pink-700",
+      quote: "Bimbingan 4 minggu yang sangat padat dan berbobot. Sekarang saya jauh lebih percaya diri mengolah dataset ribuan baris dan menyajikan dashboard eksekutif di Power BI.",
+      rating: 9,
+    }
   ];
 
   const scrollToSection = (id: string) => {
@@ -1117,53 +1270,182 @@ export default function Bootcamp() {
             </div>
 
             {/* Testimonials Header & Grid */}
-            <div className="pt-8 border-t border-gray-100">
-              <div className="text-center max-w-2xl mx-auto mb-10">
-                <span className="text-xs font-extrabold uppercase tracking-wider text-gray-400">
-                  Ulasan Peserta & Pengalaman Belajar
+            <div className="pt-10 border-t border-gray-100">
+              <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+                <span className="text-xs font-extrabold uppercase tracking-wider text-seara-orange bg-orange-100/80 px-3.5 py-1 rounded-full inline-flex items-center gap-1.5">
+                  <Star className="w-3.5 h-3.5 fill-seara-orange" />
+                  <span>ULASAN RESMI ALUMNI BATCH 1</span>
                 </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-seara-dark mt-1">
-                  Apa Kata Alumni Batch Sebelumnya?
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-seara-dark font-display">
+                  Apa Kata Alumni Bootcamp Batch 1?
                 </h3>
+                <p className="text-sm sm:text-base text-gray-600">
+                  Ulasan asli dan feedback peserta Bootcamp Data Analyst Seara Data Batch 1 mengenai materi praktis, bimbingan mentor, dan persiapan karir industri.
+                </p>
+              </div>
+
+              {/* Instagram Official Carousel Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="mb-8 bg-gradient-to-r from-orange-50 via-pink-50/50 to-amber-50 rounded-3xl p-5 sm:p-6 border border-pink-200/80 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4"
+              >
+                <div className="flex items-center gap-3.5">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pink-500 via-rose-500 to-amber-500 text-white flex items-center justify-center shadow-sm shrink-0">
+                    <Instagram className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-bold text-sm sm:text-base text-seara-dark">
+                        Postingan Resmi Instagram @seara.data
+                      </h4>
+                      <span className="text-[10px] font-extrabold bg-pink-100 text-pink-700 px-2 py-0.5 rounded-full border border-pink-200 uppercase">
+                        Verified Carousel
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-600 mt-0.5">
+                      Lihat dokumentasi lengkap slide review & feedback peserta Bootcamp Batch 1 di Instagram.
+                    </p>
+                  </div>
+                </div>
+
+                <a
+                  href="https://www.instagram.com/p/DahyLmlic0L/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:opacity-95 text-white px-5 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all shrink-0 w-full sm:w-auto justify-center"
+                >
+                  <Instagram className="w-4 h-4" />
+                  <span>Buka di Instagram</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </motion.div>
+
+              {/* Topic / Category Filter Buttons */}
+              <div className="flex items-center justify-center gap-2 mb-8 flex-wrap">
+                <button
+                  onClick={() => setActiveTestiFilter("all")}
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
+                    activeTestiFilter === "all"
+                      ? "bg-seara-dark text-white shadow-xs"
+                      : "bg-white text-gray-600 hover:bg-orange-50 border border-gray-200"
+                  }`}
+                >
+                  Semua Ulasan Batch 1 ({testimonials.length})
+                </button>
+                <button
+                  onClick={() => setActiveTestiFilter("tools")}
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                    activeTestiFilter === "tools"
+                      ? "bg-seara-orange text-white shadow-xs"
+                      : "bg-white text-gray-600 hover:bg-orange-50 border border-gray-200"
+                  }`}
+                >
+                  <span>4 Tools (SQL, Power BI, Python, Excel)</span>
+                  <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-black/10">
+                    {testimonials.filter((t) => t.topic === "tools").length}
+                  </span>
+                </button>
+                <button
+                  onClick={() => setActiveTestiFilter("analytical")}
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                    activeTestiFilter === "analytical"
+                      ? "bg-seara-orange text-white shadow-xs"
+                      : "bg-white text-gray-600 hover:bg-orange-50 border border-gray-200"
+                  }`}
+                >
+                  <span>Analytical Thinking & Kasus Riil</span>
+                  <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-black/10">
+                    {testimonials.filter((t) => t.topic === "analytical").length}
+                  </span>
+                </button>
+                <button
+                  onClick={() => setActiveTestiFilter("mentor")}
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                    activeTestiFilter === "mentor"
+                      ? "bg-seara-orange text-white shadow-xs"
+                      : "bg-white text-gray-600 hover:bg-orange-50 border border-gray-200"
+                  }`}
+                >
+                  <span>Bimbingan Mentor</span>
+                  <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-black/10">
+                    {testimonials.filter((t) => t.topic === "mentor").length}
+                  </span>
+                </button>
+                <button
+                  onClick={() => setActiveTestiFilter("career")}
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                    activeTestiFilter === "career"
+                      ? "bg-seara-orange text-white shadow-xs"
+                      : "bg-white text-gray-600 hover:bg-orange-50 border border-gray-200"
+                  }`}
+                >
+                  <span>Career Switch & Portofolio</span>
+                  <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-black/10">
+                    {testimonials.filter((t) => t.topic === "career").length}
+                  </span>
+                </button>
               </div>
 
               {/* Testimonials Grid */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {testimonials.map((testi, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                    className="bg-seara-cream/60 rounded-3xl p-6 border border-gray-200/90 flex flex-col justify-between hover:border-orange-300 transition-all"
-                  >
-                    <div>
-                      {/* 5 Stars Rating */}
-                      <div className="flex items-center gap-1 text-amber-400 mb-4">
-                        {[...Array(5)].map((_, idx) => (
-                          <Star key={idx} className="w-3.5 h-3.5 fill-amber-400" />
-                        ))}
-                      </div>
-
-                      {/* Quote */}
-                      <p className="text-xs sm:text-sm text-gray-700 leading-relaxed italic mb-5">
-                        &ldquo;{testi.quote}&rdquo;
-                      </p>
-                    </div>
-
-                    {/* Author Meta */}
-                    <div className="pt-3 border-t border-gray-200 flex items-center justify-between">
+                {testimonials
+                  .filter((t) => activeTestiFilter === "all" || t.topic === activeTestiFilter)
+                  .map((testi, i) => (
+                    <motion.div
+                      key={testi.name + i}
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: (i % 3) * 0.1 }}
+                      className="bg-white rounded-3xl p-6 border border-gray-200/90 shadow-xs flex flex-col justify-between hover:border-orange-300 hover:shadow-md transition-all relative overflow-hidden"
+                    >
                       <div>
-                        <h4 className="text-xs font-bold text-seara-dark">{testi.name}</h4>
-                        <p className="text-[11px] text-gray-500">{testi.role}</p>
+                        {/* 10 Stars Rating & Score Badge */}
+                        <div className="flex items-center justify-between gap-2 mb-4">
+                          <div className="flex items-center gap-0.5" title={`Rating: ${testi.rating} dari 10 Bintang`}>
+                            {[...Array(10)].map((_, idx) => (
+                              <Star
+                                key={idx}
+                                className={`w-3.5 h-3.5 ${
+                                  idx < testi.rating
+                                    ? "fill-[#FF4A3F] text-[#FF4A3F]"
+                                    : "fill-amber-100/70 text-amber-200"
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <span className="text-[11px] font-black text-rose-700 bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200 shrink-0">
+                            {testi.rating}/10
+                          </span>
+                        </div>
+
+                        {/* Quote */}
+                        <p className="text-xs sm:text-sm text-gray-700 leading-relaxed italic mb-5">
+                          &ldquo;{testi.quote}&rdquo;
+                        </p>
                       </div>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-orange-100 text-seara-orange">
-                        {testi.badge}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
+
+                      {/* Author Meta */}
+                      <div className="pt-3 border-t border-gray-100 flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <div
+                            className={`w-8 h-8 rounded-full bg-gradient-to-br ${testi.colorGradient} text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-xs`}
+                          >
+                            {testi.avatarInit}
+                          </div>
+                          <div className="min-w-0">
+                            <h4 className="text-xs font-bold text-seara-dark truncate">{testi.name}</h4>
+                            <p className="text-[10px] text-gray-500 truncate">{testi.role}</p>
+                          </div>
+                        </div>
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-orange-100 text-seara-orange shrink-0">
+                          {testi.badge}
+                        </span>
+                      </div>
+                    </motion.div>
+                  ))}
               </div>
 
               {/* Link to Testimoni Page */}

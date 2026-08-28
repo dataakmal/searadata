@@ -55,28 +55,130 @@ export default function Testimoni() {
       highlight: "Diterima Kerja sebagai ODP Data Analytics di PT Bank Negara Indonesia (Persero) Tbk (BNI)"
     },
     {
+      nama: "Khairul Anum",
+      pesan: "Alhamdulillah, bootcamp ini sangat membantu saya, terutama sebagai seseorang yang baru mulai terjun ke bidang data. Materi yang disampaikan cukup mudah diikuti, dan saya juga merasa terbantu dengan mentor yang sangat sabar serta suportif dalam menjelaskan materi. Dari bootcamp ini, saya mengalami banyak perkembangan, terutama dalam pemahaman tools seperti Power BI dan Python. Sebelumnya saya tidak pernah membayangkan bisa belajar dan memahami tools tersebut, namun sekarang justru saya semakin tertarik untuk memperdalam bidang data lebih jauh lagi.",
+      rating: 8,
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
+    },
+    {
+      nama: "Ichvan Rahmawan",
+      pesan: "Hands-on exercises dan case studies-nya sangat membantu melatih analytical thinking berbasis data riil industri. Pembahasan dari dataset mentah hingga dashboard analitik sangat terstruktur.",
+      rating: 10,
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
+    },
+    {
+      nama: "Samsul Hafid",
+      pesan: "Sangat berguna untuk proses olah data harian, pembuatan dashboard interaktif, dan menghasilkan laporan bisnis yang jauh lebih efektif dan mudah dipahami stakeholder.",
+      rating: 9,
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
+    },
+    {
+      nama: "Emma Aulia Dewi",
+      pesan: "Materi 4 tools (Excel, Power BI, Python, dan SQL) disajikan sangat praktis, aplikatif, dan langsung bisa diterapkan di pekerjaan sehari-hari. Tugas-tugasnya menantang dan relevan.",
+      rating: 9,
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
+    },
+    {
+      nama: "Inas Warda Y.",
+      pesan: "Bootcamp intensif yang sangat membantu saya dalam proses career switch ke bidang data dengan arahan mentor yang solutif, komunikatif, dan materi yang padat.",
+      rating: 10,
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
+    },
+    {
+      nama: "Melvia Eriva I.",
+      pesan: "Sesi-sesi intensifnya benar-benar membentuk pola pikir analisis data dan problem solving layaknya seorang data practitioner profesional.",
+      rating: 9,
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
+    },
+    {
+      nama: "Dimas Arie P.",
+      pesan: "Pembelajaran sangat menyenangkan, profesional, terstruktur, dan materinya sangat relevan dengan kebutuhan industri data saat ini.",
+      rating: 9,
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
+    },
+    {
+      nama: "Zakiyya Halima",
+      pesan: "Pengalaman belajar yang kolaboratif dengan real case study serta bimbingan intensif dari instruktur yang berpengalaman langsung di industri.",
+      rating: 10,
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
+    },
+    {
+      nama: "Ismail Mukmin",
+      pesan: "Memperdalam pemahaman analisis data dari nol, bukan hanya teori tapi juga tips dan trik praktis yang langsung terpakai di dunia kerja.",
+      rating: 9,
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
+    },
+    {
+      nama: "Fadia Rahmawati",
+      pesan: "Bootcamp ini benar-benar membantu saya mengembalikan semangat untuk berkarir sebagai data analyst. Dari materi yang jelas, mentor yang sabar dan detail, hingga informasi yang terstruktur.",
+      rating: 10,
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
+    },
+    {
+      nama: "Arif Vernando",
+      pesan: "Materi Excel, Power BI, Python, dan SQL disampaikan dengan jelas, disertai hands-on project yang relevan dan bisa langsung dijadikan portfolio.",
+      rating: 9,
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
+    },
+    {
       nama: "Fajar Nugraha",
       pesan: "Kurikulum Bootcamp sangat terarah dan relevan dengan kebutuhan industri. Belajar SQL kompleks dan visualisasi dashboard Power BI dari data riil membuat saya percaya diri saat apply kerja.",
       rating: 10,
-      program: "Bootcamp Data Analyst"
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
     },
     {
       nama: "Rizky Ramadhan",
-      pesan: "Mentor sangat responsif membimbing dari nol coding sampai bisa bikin project end-to-end. Penjelasan konsep data cleaning & eksplorasi sangat detail.",
+      pesan: "Mentor sangat responsif membimbing dari nol coding sampai bisa menyelesaikan pipeline analisis data end-to-end tanpa kebingungan.",
       rating: 10,
-      program: "Bootcamp Data Analyst"
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
     },
     {
       nama: "Siti Rahmawati",
-      pesan: "Studi kasusnya nyata dan bukan sekadar teori. Sangat puas dengan feedback personal mentor terhadap tugas mingguan dan final capstone project.",
+      pesan: "Studi kasusnya nyata dari data bisnis aktual, bukan sekadar dummy dataset. Sangat puas dengan feedback personal mentor terhadap final project.",
       rating: 9,
-      program: "Bootcamp Data Analyst"
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
     },
     {
       nama: "Kevin Pratama",
       pesan: "Sangat terbantu dengan sesi review portofolio dan resume. Mentor memberikan arahan konkret bagaimana menyusun bullet point impact yang dicari recruiter.",
       rating: 10,
-      program: "Bootcamp Data Analyst"
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
+    },
+    {
+      nama: "Nadhira Safitri",
+      pesan: "Penyampaian materi Python data manipulation dan visualisasi sangat runut, bahkan untuk saya yang awalnya tidak memiliki latar belakang IT.",
+      rating: 9,
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
+    },
+    {
+      nama: "Bagas Wicaksono",
+      pesan: "Sesi live coding interaktif dan bedah syntax SQL membuat pemahaman query analitik seperti JOIN dan Window Function jadi jauh lebih gampang dipahami.",
+      rating: 10,
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
+    },
+    {
+      nama: "Ayu Pratiwi",
+      pesan: "Bimbingan 4 minggu yang sangat padat dan berbobot. Sekarang saya jauh lebih percaya diri mengolah dataset ribuan baris dan menyajikan dashboard eksekutif di Power BI.",
+      rating: 9,
+      program: "Bootcamp Data Analyst",
+      highlight: "Alumni Bootcamp Batch 1"
     },
 
     // KATEGORI: FG Seara (Fresh Graduate Mentorship)
@@ -841,22 +943,23 @@ export default function Testimoni() {
                   onClick={() => setMinRating(10)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 ${
                     minRating === 10
-                      ? "bg-amber-500 text-white shadow-sm"
-                      : "bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100"
+                      ? "bg-rose-600 text-white shadow-sm"
+                      : "bg-rose-50 text-rose-800 border border-rose-200 hover:bg-rose-100"
                   }`}
                 >
-                  <Star className="w-3 h-3 fill-current" />
+                  <Star className="w-3.5 h-3.5 fill-current" />
                   <span>10/10 Sempurna</span>
                 </button>
                 <button
-                  onClick={() => setMinRating(9)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                    minRating === 9
+                  onClick={() => setMinRating(8)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 ${
+                    minRating === 8
                       ? "bg-seara-orange text-white shadow-sm"
                       : "bg-orange-50 text-seara-orange border border-orange-200 hover:bg-orange-100"
                   }`}
                 >
-                  <span>9+ Sangat Puas</span>
+                  <Star className="w-3.5 h-3.5 fill-current" />
+                  <span>8 - 9+ Bintang</span>
                 </button>
               </div>
             </div>
@@ -930,10 +1033,23 @@ export default function Testimoni() {
                   <div className="space-y-3">
                     {/* Top rating and badge row */}
                     <div className="flex justify-between items-start gap-2">
-                      {/* Bintang */}
-                      <div className="flex items-center gap-1.5 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
-                        <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500 shrink-0" />
-                        <span className="text-xs font-black text-amber-800">{reviewer.rating}/10</span>
+                      {/* 10 Bintang Bar */}
+                      <div className="flex items-center gap-1.5 bg-rose-50/70 px-2.5 py-1 rounded-full border border-rose-200">
+                        <div className="flex items-center gap-0.5" title={`Skor: ${reviewer.rating} dari 10 Bintang`}>
+                          {[...Array(10)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className={`w-2.5 h-2.5 shrink-0 ${
+                                i < reviewer.rating
+                                  ? "text-[#FF4A3F] fill-[#FF4A3F]"
+                                  : "text-amber-200 fill-amber-100/60"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                        <span className="text-[11px] font-black text-rose-700 ml-0.5">
+                          {reviewer.rating}/10
+                        </span>
                       </div>
 
                       {/* Program badge */}
