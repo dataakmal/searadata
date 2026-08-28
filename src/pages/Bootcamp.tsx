@@ -24,7 +24,11 @@ import {
   Zap,
   TrendingUp,
   X,
-  MessageSquare
+  MessageSquare,
+  Instagram,
+  Building2,
+  Quote,
+  Award
 } from "lucide-react";
 
 // Types
@@ -302,7 +306,29 @@ export default function Bootcamp() {
     },
   ];
 
+  const alumniSuccess = [
+    {
+      nama: "Yasril Jahja",
+      avatarInit: "Y",
+      colorGradient: "from-teal-600 to-emerald-700",
+      company: "PT Bank Negara Indonesia (Persero) Tbk (BNI)",
+      companyBadge: "bg-teal-50 text-teal-800 border-teal-200",
+      companyIconColor: "text-teal-600",
+      role: "ODP Data Analytics",
+      batch: "Alumni Bootcamp Batch 1",
+      instagramUrl: "https://www.instagram.com/p/DbxE-fsCbEY/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA==",
+      quote: "Bimbingan intensif dan kurikulum praktis 4 tools (Excel, Power BI, Python, SQL) di Bootcamp Batch 1 Seara Data sangat membantu saya membangun pondasi analisa data bisnis dan portofolio nyata yang kuat hingga lolos sebagai ODP Data Analytics di BNI."
+    }
+  ];
+
   const testimonials = [
+    {
+      quote:
+        "Bimbingan intensif dan kurikulum praktis 4 tools (Excel, Power BI, Python, SQL) di Bootcamp Batch 1 Seara Data sangat membantu saya membangun pondasi analisa data bisnis dan portofolio nyata yang kuat hingga lolos sebagai ODP Data Analytics di BNI.",
+      name: "Yasril Jahja",
+      role: "ODP Data Analytics at BNI",
+      badge: "Alumni Batch 1",
+    },
     {
       quote:
         "Bootcamp ini benar-benar membantu saya mengembalikan semangat untuk berkarir sebagai data analyst. Dari materi yang jelas, mentor yang sabar dan detail, hingga informasi yang terstruktur.",
@@ -319,10 +345,10 @@ export default function Bootcamp() {
     },
     {
       quote:
-        "Sebagai fresh graduate yang masih bingung menentukan arah karier, bootcamp ini membantu saya belajar secara terarah tanpa merasa overwhelmed.",
-      name: "Participant",
+        "Kurikulum Bootcamp sangat terarah dan relevan dengan kebutuhan industri. Belajar SQL kompleks dan visualisasi dashboard Power BI dari data riil membuat saya percaya diri saat apply kerja.",
+      name: "Fajar Nugraha",
       role: "Bootcamp Data Analyst",
-      badge: "Fresh Graduate Learner",
+      badge: "Alumni Batch 1",
     },
   ];
 
@@ -338,6 +364,58 @@ export default function Bootcamp() {
       <div>
         {/* Main Navbar */}
         <Navbar />
+
+        {/* ========================================================
+            RUNNING TICKER / MARQUEE (Bootcamp Batch 3 Coming Soon)
+           ======================================================== */}
+        <div className="w-full bg-gradient-to-r from-seara-dark via-stone-900 to-seara-dark text-white border-b border-orange-500/30 overflow-hidden relative shadow-md z-30 select-none py-2.5">
+          {/* Gradient Edge Masks for Smooth Edge Fade */}
+          <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-seara-dark to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-seara-dark to-transparent z-10 pointer-events-none" />
+
+          <a
+            href={CLICKY_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-max group cursor-pointer"
+            title="Klik untuk info pendaftaran Bootcamp Batch 3"
+          >
+            <motion.div
+              className="flex items-center gap-8 pr-8 whitespace-nowrap"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{
+                repeat: Infinity,
+                ease: "linear",
+                duration: 22,
+              }}
+            >
+              {[...Array(6)].map((_, idx) => (
+                <div key={idx} className="flex items-center gap-4 text-xs sm:text-sm font-bold tracking-wide">
+                  <span className="inline-flex items-center gap-1.5 bg-seara-orange text-white text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
+                    <Sparkles className="w-3 h-3 animate-spin" style={{ animationDuration: "3s" }} />
+                    <span>SOON</span>
+                  </span>
+
+                  <span className="font-display font-extrabold text-white sm:text-base tracking-wider uppercase flex items-center gap-2 group-hover:text-seara-orange transition-colors">
+                    <span>Bootcamp Batch 3 Coming Soon</span>
+                    <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                  </span>
+
+                  <span className="text-gray-300 font-medium text-xs hidden md:inline">
+                    · 4 Weeks Intensive · Excel, Power BI, Python & SQL ·
+                  </span>
+
+                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-seara-orange bg-orange-950/60 border border-orange-500/30 px-2 py-0.5 rounded-md">
+                    <span>Nantikan Info & Waiting List</span>
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                  </span>
+
+                  <span className="w-1.5 h-1.5 rounded-full bg-seara-orange/60" />
+                </div>
+              ))}
+            </motion.div>
+          </a>
+        </div>
 
         {/* ========================================================
             HERO SECTION
@@ -950,60 +1028,155 @@ export default function Bootcamp() {
         </section>
 
         {/* ========================================================
-            TESTIMONIALS (What Our Participants Say)
+            ALUMNI CAREER SUCCESS (Verified Career Hired)
            ======================================================== */}
         <section className="py-20 px-6 bg-white border-t border-gray-200/80">
           <div className="max-w-6xl mx-auto">
             {/* Header */}
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <span className="inline-block bg-orange-100 text-seara-orange font-bold text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-4">
-                ⭐ ALUMNI FEEDBACK
+            <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+              <span className="inline-flex items-center gap-1.5 bg-orange-100 text-seara-orange font-bold text-xs px-4 py-1.5 rounded-full uppercase tracking-wider">
+                <Award className="w-3.5 h-3.5" />
+                <span>ALUMNI CAREER SUCCESS • VERIFIED HIRED</span>
               </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-seara-dark tracking-tight font-display mb-4">
-                What Our Participants Say
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-seara-dark tracking-tight font-display">
+                Kisah Sukses Alumni Bootcamp
               </h2>
               <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-                Hear directly from previous batch participants who transformed their skills and built practical confidence.
+                Bukti nyata lulusan Bootcamp Data Analyst Seara Data yang berhasil menembus seleksi di perbankan nasional, perusahaan multinasional, dan industri retail terkemuka.
               </p>
             </div>
 
-            {/* Testimonials Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {testimonials.map((testi, i) => (
+            {/* Verified Alumni Career Spotlight */}
+            <div className="max-w-2xl mx-auto mb-14">
+              {alumniSuccess.map((alumni, idx) => (
                 <motion.div
-                  key={i}
+                  key={idx}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.15 }}
-                  className="bg-seara-cream/60 rounded-3xl p-7 border border-gray-200/90 flex flex-col justify-between hover:border-orange-300 transition-all"
+                  transition={{ duration: 0.5 }}
+                  className="bg-white rounded-3xl border-2 border-orange-200 p-7 sm:p-8 shadow-lg hover:shadow-xl hover:border-seara-orange transition-all flex flex-col justify-between space-y-6 group"
                 >
-                  <div>
-                    {/* 5 Stars Rating */}
-                    <div className="flex items-center gap-1 text-amber-400 mb-5">
-                      {[...Array(5)].map((_, idx) => (
-                        <Star key={idx} className="w-4 h-4 fill-amber-400" />
-                      ))}
+                  <div className="space-y-4">
+                    {/* Top company badge & IG link */}
+                    <div className="flex items-center justify-between gap-2 pb-3 border-b border-gray-100">
+                      <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full border ${alumni.companyBadge}`}>
+                        <Building2 className={`w-3.5 h-3.5 ${alumni.companyIconColor}`} />
+                        <span>{alumni.company}</span>
+                      </span>
+                      <a
+                        href={alumni.instagramUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs font-bold text-pink-600 bg-pink-50 hover:bg-pink-100 px-3 py-1 rounded-full transition-all border border-pink-200 shrink-0"
+                        title="Lihat di Instagram"
+                      >
+                        <Instagram className="w-3.5 h-3.5" />
+                        <span>Instagram</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
                     </div>
 
-                    {/* Quote */}
-                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed italic mb-6">
-                      &ldquo;{testi.quote}&rdquo;
-                    </p>
+                    {/* Profile row */}
+                    <div className="flex items-center gap-4">
+                      <div className={`w-13 h-13 rounded-2xl bg-gradient-to-br ${alumni.colorGradient} text-white font-display font-black text-xl flex items-center justify-center shadow-md shrink-0`}>
+                        {alumni.avatarInit}
+                      </div>
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-1.5">
+                          <h4 className="font-bold text-base sm:text-lg text-seara-dark">{alumni.nama}</h4>
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                        </div>
+                        <p className="text-sm font-semibold text-seara-orange">{alumni.role}</p>
+                        <p className="text-[11px] text-gray-400 font-bold uppercase tracking-wider">{alumni.batch}</p>
+                      </div>
+                    </div>
+
+                    {/* Quote Box */}
+                    <div className="bg-orange-50/50 p-5 rounded-2xl border border-orange-100 relative">
+                      <Quote className="w-6 h-6 text-orange-200 absolute top-3 right-3 pointer-events-none" />
+                      <p className="text-xs sm:text-sm text-gray-700 leading-relaxed italic relative z-10">
+                        &ldquo;{alumni.quote}&rdquo;
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Author Meta */}
-                  <div className="pt-4 border-t border-gray-200 flex items-center justify-between">
-                    <div>
-                      <h4 className="text-sm font-bold text-seara-dark">{testi.name}</h4>
-                      <p className="text-xs text-gray-500">{testi.role}</p>
-                    </div>
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-orange-100 text-seara-orange">
-                      {testi.badge}
-                    </span>
-                  </div>
+                  {/* Instagram Post Button */}
+                  <a
+                    href={alumni.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:opacity-95 text-white py-3 px-4 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm transition-all"
+                  >
+                    <Instagram className="w-4 h-4" />
+                    <span>Lihat Bukti Postingan Resmi di Instagram</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
                 </motion.div>
               ))}
+            </div>
+
+            {/* Testimonials Header & Grid */}
+            <div className="pt-8 border-t border-gray-100">
+              <div className="text-center max-w-2xl mx-auto mb-10">
+                <span className="text-xs font-extrabold uppercase tracking-wider text-gray-400">
+                  Ulasan Peserta & Pengalaman Belajar
+                </span>
+                <h3 className="text-xl sm:text-2xl font-bold text-seara-dark mt-1">
+                  Apa Kata Alumni Batch Sebelumnya?
+                </h3>
+              </div>
+
+              {/* Testimonials Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {testimonials.map((testi, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.1 }}
+                    className="bg-seara-cream/60 rounded-3xl p-6 border border-gray-200/90 flex flex-col justify-between hover:border-orange-300 transition-all"
+                  >
+                    <div>
+                      {/* 5 Stars Rating */}
+                      <div className="flex items-center gap-1 text-amber-400 mb-4">
+                        {[...Array(5)].map((_, idx) => (
+                          <Star key={idx} className="w-3.5 h-3.5 fill-amber-400" />
+                        ))}
+                      </div>
+
+                      {/* Quote */}
+                      <p className="text-xs sm:text-sm text-gray-700 leading-relaxed italic mb-5">
+                        &ldquo;{testi.quote}&rdquo;
+                      </p>
+                    </div>
+
+                    {/* Author Meta */}
+                    <div className="pt-3 border-t border-gray-200 flex items-center justify-between">
+                      <div>
+                        <h4 className="text-xs font-bold text-seara-dark">{testi.name}</h4>
+                        <p className="text-[11px] text-gray-500">{testi.role}</p>
+                      </div>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-orange-100 text-seara-orange">
+                        {testi.badge}
+                      </span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Link to Testimoni Page */}
+              <div className="text-center mt-10">
+                <Link
+                  to="/testimoni"
+                  className="inline-flex items-center gap-2 bg-white hover:bg-orange-50 text-seara-dark border border-orange-200 px-6 py-2.5 rounded-full font-bold text-xs shadow-xs hover:text-seara-orange transition-all"
+                >
+                  <MessageSquare className="w-3.5 h-3.5 text-seara-orange" />
+                  <span>Lihat Semua 100+ Testimoni Alumni Seara Data</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
           </div>
         </section>

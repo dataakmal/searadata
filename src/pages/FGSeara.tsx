@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { 
@@ -23,7 +24,12 @@ import {
   Check,
   Building2,
   Copy,
-  CheckCheck
+  CheckCheck,
+  Instagram,
+  Award,
+  Quote,
+  Star,
+  TrendingUp
 } from "lucide-react";
 
 export default function FGSeara() {
@@ -707,7 +713,224 @@ export default function FGSeara() {
           </div>
         </section>
 
-        {/* 6. PROGRAM INVESTMENT & PRICING OPTIONS */}
+        {/* 6. ALUMNI SUCCESS STORIES & INSTAGRAM TESTIMONIALS */}
+        <section className="py-20 px-6 bg-gradient-to-b from-neutral-50/50 via-orange-50/30 to-white border-y border-gray-100">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+              <span className="text-xs font-bold text-seara-orange uppercase tracking-wider bg-orange-100 px-4 py-1.5 rounded-full inline-flex items-center gap-1.5">
+                <Award className="w-3.5 h-3.5" />
+                <span>Alumni Success Stories • Testimoni</span>
+              </span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-seara-dark font-display tracking-tight">
+                Bukti Nyata Alumni Menembus Karir Impian
+              </h2>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                Kisah nyata alumni Seara Data yang telah berhasil lolos rekrutmen dan diterima bekerja di perusahaan terkemuka berbekal kurikulum terarah, portofolio nyata, dan pendampingan karier intensif.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {/* Testimonial 1: Bryant - Samsung Electronics Indonesia */}
+              <motion.div
+                {...fadeIn}
+                className="bg-white rounded-3xl border-2 border-orange-100 shadow-xl shadow-orange-950/5 p-8 sm:p-9 flex flex-col justify-between relative overflow-hidden hover:border-seara-orange/40 hover:-translate-y-1 transition-all duration-300 group"
+              >
+                {/* Background decorative watermark */}
+                <div className="absolute -right-8 -bottom-8 w-40 h-40 bg-blue-50/60 rounded-full blur-2xl pointer-events-none" />
+
+                <div className="space-y-6 relative z-10">
+                  {/* Top Bar: Company Badge & Instagram Tag */}
+                  <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-gray-100">
+                    <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-800 border border-blue-200/60 px-3.5 py-1.5 rounded-full text-xs font-extrabold shadow-sm">
+                      <Building2 className="w-3.5 h-3.5 text-blue-600" />
+                      <span>Samsung Electronics Indonesia</span>
+                    </div>
+
+                    <a 
+                      href="https://www.instagram.com/p/DcFVLNyCQZM/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[11px] font-bold text-pink-600 bg-pink-50 hover:bg-pink-100 px-3 py-1 rounded-full transition-all border border-pink-200/60"
+                      title="Buka postingan Instagram"
+                    >
+                      <Instagram className="w-3.5 h-3.5" />
+                      <span>Postingan Instagram</span>
+                      <ExternalLink className="w-3 h-3 text-pink-500" />
+                    </a>
+                  </div>
+
+                  {/* Profile & Name */}
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white flex items-center justify-center font-display font-black text-xl shadow-md shrink-0">
+                      B
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-xl font-bold text-seara-dark font-display">Bryant</h3>
+                        <span className="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full flex items-center gap-1">
+                          <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Alumni Hired
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-500 font-medium mt-0.5">
+                        Diterima Kerja di <strong className="text-seara-dark">PT Samsung Electronics Indonesia</strong>
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Quote Body */}
+                  <div className="bg-neutral-50/80 p-5 rounded-2xl border border-gray-100 space-y-3 relative">
+                    <Quote className="w-8 h-8 text-orange-200 absolute top-3 right-3 pointer-events-none" />
+                    <p className="text-xs sm:text-sm text-gray-700 leading-relaxed italic relative z-10">
+                      "Bimbingan terstruktur dan materi praktis di Seara Data sangat membantu dalam memperkuat pemahaman fundamental data, penataan portofolio yang stand-out, hingga optimasi CV dan persiapan interview saat proses seleksi di Samsung Electronics Indonesia."
+                    </p>
+                    <div className="flex items-center gap-1 text-amber-500 pt-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-3.5 h-3.5 fill-current" />
+                      ))}
+                      <span className="text-[11px] font-bold text-gray-600 ml-1.5">5.0 / 5.0 Alumni Rating</span>
+                    </div>
+                  </div>
+
+                  {/* Key Highlights */}
+                  <div className="space-y-2">
+                    <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">Faktor Penentu Keberhasilan:</span>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      <span className="bg-orange-50 text-seara-orange px-2.5 py-1 rounded-lg font-semibold border border-orange-100">
+                        ✨ CV ATS-Friendly Optimization
+                      </span>
+                      <span className="bg-orange-50 text-seara-orange px-2.5 py-1 rounded-lg font-semibold border border-orange-100">
+                        📊 Real Case Data Portfolio
+                      </span>
+                      <span className="bg-orange-50 text-seara-orange px-2.5 py-1 rounded-lg font-semibold border border-orange-100">
+                        🎯 Mock Interview Preparation
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer Action */}
+                <div className="pt-6 mt-6 border-t border-gray-100">
+                  <a
+                    href="https://www.instagram.com/p/DcFVLNyCQZM/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:opacity-95 text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow-md active:scale-98 transition-all"
+                  >
+                    <Instagram className="w-4 h-4" />
+                    <span>Lihat Bukti & Postingan di Instagram (@searadata)</span>
+                    <ExternalLink className="w-3.5 h-3.5 ml-1" />
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* Testimonial 2: Athalia Dwiyansari Qomar - Aerostreet */}
+              <motion.div
+                {...fadeIn}
+                className="bg-white rounded-3xl border-2 border-orange-100 shadow-xl shadow-orange-950/5 p-8 sm:p-9 flex flex-col justify-between relative overflow-hidden hover:border-seara-orange/40 hover:-translate-y-1 transition-all duration-300 group"
+              >
+                {/* Background decorative watermark */}
+                <div className="absolute -right-8 -bottom-8 w-40 h-40 bg-emerald-50/60 rounded-full blur-2xl pointer-events-none" />
+
+                <div className="space-y-6 relative z-10">
+                  {/* Top Bar: Company Badge & Instagram Tag */}
+                  <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-gray-100">
+                    <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-800 border border-emerald-200/60 px-3.5 py-1.5 rounded-full text-xs font-extrabold shadow-sm">
+                      <Building2 className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>Aerostreet (Fashion & Footwear)</span>
+                    </div>
+
+                    <a 
+                      href="https://www.instagram.com/p/DcM9RZ6Cfwt/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[11px] font-bold text-pink-600 bg-pink-50 hover:bg-pink-100 px-3 py-1 rounded-full transition-all border border-pink-200/60"
+                      title="Buka postingan Instagram"
+                    >
+                      <Instagram className="w-3.5 h-3.5" />
+                      <span>Postingan Instagram</span>
+                      <ExternalLink className="w-3 h-3 text-pink-500" />
+                    </a>
+                  </div>
+
+                  {/* Profile & Name */}
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-700 text-white flex items-center justify-center font-display font-black text-xl shadow-md shrink-0">
+                      A
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-xl font-bold text-seara-dark font-display">Athalia Dwiyansari Qomar</h3>
+                        <span className="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full flex items-center gap-1">
+                          <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Alumni Hired
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-500 font-medium mt-0.5">
+                        Diterima Kerja di <strong className="text-seara-dark">Aerostreet</strong>
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Quote Body */}
+                  <div className="bg-neutral-50/80 p-5 rounded-2xl border border-gray-100 space-y-3 relative">
+                    <Quote className="w-8 h-8 text-orange-200 absolute top-3 right-3 pointer-events-none" />
+                    <p className="text-xs sm:text-sm text-gray-700 leading-relaxed italic relative z-10">
+                      "Program dan bimbingan di Seara Data memberi pemahaman langsung mengenai cara menganalisis data bisnis dan menyajikan dashboard yang actionable. Portofolio proyek nyata yang dibuat menjadi modal berharga saat melamar hingga diterima di Aerostreet."
+                    </p>
+                    <div className="flex items-center gap-1 text-amber-500 pt-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-3.5 h-3.5 fill-current" />
+                      ))}
+                      <span className="text-[11px] font-bold text-gray-600 ml-1.5">5.0 / 5.0 Alumni Rating</span>
+                    </div>
+                  </div>
+
+                  {/* Key Highlights */}
+                  <div className="space-y-2">
+                    <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">Faktor Penentu Keberhasilan:</span>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      <span className="bg-orange-50 text-seara-orange px-2.5 py-1 rounded-lg font-semibold border border-orange-100">
+                        📈 Interactive Dashboard & Insights
+                      </span>
+                      <span className="bg-orange-50 text-seara-orange px-2.5 py-1 rounded-lg font-semibold border border-orange-100">
+                        🛠️ Problem-Solving & Business Data
+                      </span>
+                      <span className="bg-orange-50 text-seara-orange px-2.5 py-1 rounded-lg font-semibold border border-orange-100">
+                        💬 1-on-1 Career Mentoring
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer Action */}
+                <div className="pt-6 mt-6 border-t border-gray-100">
+                  <a
+                    href="https://www.instagram.com/p/DcM9RZ6Cfwt/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA=="
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:opacity-95 text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow-md active:scale-98 transition-all"
+                  >
+                    <Instagram className="w-4 h-4" />
+                    <span>Lihat Bukti & Postingan di Instagram (@searadata)</span>
+                    <ExternalLink className="w-3.5 h-3.5 ml-1" />
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Bottom Link to Full Testimonial Page */}
+            <div className="mt-12 text-center">
+              <Link
+                to="/testimoni"
+                className="inline-flex items-center gap-2 bg-white hover:bg-orange-50 text-seara-dark hover:text-seara-orange border-2 border-gray-200 hover:border-seara-orange px-6 py-3.5 rounded-2xl font-bold text-xs sm:text-sm shadow-sm transition-all group"
+              >
+                <span>Lihat Ratusan Ulasan & Testimoni Alumni Lainnya</span>
+                <ArrowRight className="w-4 h-4 text-seara-orange group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* 7. PROGRAM INVESTMENT & PRICING OPTIONS */}
         <section className="py-20 px-6 max-w-6xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
             <span className="text-xs font-bold text-seara-orange uppercase tracking-wider bg-orange-100 px-3.5 py-1 rounded-full">

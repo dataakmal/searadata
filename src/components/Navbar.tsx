@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, ChevronDown, GraduationCap, Globe, UserCheck, Building2, PackageCheck, Sparkles, MessageSquare } from "lucide-react";
+import { Menu, X, ChevronDown, GraduationCap, Globe, UserCheck, Building2, PackageCheck, Sparkles, MessageSquare, Star } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
@@ -131,6 +131,19 @@ export default function Navbar() {
           >
             <Sparkles className="w-4 h-4 text-seara-orange" />
             <span>FG Seara</span>
+          </Link>
+
+          {/* Testimoni Standalone Link */}
+          <Link
+            to="/testimoni"
+            className={`flex items-center gap-1.5 py-2 text-base transition-colors ${
+              isActive("/testimoni") || isActive("/testimonial")
+                ? "text-seara-orange font-bold"
+                : "text-seara-dark hover:text-seara-orange font-semibold"
+            }`}
+          >
+            <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
+            <span>Testimoni</span>
           </Link>
 
           {/* Program Dropdown */}
@@ -282,6 +295,25 @@ export default function Navbar() {
                 <span className="flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-seara-orange" />
                   <span>FG Seara (Fresh Graduate)</span>
+                </span>
+              </Link>
+
+              {/* Standalone Testimoni on Mobile */}
+              <Link
+                to="/testimoni"
+                onClick={handleClose}
+                className={`py-2.5 px-3 rounded-xl text-base flex items-center justify-between ${
+                  isActive("/testimoni") || isActive("/testimonial")
+                    ? "text-seara-orange bg-orange-50 font-bold"
+                    : "text-seara-dark font-semibold hover:bg-gray-50"
+                }`}
+              >
+                <span className="flex items-center gap-2">
+                  <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
+                  <span>Testimoni Alumni</span>
+                </span>
+                <span className="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">
+                  100+ Ulasan
                 </span>
               </Link>
 

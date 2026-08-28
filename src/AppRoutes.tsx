@@ -43,6 +43,8 @@ export function AppRoutes() {
         <Route path="/komunitas" element={<Komunitas />} />
         <Route path="/mentoring" element={<Mentoring />} />
         <Route path="/testimoni" element={<Testimoni />} />
+        <Route path="/testimonial" element={<Navigate to="/testimoni" replace />} />
+        <Route path="/testimonials" element={<Navigate to="/testimoni" replace />} />
         <Route path="/certificate/:certificateId" element={<CertificateVerify />} />
       </Routes>
     </>
