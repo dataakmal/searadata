@@ -29,14 +29,6 @@ export default function Navbar() {
 
   const programList = [
     {
-      id: "bootcamp",
-      title: "Bootcamp Data Analyst",
-      desc: "Program intensif skill Python, SQL, Excel, Power BI",
-      icon: GraduationCap,
-      badge: "Batch 3 Soon",
-      route: "/bootcamp",
-    },
-    {
       id: "mentoring",
       title: "Mentoring Private 1-on-1",
       desc: "CV review, interview prep & ML mentoring",

@@ -140,7 +140,7 @@ export default function Home() {
               <div key={i} className="flex gap-8 items-center text-gray-300">
                 <span className="flex items-center gap-1.5 text-orange-400 font-bold">
                   <Zap className="w-3.5 h-3.5" />
-                  <span>Bootcamp Batch 2 Pendaftaran Dibuka!</span>
+                  <span>Program Layanan & Mentoring Tersedia!</span>
                 </span>
                 <span>•</span>
                 <span>Mentoring Private 1-on-1 Available</span>
@@ -191,10 +191,10 @@ export default function Home() {
               className="flex flex-wrap justify-center items-center gap-4 pt-4"
             >
               <button 
-                onClick={() => scrollToDetail("detail-bootcamp")}
+                onClick={() => scrollToDetail("program-ringkas")}
                 className="bg-seara-orange text-white px-7 py-4 rounded-2xl font-bold text-base shadow-lg shadow-orange-500/20 hover:brightness-95 hover:-translate-y-0.5 transition-all flex items-center gap-2 active:scale-95 cursor-pointer"
               >
-                <span>Daftar Bootcamp Batch 2</span>
+                <span>Lihat Layanan & Program</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
@@ -282,7 +282,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════ */}
-        {/* SECTION 1: "6 PROGRAM UTAMA" (Grid 3 Columns, Ringkas) */}
+        {/* SECTION 1: "4 PROGRAM UTAMA" (Grid Ringkas)              */}
         {/* ═══════════════════════════════════════════════════════ */}
         <section id="program-ringkas" className="py-20 px-6 max-w-6xl mx-auto space-y-12">
           <div className="text-center max-w-3xl mx-auto">
@@ -290,66 +290,17 @@ export default function Home() {
               Overview Ringkas
             </span>
             <h2 className="text-3xl sm:text-5xl font-black text-seara-dark font-display tracking-tight mt-3">
-              5 Program Utama Seara Data
+              4 Program Layanan Seara Data
             </h2>
             <p className="text-gray-600 text-sm md:text-base mt-3 leading-relaxed">
-              Pilih program yang kamu butuhkan. Klik tombol untuk langsung mendaftar/konsultasi atau melihat rincian penjelasan di bawah.
+              Pilih program dan layanan yang kamu butuhkan. Klik tombol untuk langsung mendaftar/konsultasi atau melihat rincian penjelasan di bawah.
             </p>
           </div>
 
-          {/* Grid 3 Columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Grid 4 Columns */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-            {/* 1. Bootcamp & Mini Course */}
-            <motion.div 
-              {...fadeIn}
-              className="bg-gradient-to-b from-orange-50/70 to-white rounded-3xl border-2 border-seara-orange/40 p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between relative"
-            >
-              <div className="absolute -top-3 right-4 bg-seara-orange text-white text-[9px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                Flagship
-              </div>
-
-              <div className="space-y-4">
-                <div className="flex justify-between items-start">
-                  <div className="w-12 h-12 rounded-2xl bg-orange-500 text-white flex items-center justify-center font-bold text-xl shadow-sm">
-                    🚀
-                  </div>
-                  <span className="text-[11px] font-bold bg-orange-100 text-seara-orange px-2.5 py-1 rounded-full">
-                    Rp 249K+
-                  </span>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-seara-dark font-display">
-                    Bootcamp & Mini Course
-                  </h3>
-                  <p className="text-xs text-gray-500 mt-1 line-clamp-2">
-                    Kelas intensif live & recording hands-on project bersama mentor berpengalaman.
-                  </p>
-                </div>
-                <div className="pt-2 border-t border-orange-100">
-                  <span className="text-xs text-gray-400 font-semibold block">Harga:</span>
-                  <span className="text-sm font-extrabold text-seara-orange">Mulai Rp 249.000 / Gratis</span>
-                </div>
-              </div>
-
-              <div className="pt-6 space-y-2">
-                <Link
-                  to="/bootcamp"
-                  className="w-full bg-seara-orange text-white text-center py-2.5 rounded-xl font-bold text-xs shadow-md hover:brightness-95 transition-all block"
-                >
-                  Lihat Bootcamp Journey (Batch 1-3)
-                </Link>
-                <button 
-                  onClick={() => scrollToDetail("detail-bootcamp")}
-                  className="w-full text-seara-dark text-center py-1.5 font-bold text-xs hover:underline cursor-pointer flex items-center justify-center gap-1"
-                >
-                  <span>Lihat Penjelasan Singkat</span>
-                  <ChevronDown className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </motion.div>
-
-            {/* 2. Mentoring Private 1-on-1 */}
+            {/* 1. Mentoring Private 1-on-1 */}
             <motion.div 
               {...fadeIn}
               className="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-orange-300 transition-all flex flex-col justify-between"
@@ -365,7 +316,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-seara-dark font-display">
-                    Mentoring Private 1-on-1
+                    Mentoring 1-on-1
                   </h3>
                   <p className="text-xs text-gray-500 mt-1 line-clamp-2">
                     Bimbingan karir personal, review CV/LinkedIn, interview prep & Machine Learning.
@@ -396,7 +347,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* 4. Digital Product & Tools */}
+            {/* 2. Digital Product & Tools */}
             <motion.div 
               {...fadeIn}
               className="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-orange-300 transition-all flex flex-col justify-between"
@@ -443,7 +394,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* 5. Portfolio Website Data Analyst */}
+            {/* 3. Portfolio Website Data Analyst */}
             <motion.div 
               {...fadeIn}
               className="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-orange-300 transition-all flex flex-col justify-between"
@@ -490,7 +441,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* 6. Training Corporate */}
+            {/* 4. Training Corporate */}
             <motion.div 
               {...fadeIn}
               className="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-orange-300 transition-all flex flex-col justify-between"
@@ -552,142 +503,17 @@ export default function Home() {
                 Rincian & Informasi Lengkap
               </span>
               <h2 className="text-3xl sm:text-5xl font-black text-seara-dark font-display tracking-tight">
-                Penjelasan Detail Setiap Program
+                Penjelasan Detail Setiap Layanan
               </h2>
               <p className="text-gray-600 text-sm md:text-base leading-relaxed">
-                Berikut rincian cakupan materi, skema harga, durasi, fasilitas, serta cara pendaftaran untuk masing-masing dari 6 program kami.
+                Berikut rincian cakupan materi, skema harga, durasi, fasilitas, serta cara pemesanan untuk masing-masing dari 4 layanan program kami.
               </p>
             </div>
 
-            {/* ────────────────────────────────────────────────────── */}
-            {/* 1️⃣ BOOTCAMP & MINI COURSE */}
-            {/* ────────────────────────────────────────────────────── */}
-            <motion.div 
-              id="detail-bootcamp" 
-              {...fadeIn}
-              className="bg-gradient-to-b from-orange-50/50 via-white to-white rounded-3xl border-2 border-seara-orange/30 p-8 sm:p-10 shadow-md scroll-mt-28 space-y-6"
-            >
-              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-orange-100">
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-seara-orange text-white flex items-center justify-center text-3xl font-bold shadow-md">
-                    🚀
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold text-seara-orange uppercase tracking-wide">Program 1 (Flagship)</span>
-                    <h3 className="text-2xl sm:text-3xl font-black text-seara-dark font-display">
-                      BOOTCAMP & MINI COURSE
-                    </h3>
-                  </div>
-                </div>
-                <span className="bg-seara-orange text-white font-bold text-xs px-4 py-1.5 rounded-full shadow-sm">
-                  Pendaftaran Batch 2 Dibuka
-                </span>
-              </div>
 
-              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                Akselerasi skill data komprehensif melalui program intensif berfokus praktik nyata. Dirancang khusus bagi yang ingin membangun portofolio solid dan siap melamar pekerjaan.
-              </p>
-
-              {/* Sub-Programs Comparison Table / Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-2">
-                {/* Sub 1 */}
-                <div className="bg-white p-5 rounded-2xl border-2 border-seara-orange/40 shadow-sm space-y-3">
-                  <span className="text-[10px] font-extrabold bg-orange-100 text-seara-orange px-2 py-0.5 rounded uppercase">Batch 2 Active</span>
-                  <h5 className="text-base font-bold text-seara-dark font-display">Bootcamp Data Analyst</h5>
-                  <p className="text-xs text-gray-500">8 Sesi Live Zoom + Real Case Project</p>
-                  <div className="pt-2 border-t border-gray-100">
-                    <span className="text-xs text-gray-400 line-through">Rp299.000</span>
-                    <p className="text-lg font-black text-seara-orange">Rp 249.000</p>
-                    <span className="text-[10px] text-gray-500 font-semibold block mt-1">29 Juli – 22 Agustus 2026</span>
-                  </div>
-                </div>
-
-                {/* Sub 2 */}
-                <div className="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm space-y-3">
-                  <span className="text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded uppercase">Self-Paced</span>
-                  <h5 className="text-base font-bold text-seara-dark font-display">Mini Course Python</h5>
-                  <p className="text-xs text-gray-500">Python Automation & Scripting Case</p>
-                  <div className="pt-2 border-t border-gray-100">
-                    <p className="text-lg font-black text-seara-dark">Rp 66.000</p>
-                    <span className="text-[10px] text-gray-500 font-semibold block mt-1">Lifetime Recording + Code</span>
-                  </div>
-                </div>
-
-                {/* Sub 3 */}
-                <div className="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm space-y-3">
-                  <span className="text-[10px] font-bold bg-blue-100 text-blue-800 px-2 py-0.5 rounded uppercase">Open Access</span>
-                  <h5 className="text-base font-bold text-seara-dark font-display">Mini Class Intro</h5>
-                  <p className="text-xs text-gray-500">Pengenalan Dasar SQL & Python</p>
-                  <div className="pt-2 border-t border-gray-100">
-                    <p className="text-lg font-black text-emerald-600">FREE / Gratis</p>
-                    <span className="text-[10px] text-gray-500 font-semibold block mt-1">Grup WhatsApp Komunitas</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Instructors Info */}
-              <div className="bg-orange-50/80 p-4 rounded-2xl border border-orange-100 space-y-2">
-                <span className="text-xs font-bold text-seara-orange uppercase tracking-wider block">👨‍🏫 Instruktur Berpengalaman:</span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                  <div>
-                    <p className="font-bold text-seara-dark">M. Zahrul Wafi</p>
-                    <p className="text-gray-600">Specialist Excel, Power BI & Business Intelligence (Bank Danamon & Dekoruma)</p>
-                  </div>
-                  <div>
-                    <p className="font-bold text-seara-dark">Achmad Kurniansyah</p>
-                    <p className="text-gray-600">Specialist Python, SQL & Data Engineering (Senior Industry Practitioner)</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Benefits */}
-              <div className="space-y-3">
-                <h4 className="text-sm font-bold text-seara-dark uppercase tracking-wider">Fasilitas & Benefit Peserta:</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-gray-700">
-                  <div className="flex items-start gap-2 bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
-                    <Check className="w-4 h-4 text-seara-orange shrink-0 mt-0.5" />
-                    <span>Akses Selamanya (Lifetime) ke seluruh rekaman & modul</span>
-                  </div>
-                  <div className="flex items-start gap-2 bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
-                    <Check className="w-4 h-4 text-seara-orange shrink-0 mt-0.5" />
-                    <span>Dataset eksklusif & skrip Python/SQL standar industri</span>
-                  </div>
-                  <div className="flex items-start gap-2 bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
-                    <Check className="w-4 h-4 text-seara-orange shrink-0 mt-0.5" />
-                    <span>E-Certificate Resmi dengan ID verifikasi unik</span>
-                  </div>
-                  <div className="flex items-start gap-2 bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
-                    <Check className="w-4 h-4 text-seara-orange shrink-0 mt-0.5" />
-                    <span>Grup WhatsApp diskusi & bimbingan langsung mentor</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-gray-100">
-                <p className="text-xs text-gray-500">Pendaftaran langsung diproses secara otomatis via platform Clicky.id</p>
-                <div className="flex flex-wrap gap-3">
-                  <Link
-                    to="/bootcamp"
-                    className="bg-white border border-gray-300 text-seara-dark hover:border-seara-orange hover:text-seara-orange px-5 py-3 rounded-xl font-bold text-xs transition-all flex items-center gap-2"
-                  >
-                    <span>Explore Bootcamp Journey (Batch 1-3)</span>
-                    <ArrowRight className="w-4 h-4 text-seara-orange" />
-                  </Link>
-                  <a 
-                    href="https://clicky.id/searadata" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="bg-seara-orange text-white px-6 py-3 rounded-xl font-bold text-xs hover:brightness-95 transition-all flex items-center gap-2 shadow-md"
-                  >
-                    <span>Daftar Sekarang (Clicky.id)</span>
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
 
             {/* ────────────────────────────────────────────────────── */}
-            {/* 2️⃣ MENTORING PRIVATE 1-ON-1 */}
+            {/* 1️⃣ MENTORING PRIVATE 1-ON-1 */}
             {/* ────────────────────────────────────────────────────── */}
             <motion.div 
               id="detail-mentoring" 
@@ -700,7 +526,7 @@ export default function Home() {
                     🎯
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-amber-600 uppercase tracking-wide">Program 2</span>
+                    <span className="text-xs font-bold text-amber-600 uppercase tracking-wide">Program 1</span>
                     <h3 className="text-2xl sm:text-3xl font-black text-seara-dark font-display">
                       MENTORING PRIVATE 1-ON-1
                     </h3>
@@ -780,7 +606,7 @@ export default function Home() {
             </motion.div>
 
             {/* ────────────────────────────────────────────────────── */}
-            {/* 3️⃣ DIGITAL PRODUCT & TOOLS */}
+            {/* 2️⃣ DIGITAL PRODUCT & TOOLS */}
             {/* ────────────────────────────────────────────────────── */}
             <motion.div 
               id="detail-digital" 
@@ -793,7 +619,7 @@ export default function Home() {
                     📦
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-indigo-600 uppercase tracking-wide">Program 3</span>
+                    <span className="text-xs font-bold text-indigo-600 uppercase tracking-wide">Program 2</span>
                     <h3 className="text-2xl sm:text-3xl font-black text-seara-dark font-display">
                       DIGITAL PRODUCT & TOOLS
                     </h3>
@@ -844,7 +670,7 @@ export default function Home() {
             </motion.div>
 
             {/* ────────────────────────────────────────────────────── */}
-            {/* 4️⃣ PORTFOLIO WEBSITE DATA ANALYST */}
+            {/* 3️⃣ PORTFOLIO WEBSITE DATA ANALYST */}
             {/* ────────────────────────────────────────────────────── */}
             <motion.div 
               id="detail-portfolio" 
@@ -857,7 +683,7 @@ export default function Home() {
                     💼
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-purple-600 uppercase tracking-wide">Program 4</span>
+                    <span className="text-xs font-bold text-purple-600 uppercase tracking-wide">Program 3</span>
                     <h3 className="text-2xl sm:text-3xl font-black text-seara-dark font-display">
                       PORTFOLIO WEBSITE DATA ANALYST
                     </h3>
@@ -924,7 +750,7 @@ export default function Home() {
             </motion.div>
 
             {/* ────────────────────────────────────────────────────── */}
-            {/* 5️⃣ TRAINING CORPORATE */}
+            {/* 4️⃣ TRAINING CORPORATE */}
             {/* ────────────────────────────────────────────────────── */}
             <motion.div 
               id="detail-training" 
@@ -937,7 +763,7 @@ export default function Home() {
                     🏢
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-emerald-600 uppercase tracking-wide">Program 5</span>
+                    <span className="text-xs font-bold text-emerald-600 uppercase tracking-wide">Program 4</span>
                     <h3 className="text-2xl sm:text-3xl font-black text-seara-dark font-display">
                       TRAINING CORPORATE
                     </h3>
@@ -1213,15 +1039,13 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 pt-4">
-              <a 
-                href="https://clicky.id/searadata" 
-                target="_blank" 
-                rel="noopener noreferrer"
+              <Link 
+                to="/program"
                 className="bg-seara-dark text-white px-8 py-4 rounded-2xl font-bold text-base shadow-xl hover:bg-black transition-all flex items-center gap-2 active:scale-95"
               >
-                <span>Daftar Bootcamp Batch 2</span>
+                <span>Lihat Semua Layanan</span>
                 <ArrowRight className="w-5 h-5 text-seara-orange" />
-              </a>
+              </Link>
 
               <a 
                 href="https://wa.me/6287811856600?text=Halo%20Admin%20Rea,%20saya%20tertarik%20booking%20mentoring%201-on-1!" 
