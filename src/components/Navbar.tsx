@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, ChevronDown, GraduationCap, Globe, UserCheck, Building2, PackageCheck, Sparkles, MessageSquare, Star } from "lucide-react";
+import { Menu, X, ChevronDown, GraduationCap, Globe, UserCheck, Building2, PackageCheck, Sparkles, MessageSquare, Star, BookOpen } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
@@ -28,6 +28,14 @@ export default function Navbar() {
   }, []);
 
   const programList = [
+    {
+      id: "mini-course",
+      title: "Mini Course Tableau (Active)",
+      desc: "Tableau for Data Analytics & Interactive Dashboard",
+      icon: BookOpen,
+      badge: "Ongoing 🔥",
+      route: "/mini-course",
+    },
     {
       id: "mentoring",
       title: "Mentoring Private 1-on-1",
@@ -61,6 +69,10 @@ export default function Navbar() {
 
   const handleProgramClick = (id: string) => {
     handleClose();
+    if (id === "mini-course") {
+      navigate("/mini-course");
+      return;
+    }
     if (id === "bootcamp") {
       navigate("/bootcamp");
       return;
@@ -131,6 +143,23 @@ export default function Navbar() {
           >
             <Sparkles className="w-4 h-4 text-seara-orange" />
             <span>FG Seara</span>
+          </Link>
+
+          {/* Mini Course Standalone Link (with active indicator) */}
+          <Link
+            to="/mini-course"
+            className={`flex items-center gap-1.5 py-2 text-base transition-colors relative ${
+              isActive("/mini-course") || isActive("/mini-course-tableau") || isActive("/minicourse")
+                ? "text-seara-orange font-bold"
+                : "text-seara-dark hover:text-seara-orange font-semibold"
+            }`}
+          >
+            <BookOpen className="w-4 h-4 text-seara-orange" />
+            <span>Mini Course</span>
+            <span className="flex h-2 w-2 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
           </Link>
 
           {/* Testimoni Standalone Link */}
@@ -295,6 +324,26 @@ export default function Navbar() {
                 <span className="flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-seara-orange" />
                   <span>FG Seara (Fresh Graduate)</span>
+                </span>
+              </Link>
+
+              {/* Standalone Mini Course on Mobile */}
+              <Link
+                to="/mini-course"
+                onClick={handleClose}
+                className={`py-2.5 px-3 rounded-xl text-base flex items-center justify-between ${
+                  isActive("/mini-course") || isActive("/mini-course-tableau") || isActive("/minicourse")
+                    ? "text-seara-orange bg-orange-50 font-bold"
+                    : "text-seara-dark font-semibold hover:bg-gray-50"
+                }`}
+              >
+                <span className="flex items-center gap-2">
+                  <BookOpen className="w-4 h-4 text-seara-orange" />
+                  <span>Mini Course</span>
+                </span>
+                <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>Tableau Active</span>
                 </span>
               </Link>
 

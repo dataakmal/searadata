@@ -18,7 +18,9 @@ import {
   ArrowRight, 
   ExternalLink, 
   Zap,
-  Check
+  Check,
+  BookOpen,
+  BarChart3
 } from "lucide-react";
 
 export default function Home() {
@@ -33,43 +35,43 @@ export default function Home() {
   const testimonials = [
     {
       id: 1,
-      name: "Muhammad Afnan Yusuf Dhiaulhaq",
-      role: "Peserta Mini Course SQL & Python",
-      rating: 5,
-      content: "Mantap bang 👍 Penjelasannya terstruktur banget dan gampang dipahami buat yang baru mulai dari nol.",
-      badge: "Mini Course"
+      name: "Melvia Eriva Ikhsan",
+      role: "Peserta Mini Course Data Engineer",
+      rating: 10,
+      content: "Materi berkelas dengan banyak aha moment and penjelasan yang sistematis. Sangat membantu memahami pipeline data dan arsitektur analitik dari nol.",
+      badge: "Data Engineer"
     },
     {
       id: 2,
       name: "Dania Amelia Ansyori",
       role: "Peserta Mini Course Python Automation",
-      rating: 5,
+      rating: 10,
       content: "Penjelasannya mudah dimengerti, tidak terlalu cepat. Materi dan kebutuhan course sudah disiapin rapih. Untuk harga under 100k sangat worth it!",
-      badge: "Mini Course"
+      badge: "Python Automation"
     },
     {
       id: 3,
-      name: "Yasril Jahja",
-      role: "Alumni Bootcamp Data Analyst Batch 1",
-      rating: 5,
-      content: "Insightful banget mas! Penjelasannya to the point dan projectnya beneran aplikatif buat dipajang di portofolio LinkedIn & Vercel.",
-      badge: "Bootcamp Batch 1"
+      name: "Dinda Raraswati",
+      role: "Peserta Mini Course Data Engineer",
+      rating: 9,
+      content: "Mendapat insight baru terkait API dan data pipeline dengan penjelasan yang mudah dipahami dan langsung aplikatif.",
+      badge: "Data Engineer"
     },
     {
       id: 4,
-      name: "Risa Amalia",
-      role: "Mentee Private 1-on-1 Career",
-      rating: 5,
-      content: "Sesi review CV dan simulasi interview nya ngebantu banget. Dikasih saran spesifik yang recruiter cari. Sekarang udah pede melamar!",
-      badge: "Mentoring 1-on-1"
+      name: "Muhammad Rhesa Dhiyaulhaq",
+      role: "Peserta Mini Course Python For Automation",
+      rating: 10,
+      content: "Ilmunya sangat berdaging bagi yang berkonsentrasi di bidang data analyst. Step-by-step jelas, use case konkret, dan sangat straightforward!",
+      badge: "Python Automation"
     },
     {
       id: 5,
-      name: "Budi Santoso",
-      role: "Pengguna Excel Analyst Starter Pack",
-      rating: 5,
-      content: "Template Power Pivot & DAX nya rapi banget, tinggal sesuaikan data kantor langsung jadi dashboard eksekutif dalam hitungan menit.",
-      badge: "Digital Product"
+      name: "Yasril Jahja",
+      role: "Alumni Bootcamp Data Analyst Batch 1",
+      rating: 10,
+      content: "Insightful banget mas! Penjelasannya to the point dan projectnya beneran aplikatif buat dipajang di portofolio LinkedIn & Vercel.",
+      badge: "Bootcamp Batch 1"
     }
   ];
 
@@ -140,8 +142,10 @@ export default function Home() {
               <div key={i} className="flex gap-8 items-center text-gray-300">
                 <span className="flex items-center gap-1.5 text-orange-400 font-bold">
                   <Zap className="w-3.5 h-3.5" />
-                  <span>Program Layanan & Mentoring Tersedia!</span>
+                  <span>🔥 Mini Course Tableau Sedang Berlangsung!</span>
                 </span>
+                <span>•</span>
+                <span>Checkout via Clicky.id/searadata</span>
                 <span>•</span>
                 <span>Mentoring Private 1-on-1 Available</span>
                 <span>•</span>
@@ -222,6 +226,71 @@ export default function Home() {
                 <span>Grup WA Support Seumur Hidup</span>
               </span>
             </div>
+          </div>
+
+          {/* Active Mini Course Highlight Banner */}
+          <div className="max-w-4xl mx-auto mt-12 text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
+              className="bg-white/95 backdrop-blur rounded-3xl border-2 border-orange-200 p-6 md:p-8 shadow-xl shadow-orange-500/10 flex flex-col md:flex-row items-center gap-6 md:gap-8"
+            >
+              {/* Poster Thumbnail */}
+              <div className="w-full md:w-5/12 shrink-0 relative rounded-2xl overflow-hidden shadow-md border border-orange-100 group">
+                <img 
+                  src="/mini-course-tableau.png" 
+                  alt="Mini Course Tableau Sedang Berlangsung" 
+                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-full flex items-center gap-1 shadow-md">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                  <span>Sedang Berlangsung</span>
+                </div>
+              </div>
+
+              {/* Info & Action */}
+              <div className="w-full md:w-7/12 space-y-4">
+                <div className="flex flex-wrap items-center gap-2">
+                  <div className="inline-flex items-center gap-1.5 bg-orange-100 text-seara-orange px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                    <BookOpen className="w-3.5 h-3.5" />
+                    <span>Mini Course • 25–27 Sept</span>
+                  </div>
+                  <span className="text-[11px] font-bold text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
+                    3 Sesi | 90–120 Menit
+                  </span>
+                </div>
+
+                <div>
+                  <h3 className="text-xl md:text-2xl font-black text-seara-dark font-display leading-tight">
+                    Mini Course Tableau — Beginner to Interactive Dashboard
+                  </h3>
+                  <p className="text-xs md:text-sm text-gray-600 mt-2 leading-relaxed">
+                    Alur belajar <strong>Fundamentals → Data Analysis → Dashboard Development</strong>. Peserta mampu membuat 1 interactive dashboard di Tableau dari data mentah sampai publish ke Tableau Public!
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3 pt-1">
+                  <a
+                    href="https://clicky.id/searadata"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-seara-orange text-white px-5 py-3 rounded-xl font-bold text-xs sm:text-sm shadow-md hover:brightness-105 active:scale-95 transition-all flex items-center gap-2"
+                  >
+                    <span>Checkout di Clicky.id</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+
+                  <Link
+                    to="/mini-course"
+                    className="bg-orange-50 text-seara-orange border border-orange-200 px-4 py-3 rounded-xl font-bold text-xs sm:text-sm hover:bg-orange-100/70 transition-all flex items-center gap-1.5"
+                  >
+                    <span>Lihat Detail Silabus</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </section>
 
@@ -889,11 +958,26 @@ export default function Home() {
                   transition={{ duration: 0.3 }}
                   className="space-y-4"
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-1 text-amber-400">
-                      {[...Array(testimonials[currentTesti].rating)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 fill-amber-400" />
-                      ))}
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-0.5">
+                        {[...Array(10)].map((_, i) => {
+                          const isFilled = i < testimonials[currentTesti].rating;
+                          return (
+                            <Star
+                              key={i}
+                              className={`w-4 h-4 sm:w-4.5 sm:h-4.5 ${
+                                isFilled
+                                  ? "text-[#FF4A3F] fill-[#FF4A3F]"
+                                  : "text-gray-200 fill-gray-100"
+                              }`}
+                            />
+                          );
+                        })}
+                      </div>
+                      <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-orange-50 text-[#FF4A3F] border border-orange-200">
+                        {testimonials[currentTesti].rating}/10
+                      </span>
                     </div>
                     <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-orange-100 text-seara-orange">
                       {testimonials[currentTesti].badge}

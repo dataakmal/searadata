@@ -8,6 +8,7 @@ import Komunitas from "./pages/Komunitas";
 import Testimoni from "./pages/Testimoni";
 import FGSeara from "./pages/FGSeara";
 import Bootcamp from "./pages/Bootcamp";
+import MiniCourse from "./pages/MiniCourse";
 import CertificateVerify from "./pages/CertificateVerify";
 
 // Scroll to top on route change for smooth user experience
@@ -38,6 +39,9 @@ export function AppRoutes() {
         <Route path="/program" element={<Program />} />
         <Route path="/bootcamp" element={<Bootcamp />} />
         <Route path="/bootcamp-data-analyst" element={<Navigate to="/bootcamp" replace />} />
+        <Route path="/mini-course" element={<MiniCourse />} />
+        <Route path="/mini-course-tableau" element={<Navigate to="/mini-course" replace />} />
+        <Route path="/minicourse" element={<Navigate to="/mini-course" replace />} />
         <Route path="/fg-seara" element={<FGSeara />} />
         <Route path="/fgseara" element={<Navigate to="/fg-seara" replace />} />
         <Route path="/komunitas" element={<Komunitas />} />

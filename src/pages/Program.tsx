@@ -166,44 +166,75 @@ export default function Program() {
                 </div>
               </motion.div>
 
-              {/* Program B: Mini Course */}
+              {/* Program B: Mini Course (Tableau Sedang Berlangsung) */}
               <motion.div 
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.2 }}
-                className="bg-seara-cream/30 rounded-[32px] border border-orange-100 p-8 flex flex-col justify-between space-y-8 hover:shadow-md transition-shadow"
+                className="bg-white rounded-[32px] border-2 border-orange-200 p-8 flex flex-col justify-between space-y-6 hover:shadow-lg transition-all relative overflow-hidden"
               >
+                <div className="absolute top-4 right-4 bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>Sedang Berlangsung 🔥</span>
+                </div>
+
                 <div className="space-y-4">
                   <div className="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center text-seara-orange">
                     <BookOpen className="w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="text-2xl font-bold text-seara-dark">Mini Course & Tools</h4>
-                    <p className="text-[#5a5a5a] text-sm mt-2 leading-relaxed">
-                      Kelas terarah dan paket aset digital terstruktur yang fokus membedah topik spesifik (Python Automation, Excel Power Pivot, DAX).
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-[11px] font-bold text-seara-orange bg-orange-50 px-2 py-0.5 rounded-full border border-orange-100">
+                        25 – 27 Sept
+                      </span>
+                      <span className="text-[11px] font-bold text-gray-500">
+                        3 Sesi (90–120 Mnt)
+                      </span>
+                    </div>
+                    <h4 className="text-2xl font-bold text-seara-dark">Mini Course Tableau</h4>
+                    <p className="text-[#5a5a5a] text-sm mt-1.5 leading-relaxed">
+                      <strong>Beginner to Interactive Dashboard</strong>: Dari data mentah sampai publish 1 interactive dashboard ke Tableau Public.
                     </p>
                   </div>
-                  <div className="space-y-2 text-xs text-[#5a5a5a] pt-2">
+
+                  {/* Thumbnail Preview */}
+                  <div className="relative rounded-2xl overflow-hidden bg-gray-100 border border-gray-200 aspect-[16/9]">
+                    <img 
+                      src="/mini-course-tableau.png" 
+                      alt="Mini Course Tableau" 
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5 text-xs text-[#5a5a5a] pt-1">
                     <div className="flex items-center gap-2">
-                      <span className="font-extrabold text-seara-orange">Topik Pilihan:</span> Python Automation, Excel Starter Pack, SQL Querying
+                      <span className="font-extrabold text-seara-orange">Tools:</span> Tableau Public / Desktop
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="font-extrabold text-seara-orange">Akses:</span> Lifetime Recording + Script Dataset
+                      <span className="font-extrabold text-seara-orange">Fasilitas:</span> Live Zoom, Recording Lifetime, Dataset & e-Sertifikat
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="font-extrabold text-seara-orange">Harga:</span> Mulai dari Rp66.000
+                      <span className="font-extrabold text-seara-orange">Checkout:</span> Langsung via Clicky.id
                     </div>
                   </div>
                 </div>
 
-                <div>
+                <div className="space-y-2 pt-2">
                   <a 
                     href="https://clicky.id/searadata" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-full justify-center items-center gap-2 bg-white border-2 border-seara-orange text-seara-orange py-3 rounded-2xl font-bold text-sm hover:bg-orange-50 active:scale-95 transition-all"
+                    className="inline-flex w-full justify-center items-center gap-2 bg-seara-orange text-white py-3.5 rounded-2xl font-bold text-sm hover:brightness-105 active:scale-95 shadow-md shadow-orange-500/20 transition-all"
                   >
-                    Beli Produk di Clicky.id <ExternalLink className="w-4 h-4" />
+                    Daftar / Checkout di Clicky.id <ExternalLink className="w-4 h-4" />
                   </a>
+
+                  <Link
+                    to="/mini-course"
+                    className="inline-flex w-full justify-center items-center gap-2 bg-white border border-gray-200 text-seara-dark py-2.5 rounded-xl font-bold text-xs hover:bg-orange-50/50 hover:border-orange-200 transition-all"
+                  >
+                    <span>Lihat Rincian Silabus & Jadwal</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-seara-orange" />
+                  </Link>
                 </div>
               </motion.div>
 
