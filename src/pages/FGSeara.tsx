@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -29,7 +29,10 @@ import {
   Award,
   Quote,
   Star,
-  TrendingUp
+  TrendingUp,
+  Maximize2,
+  Eye,
+  X
 } from "lucide-react";
 
 export default function FGSeara() {
@@ -38,6 +41,7 @@ export default function FGSeara() {
   const SYLLABUS_URL = "https://docs.google.com/document/d/1LKaBcIYusO5GcHQlH0cZzWJ0NzcGx9zc08AUug2t51w/edit?usp=sharing";
 
   const [copied, setCopied] = useState(false);
+  const [isPosterModalOpen, setIsPosterModalOpen] = useState(false);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(REGISTRATION_URL);
@@ -62,14 +66,14 @@ export default function FGSeara() {
 
   const curriculumPhases = [
     {
-      month: "Month 1",
+      month: "Month 1 (Oktober)",
       phase: "Foundation",
       focus: "Excel for Data Analysis, SQL Fundamentals, Career Foundation",
       desc: "Membangun pemahaman fundamental analisis data bisnis menggunakan Microsoft Excel tingkat lanjut dan penguasaan query database SQL dari nol.",
       sessions: [
         {
           sessionNum: 1,
-          date: "1 September 2026",
+          date: "3 Oktober 2026",
           topic: "Welcoming Day & Program Onboarding",
           details: [
             "Pengenalan ekosistem Seara Data & alur belajar 3 bulan",
@@ -80,7 +84,7 @@ export default function FGSeara() {
         },
         {
           sessionNum: 2,
-          date: "11 September 2026",
+          date: "13 Oktober 2026",
           topic: "Excel for Data Analysis",
           details: [
             "Data Cleaning & Transformation: Mengatasi missing values, duplicate data & outliers",
@@ -91,7 +95,7 @@ export default function FGSeara() {
         },
         {
           sessionNum: 3,
-          date: "21 September 2026",
+          date: "23 Oktober 2026",
           topic: "SQL Fundamentals & Relational Database",
           details: [
             "Konsep Relational Database Management System (RDBMS) & PostgreSQL",
@@ -103,14 +107,14 @@ export default function FGSeara() {
       ]
     },
     {
-      month: "Month 2",
+      month: "Month 2 (November)",
       phase: "Build",
       focus: "Python for Data Analytics, Power BI Dashboard, Portfolio Development",
       desc: "Meningkatkan kemampuan komputasi dengan pemrograman Python, perancangan dashboard interaktif Power BI, serta penyusunan portofolio berbasis industri.",
       sessions: [
         {
           sessionNum: 4,
-          date: "1 Oktober 2026",
+          date: "3 November 2026",
           topic: "Python for Data Analytics",
           details: [
             "Fundamental Python untuk Data: Data structure (List, Dict), manipulasi data dengan Pandas & NumPy",
@@ -121,7 +125,7 @@ export default function FGSeara() {
         },
         {
           sessionNum: 5,
-          date: "11 Oktober 2026",
+          date: "13 November 2026",
           topic: "Power BI Dashboard & Data Storytelling",
           details: [
             "Prinsip Data Storytelling & Dashboard UI/UX yang actionable bagi stakeholder",
@@ -132,7 +136,7 @@ export default function FGSeara() {
         },
         {
           sessionNum: 6,
-          date: "21 Oktober 2026",
+          date: "23 November 2026",
           topic: "Portfolio Development & Project Structuring",
           details: [
             "Strukturisasi portofolio data standar industri: Problem Statement, Metodologi, Insight, Rekomendasi",
@@ -144,14 +148,14 @@ export default function FGSeara() {
       ]
     },
     {
-      month: "Month 3",
+      month: "Month 3 (Desember)",
       phase: "Launch",
       focus: "CV & LinkedIn Optimization, Interview Preparation, Final Project & Career Strategy",
       desc: "Fase persiapan karir menyeluruh: Bedah CV ATS-Friendly, optimasi profil LinkedIn, simulasi interview rekrutmen, hingga presentasi Final Project.",
       sessions: [
         {
           sessionNum: 7,
-          date: "1 November 2026",
+          date: "3 Desember 2026",
           topic: "CV & LinkedIn Optimization",
           details: [
             "Penyusunan CV ATS-Friendly dengan standar rekrutmen korporat & tech company",
@@ -162,7 +166,7 @@ export default function FGSeara() {
         },
         {
           sessionNum: 8,
-          date: "11 November 2026",
+          date: "13 Desember 2026",
           topic: "Interview Preparation & Technical Test Simulation",
           details: [
             "Struktur menjawab User Interview: Framework STAR (Situation, Task, Action, Result)",
@@ -173,7 +177,7 @@ export default function FGSeara() {
         },
         {
           sessionNum: 9,
-          date: "21 November 2026",
+          date: "23 Desember 2026",
           topic: "Final Project & Career Strategy",
           details: [
             "Presentasi Final Capstone Project di hadapan panel mentor",
@@ -185,6 +189,7 @@ export default function FGSeara() {
       ]
     }
   ];
+
 
   const learningMethods = [
     {
@@ -273,143 +278,310 @@ export default function FGSeara() {
       <Navbar />
 
       <main className="flex-1">
-        {/* 1. HERO SECTION */}
-        <section className="bg-gradient-to-b from-orange-50/90 via-white to-neutral-50/50 py-16 md:py-24 px-6 border-b border-gray-100 relative overflow-hidden">
-          {/* Background Ambient Glow */}
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[320px] bg-seara-orange/10 blur-[130px] pointer-events-none rounded-full" />
+        {/* TOP RUNNING TEXT TICKER (MARQUEE) */}
+        <div className="bg-seara-dark text-white py-2.5 px-4 overflow-hidden relative border-b border-orange-500/30 flex items-center shadow-inner select-none">
+          <div className="flex items-center gap-2 bg-seara-orange text-white text-[11px] font-black uppercase px-3 py-1 rounded-full shrink-0 z-10 shadow-md mr-3">
+            <span className="w-2 h-2 rounded-full bg-white animate-ping shrink-0" />
+            <span>ANNOUNCEMENT</span>
+          </div>
 
-          <div className="max-w-5xl mx-auto text-center relative z-10 space-y-6">
-            {/* Top Badge */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="inline-flex items-center gap-2 bg-orange-100 text-seara-orange px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Seara Data • Fresh Graduate Accelerator</span>
-            </motion.div>
-
-            {/* Headline */}
-            <motion.h1 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-seara-dark tracking-tight font-display leading-[1.1]"
-            >
-              Become a <span className="text-seara-orange">Job-Ready Data Analyst</span> <br className="hidden sm:inline" />
-              in 3 Months
-            </motion.h1>
-
-            {/* Subtitle */}
-            <motion.p 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
-            >
-              Program akselerasi karier selama <strong>3 bulan</strong> yang dirancang untuk membantu <strong>fresh graduate</strong> & <strong>final year students</strong> membangun kompetensi teknis, portofolio nyata, serta kesiapan memasuki dunia kerja sebagai Data Analyst.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-wrap justify-center items-center gap-4 pt-4"
-            >
-              {/* Primary Registration Button */}
-              <a 
-                href={REGISTRATION_URL}
-                target="_blank" 
-                rel="noopener noreferrer"
-                onClick={handleOpenRegistration}
-                className="bg-seara-orange text-white px-8 py-4 rounded-2xl font-bold text-base shadow-xl shadow-orange-500/20 hover:brightness-95 hover:-translate-y-0.5 transition-all flex items-center gap-2.5 active:scale-95 group cursor-pointer"
-              >
-                <span>Daftar Sekarang (s.id/FGSeara)</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-
-              {/* Syllabus Google Docs Button */}
-              <a 
-                href={SYLLABUS_URL}
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="bg-white text-seara-dark border-2 border-gray-200 px-7 py-4 rounded-2xl font-bold text-base shadow-sm hover:bg-orange-50/50 hover:border-seara-orange hover:text-seara-orange transition-all flex items-center gap-2.5 active:scale-95 cursor-pointer"
-              >
-                <FileText className="w-4 h-4 text-seara-orange" />
-                <span>Dokumen Silabus Resmi (Docs)</span>
-                <ExternalLink className="w-3.5 h-3.5 text-gray-400" />
-              </a>
-
-              {/* Quick Copy Link Button */}
-              <button
-                type="button"
-                onClick={handleCopyLink}
-                className="bg-gray-100 text-gray-700 hover:bg-gray-200 px-4 py-4 rounded-2xl font-semibold text-xs transition-all flex items-center gap-2 active:scale-95"
-                title="Salin tautan formulir pendaftaran"
-              >
-                {copied ? <CheckCheck className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4 text-gray-500" />}
-                <span>{copied ? "Link Tersalin!" : "Salin Link"}</span>
-              </button>
-            </motion.div>
-
-            {/* Direct Form Backup Link notice */}
-            <div className="text-xs text-gray-500 pt-1">
-              <span>Link Pendaftaran: </span>
-              <a 
-                href={REGISTRATION_URL}
-                target="_blank" 
-                rel="noopener noreferrer"
-                onClick={handleOpenRegistration}
-                className="text-seara-orange font-bold hover:underline"
-              >
-                https://s.id/FGSeara
-              </a>
-              <span className="mx-2 text-gray-300">•</span>
-              <a 
-                href={DIRECT_FORM_URL}
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-500 hover:text-seara-orange underline text-[11px]"
-              >
-                (Alternatif Link Google Form)
-              </a>
+          <div className="overflow-hidden whitespace-nowrap flex-1 relative">
+            <div className="animate-marquee inline-flex items-center gap-8 text-xs sm:text-sm font-bold tracking-wide">
+              {[...Array(6)].map((_, i) => (
+                <span key={i} className="inline-flex items-center gap-4">
+                  <span className="text-white flex items-center gap-1.5">
+                    <span className="text-orange-400">🔥</span>
+                    <strong className="text-white uppercase tracking-wider">FGSeara Batch 2 is Open Now</strong>
+                  </span>
+                  <span className="text-gray-500">•</span>
+                  <span className="text-amber-300 flex items-center gap-1.5">
+                    <span>📅</span>
+                    <strong>Start 3 October 2026</strong>
+                  </span>
+                  <span className="text-gray-500">•</span>
+                  <span className="text-gray-300">🎓 3 Months Career Accelerator</span>
+                  <span className="text-gray-500">•</span>
+                  <span className="text-emerald-400 font-extrabold">⚡ Kuota Terbatas 30 Peserta</span>
+                  <span className="text-gray-500">•</span>
+                  <a 
+                    href={REGISTRATION_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handleOpenRegistration}
+                    className="text-seara-orange hover:underline inline-flex items-center gap-1 font-extrabold"
+                  >
+                    <span>Daftar di s.id/FGSeara</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                  <span className="text-gray-500">•</span>
+                </span>
+              ))}
             </div>
+          </div>
+        </div>
 
-            {/* Program Quick Specs Table */}
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="pt-6 max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-3 text-left"
-            >
-              <div className="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">DURASI PROGRAM</span>
-                <span className="text-sm font-extrabold text-seara-dark mt-1 flex items-center gap-1.5">
-                  <Clock className="w-4 h-4 text-seara-orange" /> 3 Bulan (9 Sesi)
-                </span>
-              </div>
-              <div className="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">JADWAL KELAS</span>
-                <span className="text-sm font-extrabold text-seara-dark mt-1 flex items-center gap-1.5">
-                  <Calendar className="w-4 h-4 text-seara-orange" /> Tgl 1, 11 & 21
-                </span>
-              </div>
-              <div className="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">KUOTA PER BATCH</span>
-                <span className="text-sm font-extrabold text-seara-dark mt-1 flex items-center gap-1.5">
-                  <Users className="w-4 h-4 text-seara-orange" /> Maks. 30 Peserta
-                </span>
-              </div>
-              <div className="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">SKEMA INVESTASI</span>
-                <span className="text-sm font-extrabold text-seara-orange mt-1 flex items-center gap-1.5">
-                  <CreditCard className="w-4 h-4" /> Mulai Rp90.000/bln
-                </span>
-              </div>
-            </motion.div>
+        {/* 1. HERO SECTION WITH POSTER FG-SEARA.JPG */}
+        <section className="bg-gradient-to-b from-orange-50/90 via-white to-neutral-50/50 py-12 md:py-20 px-6 border-b border-gray-100 relative overflow-hidden">
+          {/* Background Ambient Glow */}
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[360px] bg-seara-orange/10 blur-[140px] pointer-events-none rounded-full" />
+
+          <div className="max-w-6xl mx-auto relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+              {/* Left Column: Headline, Specs & Actions (7 cols) */}
+              <motion.div 
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="lg:col-span-7 space-y-6 text-left"
+              >
+                {/* Top Badges */}
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-700 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>FGSeara Batch 2 is Open Now</span>
+                  </div>
+
+                  <div className="inline-flex items-center gap-1.5 bg-orange-100 text-seara-orange px-3.5 py-1.5 rounded-full text-xs font-bold shadow-sm border border-orange-200">
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>Start 3 October 2026</span>
+                  </div>
+                </div>
+
+                {/* Headline */}
+                <h1 className="text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-black text-seara-dark tracking-tight font-display leading-[1.15]">
+                  Become a <br className="hidden sm:inline" />
+                  <span className="text-seara-orange">Job-Ready Data Analyst</span> <br />
+                  in 3 Months
+                </h1>
+
+                {/* Subtitle */}
+                <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-2xl">
+                  Program akselerasi karier intensif selama <strong>3 bulan</strong> yang dirancang untuk membantu <strong>fresh graduate</strong> & <strong>final year students</strong> menguasai Excel, SQL, Python, Power BI, portofolio industri nyata, serta pendampingan karir intensif.
+                </p>
+
+                {/* CTA Buttons */}
+                <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                  <a 
+                    href={REGISTRATION_URL}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={handleOpenRegistration}
+                    className="bg-seara-orange text-white px-7 py-4 rounded-2xl font-bold text-sm sm:text-base shadow-xl shadow-orange-500/20 hover:brightness-95 hover:-translate-y-0.5 transition-all flex items-center gap-2.5 active:scale-95 group cursor-pointer"
+                  >
+                    <span>Daftar Batch 2 (s.id/FGSeara)</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </a>
+
+                  <a 
+                    href={SYLLABUS_URL}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="bg-white text-seara-dark border-2 border-gray-200 px-6 py-4 rounded-2xl font-bold text-sm sm:text-base shadow-sm hover:bg-orange-50/50 hover:border-seara-orange hover:text-seara-orange transition-all flex items-center gap-2 active:scale-95 cursor-pointer"
+                  >
+                    <FileText className="w-4 h-4 text-seara-orange" />
+                    <span>Silabus Resmi (Docs)</span>
+                    <ExternalLink className="w-3.5 h-3.5 text-gray-400" />
+                  </a>
+
+                  <button
+                    type="button"
+                    onClick={handleCopyLink}
+                    className="bg-gray-100 text-gray-700 hover:bg-gray-200 px-4 py-4 rounded-2xl font-semibold text-xs transition-all flex items-center gap-2 active:scale-95"
+                    title="Salin tautan formulir pendaftaran"
+                  >
+                    {copied ? <CheckCheck className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4 text-gray-500" />}
+                    <span>{copied ? "Tersalin!" : "Salin Link"}</span>
+                  </button>
+                </div>
+
+                {/* Direct Form Backup Link notice */}
+                <div className="text-xs text-gray-500">
+                  <span>Link Pendaftaran: </span>
+                  <a 
+                    href={REGISTRATION_URL}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={handleOpenRegistration}
+                    className="text-seara-orange font-bold hover:underline"
+                  >
+                    https://s.id/FGSeara
+                  </a>
+                  <span className="mx-2 text-gray-300">•</span>
+                  <a 
+                    href={DIRECT_FORM_URL}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-seara-orange underline text-[11px]"
+                  >
+                    (Alternatif Link Google Form)
+                  </a>
+                </div>
+
+                {/* Quick Specs Grid */}
+                <div className="pt-2 grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                  <div className="bg-white p-3.5 rounded-2xl border border-gray-200 shadow-sm">
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">DURASI</span>
+                    <span className="text-xs sm:text-sm font-extrabold text-seara-dark mt-1 flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-seara-orange" /> 3 Bulan (9 Sesi)
+                    </span>
+                  </div>
+                  <div className="bg-white p-3.5 rounded-2xl border border-gray-200 shadow-sm">
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">KICKOFF</span>
+                    <span className="text-xs sm:text-sm font-extrabold text-seara-dark mt-1 flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-seara-orange" /> 3 Oktober 2026
+                    </span>
+                  </div>
+                  <div className="bg-white p-3.5 rounded-2xl border border-gray-200 shadow-sm">
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">KUOTA</span>
+                    <span className="text-xs sm:text-sm font-extrabold text-seara-dark mt-1 flex items-center gap-1.5">
+                      <Users className="w-3.5 h-3.5 text-seara-orange" /> 30 Peserta
+                    </span>
+                  </div>
+                  <div className="bg-white p-3.5 rounded-2xl border border-gray-200 shadow-sm">
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">INVESTASI</span>
+                    <span className="text-xs sm:text-sm font-extrabold text-seara-orange mt-1 flex items-center gap-1.5">
+                      <CreditCard className="w-3.5 h-3.5" /> Rp90k/bln
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Right Column: FG-SEARA.JPG Official Poster Card (5 cols) */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="lg:col-span-5"
+              >
+                <div className="bg-white p-3 sm:p-4 rounded-3xl border-2 border-orange-200/80 shadow-2xl shadow-orange-950/10 space-y-3 relative group">
+                  {/* Floating Tag */}
+                  <div className="absolute -top-3.5 left-6 bg-gradient-to-r from-seara-orange to-amber-500 text-white px-3.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider shadow-md flex items-center gap-1.5 z-20">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>Official Poster • Batch 2</span>
+                  </div>
+
+                  {/* Poster Image Container */}
+                  <div 
+                    onClick={() => setIsPosterModalOpen(true)}
+                    className="relative overflow-hidden rounded-2xl bg-neutral-100 cursor-pointer aspect-[4/5] shadow-inner"
+                  >
+                    <img 
+                      src="/fg-seara.jpg" 
+                      alt="FG Seara Batch 2 Poster Official" 
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    />
+
+                    {/* Hover Overlay with Zoom Icon */}
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 text-white p-4 text-center">
+                      <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white shadow-lg">
+                        <Maximize2 className="w-6 h-6" />
+                      </div>
+                      <span className="text-xs font-bold tracking-wide">Klik untuk Memperbesar Poster</span>
+                    </div>
+
+                    {/* Bottom Date Badge on Image */}
+                    <div className="absolute bottom-3 left-3 right-3 bg-seara-dark/90 backdrop-blur-md text-white p-2.5 rounded-xl flex items-center justify-between text-xs font-bold border border-white/10">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                        <span>Start 3 October 2026</span>
+                      </div>
+                      <span className="text-[11px] text-orange-300 font-semibold">Batch 2</span>
+                    </div>
+                  </div>
+
+                  {/* Poster Footer Action Card */}
+                  <div className="pt-1 px-1 flex items-center justify-between gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setIsPosterModalOpen(true)}
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-gray-700 hover:text-seara-orange transition-colors py-1.5"
+                    >
+                      <Eye className="w-4 h-4 text-seara-orange" />
+                      <span>Lihat Ukuran Penuh</span>
+                    </button>
+
+                    <a 
+                      href={REGISTRATION_URL}
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      onClick={handleOpenRegistration}
+                      className="bg-seara-orange hover:bg-orange-600 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-sm transition-all flex items-center gap-1.5"
+                    >
+                      <span>Amankan Slot</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
+
+        {/* POSTER LIGHTBOX MODAL */}
+        <AnimatePresence>
+          {isPosterModalOpen && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsPosterModalOpen(false)}
+              className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
+            >
+              <motion.div 
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+                className="relative max-w-2xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl border border-white/20 p-2"
+              >
+                <div className="flex items-center justify-between p-3 border-b border-gray-100">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-black uppercase text-seara-orange bg-orange-50 px-3 py-1 rounded-full border border-orange-100">
+                      Poster FG Seara Batch 2
+                    </span>
+                    <span className="text-xs text-gray-500 font-semibold">Start 3 October 2026</span>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsPosterModalOpen(false)}
+                    className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center justify-center transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+
+                <div className="max-h-[75vh] overflow-auto p-2 flex items-center justify-center bg-neutral-900/5 rounded-2xl mt-2">
+                  <img 
+                    src="/fg-seara.jpg" 
+                    alt="FG Seara Batch 2 High Resolution Poster" 
+                    referrerPolicy="no-referrer"
+                    className="w-full h-auto object-contain rounded-xl shadow-md max-h-[70vh]"
+                  />
+                </div>
+
+                <div className="p-3 flex items-center justify-between gap-3 mt-2 border-t border-gray-100">
+                  <span className="text-xs text-gray-500">
+                    Pendaftaran dibuka via <strong>s.id/FGSeara</strong> (Maks. 30 Peserta)
+                  </span>
+
+                  <a 
+                    href={REGISTRATION_URL}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={handleOpenRegistration}
+                    className="bg-seara-orange text-white px-5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 shadow-md hover:brightness-105 transition-all"
+                  >
+                    <span>Daftar Sekarang</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
 
         {/* 2. PROGRAM OVERVIEW & OBJECTIVES */}
         <section className="py-20 px-6 max-w-6xl mx-auto">
@@ -498,7 +670,7 @@ export default function FGSeara() {
                 Curriculum Overview (3 Months & 9 Sessions)
               </h2>
               <p className="text-gray-600 text-sm sm:text-base">
-                FG Seara (per Batch): September to November 2026 • Setiap tanggal 1, 11, dan 21 via Zoom Meeting (± 2 Jam/sesi).
+                FG Seara Batch 2: <strong>Start 3 October 2026</strong> (Oktober – Desember 2026) • Sesi berkala via Zoom Meeting (± 2 Jam/sesi).
               </p>
 
               <div className="pt-2">

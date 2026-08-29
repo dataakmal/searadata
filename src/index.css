@@ -10,8 +10,30 @@
   --color-seara-dark: #2d2d2d;
 }
 
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover, .animate-marquee-slow:hover {
+  animation-play-state: paused;
+}
+
 @layer base {
   body {
     @apply bg-seara-cream text-seara-dark font-sans;
   }
 }
+

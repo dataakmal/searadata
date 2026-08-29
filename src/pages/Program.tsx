@@ -320,6 +320,84 @@ export default function Program() {
                 </div>
               </motion.div>
             </div>
+
+            {/* FG Seara Batch 2 Featured Hero Card in Program Page */}
+            <div className="mt-14 bg-gradient-to-r from-neutral-900 via-stone-900 to-seara-dark rounded-[36px] p-6 sm:p-10 text-white shadow-2xl relative overflow-hidden border border-orange-500/20">
+              <div className="absolute top-0 right-0 w-96 h-96 bg-seara-orange/10 blur-[100px] pointer-events-none rounded-full" />
+              
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                <div className="lg:col-span-4 shrink-0">
+                  <div className="relative rounded-2xl overflow-hidden border-2 border-orange-400/40 shadow-xl group">
+                    <img 
+                      src="/fg-seara.jpg" 
+                      alt="FG Seara Batch 2" 
+                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" 
+                    />
+                    <div className="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-full shadow">
+                      Batch 2 Open Now
+                    </div>
+                  </div>
+                </div>
+
+                <div className="lg:col-span-8 space-y-4">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="bg-seara-orange text-white text-xs font-black uppercase px-3.5 py-1 rounded-full">
+                      🔥 Fresh Graduate Accelerator
+                    </span>
+                    <span className="bg-white/10 text-amber-300 text-xs font-bold px-3 py-1 rounded-full border border-white/10">
+                      📅 Start 3 October 2026
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black font-display tracking-tight text-white">
+                    Become a <span className="text-seara-orange">Job-Ready Data Analyst</span> in 3 Months
+                  </h3>
+
+                  <p className="text-gray-300 text-xs sm:text-sm leading-relaxed max-w-2xl">
+                    Program 3 bulan (9 sesi intensif) khusus fresh graduate & mahasiswa tingkat akhir. Dilengkapi kurikulum industri, portofolio nyata, review CV, mock interview, dan bimbingan eksklusif.
+                  </p>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2">
+                    <div className="bg-white/5 border border-white/10 p-2.5 rounded-xl">
+                      <span className="text-[10px] text-gray-400 font-bold block uppercase">Durasi</span>
+                      <span className="text-xs font-bold text-white">3 Bulan (9 Sesi)</span>
+                    </div>
+                    <div className="bg-white/5 border border-white/10 p-2.5 rounded-xl">
+                      <span className="text-[10px] text-gray-400 font-bold block uppercase">Kickoff</span>
+                      <span className="text-xs font-bold text-amber-300">3 Okt 2026</span>
+                    </div>
+                    <div className="bg-white/5 border border-white/10 p-2.5 rounded-xl">
+                      <span className="text-[10px] text-gray-400 font-bold block uppercase">Kuota</span>
+                      <span className="text-xs font-bold text-emerald-400">30 Peserta</span>
+                    </div>
+                    <div className="bg-white/5 border border-white/10 p-2.5 rounded-xl">
+                      <span className="text-[10px] text-gray-400 font-bold block uppercase">Investasi</span>
+                      <span className="text-xs font-bold text-orange-400">Rp90k/bln</span>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-3 pt-2">
+                    <Link
+                      to="/fgseara"
+                      className="bg-seara-orange text-white hover:brightness-110 px-6 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-lg shadow-orange-500/25"
+                    >
+                      <span>Lihat Rincian FGSeara Batch 2</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+
+                    <a
+                      href="https://s.id/FGSeara"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2"
+                    >
+                      <span>Daftar via s.id/FGSeara</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
