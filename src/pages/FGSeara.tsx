@@ -466,7 +466,7 @@ export default function FGSeara() {
                     className="relative overflow-hidden rounded-2xl bg-neutral-100 cursor-pointer aspect-[4/5] shadow-inner"
                   >
                     <img 
-                      src="/fg-seara.jpg" 
+                      src="/fg-seara.png" 
                       alt="FG Seara Batch 2 Poster Official" 
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
@@ -554,7 +554,7 @@ export default function FGSeara() {
 
                 <div className="max-h-[75vh] overflow-auto p-2 flex items-center justify-center bg-neutral-900/5 rounded-2xl mt-2">
                   <img 
-                    src="/fg-seara.jpg" 
+                    src="/fg-seara.png" 
                     alt="FG Seara Batch 2 High Resolution Poster" 
                     referrerPolicy="no-referrer"
                     className="w-full h-auto object-contain rounded-xl shadow-md max-h-[70vh]"

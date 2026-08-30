@@ -329,7 +329,7 @@ export default function Program() {
                 <div className="lg:col-span-4 shrink-0">
                   <div className="relative rounded-2xl overflow-hidden border-2 border-orange-400/40 shadow-xl group">
                     <img 
-                      src="/fg-seara.jpg" 
+                      src="/fg-seara.png" 
                       alt="FG Seara Batch 2" 
                       className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" 
                     />
