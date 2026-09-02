@@ -313,6 +313,10 @@ export default function CertificateVerify() {
 
   const cert = dynamicCert;
 
+  const isCertModerator = !!cert && (cert.role === "moderator" || cert.certificateId.toUpperCase().includes("-MOD-") || cert.program?.toUpperCase().includes("MODERATOR"));
+  const isCertInstructor = !!cert && !isCertModerator && (cert.role === "instructor" || cert.certificateId.toUpperCase().includes("-INS-") || cert.program?.toUpperCase().includes("INSTRUCTOR"));
+  const isCertStaff = isCertModerator || isCertInstructor;
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchId.trim()) {
@@ -383,16 +387,16 @@ export default function CertificateVerify() {
                   </div>
                   <div>
                     <span className="text-emerald-700 text-xs font-black uppercase tracking-wider bg-emerald-100/75 px-3 py-1 rounded-full">
-                      {cert.role === "moderator" 
+                      {isCertModerator 
                         ? "Seara Moderator Verified" 
-                        : cert.role === "instructor" 
+                        : isCertInstructor 
                         ? "Seara Instructor Verified" 
                         : "Seara Credential Verified"}
                     </span>
                     <h2 className="text-xl font-bold text-gray-800 mt-0.5">
-                      {cert.role === "moderator" 
+                      {isCertModerator 
                         ? "Sertifikat Moderator Terverifikasi" 
-                        : cert.role === "instructor" 
+                        : isCertInstructor 
                         ? "Sertifikat Pemateri Terverifikasi" 
                         : "Sertifikat Terverifikasi"}
                     </h2>
@@ -430,15 +434,15 @@ export default function CertificateVerify() {
                         <Award className="w-8 h-8" />
                       </div>
                       <span className="text-xs font-bold text-seara-orange uppercase tracking-wider">
-                        {cert.role === "moderator" || cert.role === "instructor" ? "Penerima Apresiasi" : "Penerima Penghargaan"}
+                        {isCertStaff ? "Penerima Apresiasi" : "Penerima Penghargaan"}
                       </span>
                       <h3 className="text-2xl font-extrabold text-seara-dark mt-1 tracking-tight leading-snug">
                         {cert.name}
                       </h3>
                       <p className="text-gray-500 text-sm mt-2 leading-relaxed">
-                        {cert.role === "moderator"
+                        {isCertModerator
                           ? "Telah berkontribusi secara luar biasa sebagai Moderator dalam memfasilitasi Pemateri serta membantu Peserta di Seara Data."
-                          : cert.role === "instructor" 
+                          : isCertInstructor 
                           ? "Telah berkontribusi secara luar biasa sebagai Instruktur/Pemateri dalam menyampaikan materi berkualitas tinggi serta membimbing peserta di Seara Data." 
                           : "Telah berhasil menyelesaikan semua kurikulum, tugas praktek, dan final project dari program Seara Data."}
                       </p>
@@ -463,7 +467,7 @@ export default function CertificateVerify() {
                 <div className="md:col-span-7 p-8 md:p-10 space-y-8">
                   <div>
                     <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">
-                      {cert.role === "moderator" || cert.role === "instructor" ? "Kontribusi Program" : "Spesifikasi Program"}
+                      {isCertStaff ? "Kontribusi Program" : "Spesifikasi Program"}
                     </h4>
                     <h3 className="text-2xl font-extrabold text-seara-dark mt-1">
                       {cert.program}
@@ -476,7 +480,7 @@ export default function CertificateVerify() {
                       <Calendar className="text-seara-orange w-5 h-5 mt-0.5 shrink-0" />
                       <div>
                         <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
-                          {cert.role === "moderator" || cert.role === "instructor" ? "Periode Pelaksanaan" : "Tanggal Selesai"}
+                          {isCertStaff ? "Periode Pelaksanaan" : "Tanggal Selesai"}
                         </div>
                         <div className="text-sm font-bold text-gray-700">{cert.completionDate}</div>
                       </div>
@@ -486,9 +490,9 @@ export default function CertificateVerify() {
                       <Clock className="text-seara-orange w-5 h-5 mt-0.5 shrink-0" />
                       <div>
                         <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
-                          {cert.role === "moderator" 
+                          {isCertModerator 
                             ? "Durasi Moderasi" 
-                            : cert.role === "instructor" 
+                            : isCertInstructor 
                             ? "Durasi Pengajaran" 
                             : "Durasi Belajar"}
                         </div>
@@ -501,9 +505,9 @@ export default function CertificateVerify() {
                   <div className="space-y-3">
                     <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-1.5">
                       <BookOpen className="w-4 h-4 text-seara-orange" />
-                      {cert.role === "moderator"
+                      {isCertModerator
                         ? "Lingkup Kontribusi & Moderasi"
-                        : cert.role === "instructor" 
+                        : isCertInstructor 
                         ? "Materi & Topik yang Disampaikan" 
                         : "Teknologi & Kompetensi Terverifikasi"}
                     </h4>
