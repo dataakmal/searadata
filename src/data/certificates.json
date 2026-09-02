@@ -12,6 +12,37 @@
       "Python"
     ],
     "founder": "Akmal Fauzan",
-    "pdfUrl": "/certificate/SD-DA-B1-001.pdf"
+    "pdfUrl": "/certificate/SD-DA-B1-001.pdf",
+    "role": "participant"
+  },
+  "SD-DA-B1-INS-001": {
+    "certificateId": "SD-DA-B1-INS-001",
+    "name": "M. Zahrul Wafi",
+    "program": "INSTRUCTOR - DATA ANALYST BOOTCAMP BATCH 1",
+    "completionDate": "3-10 Juni 2026",
+    "duration": "6 Jam (3 Live Sessions)",
+    "technologies": [
+      "Become a Data Analyst & Excel Basic",
+      "Excel Intermediate & Power Query"
+    ],
+    "founder": "Akmal Fauzan",
+    "pdfUrl": "/certificate/SD-DA-B1-INS-001.pdf",
+    "role": "instructor"
+  },
+  "SD-DA-B1-MOD-001": {
+    "certificateId": "SD-DA-B1-MOD-001",
+    "name": "Febrinda Dian A",
+    "program": "MODERATOR - DATA ANALYST BOOTCAMP BATCH 1",
+    "completionDate": "13 - 20 Juni 2026",
+    "duration": "6 Jam (3 Live Sessions)",
+    "technologies": [
+      "Session Moderation",
+      "Participant Engagement",
+      "Discussion Facilitation",
+      "Program Support"
+    ],
+    "founder": "Akmal Fauzan",
+    "pdfUrl": "/certificate/SD-DA-B1-MOD-001.pdf",
+    "role": "moderator"
   }
 }

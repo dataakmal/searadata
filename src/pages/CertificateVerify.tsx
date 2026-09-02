@@ -28,7 +28,7 @@ interface Certificate {
   technologies: string[];
   founder: string;
   pdfUrl: string;
-  role?: 'instructor' | 'participant';
+  role?: 'instructor' | 'moderator' | 'participant';
 }
 
 export default function CertificateVerify() {
@@ -132,8 +132,10 @@ export default function CertificateVerify() {
         const lines = rawItems.map((line: string) => line.trim()).filter((line: string) => line.length > 0);
         const fullText = lines.join(" ");
 
-        const isInstructor = activeCertId.includes("-INS-") || fullText.toUpperCase().includes("INSTRUCTOR") || fullText.toUpperCase().includes("APPRECIATION");
-        const role = isInstructor ? "instructor" : "participant";
+        const isModerator = activeCertId.includes("-MOD-") || fullText.toUpperCase().includes("MODERATOR");
+        const isInstructor = !isModerator && (activeCertId.includes("-INS-") || fullText.toUpperCase().includes("INSTRUCTOR") || fullText.toUpperCase().includes("APPRECIATION"));
+        const role: 'instructor' | 'moderator' | 'participant' = isModerator ? "moderator" : isInstructor ? "instructor" : "participant";
+        const isStaff = isInstructor || isModerator;
 
         let name = "";
         let program = "Data Analyst Bootcamp";
@@ -157,7 +159,7 @@ export default function CertificateVerify() {
         }
 
         // 2. Extract Program Name
-        if (isInstructor) {
+        if (isStaff) {
           const contribIndex = lines.findIndex((l: string) => l.toUpperCase().includes("VALUABLE CONTRIBUTION") || l.toUpperCase().includes("CONTRIBUTION AS"));
           const recognitionIndex = lines.findIndex((l: string) => l.toUpperCase().includes("IN RECOGNITION") || l.toUpperCase().includes("DEDICATION, EXPERTISE"));
           
@@ -171,7 +173,7 @@ export default function CertificateVerify() {
           
           let rawProg = progParts.join(" ").replace(/\s+/g, " ").trim();
           if (!rawProg) {
-            rawProg = "INSTRUCTOR - DATA ANALYST BOOTCAMP";
+            rawProg = isModerator ? "MODERATOR - DATA ANALYST BOOTCAMP" : "INSTRUCTOR - DATA ANALYST BOOTCAMP";
           }
           
           rawProg = rawProg.toUpperCase();
@@ -199,8 +201,8 @@ export default function CertificateVerify() {
         }
 
         // 3. Extract Core Technologies or Topics Delivered
-        if (isInstructor) {
-          const topicsIndex = lines.findIndex((l: string) => l.toUpperCase().includes("TOPICS DELIVERED"));
+        if (isStaff) {
+          const topicsIndex = lines.findIndex((l: string) => l.toUpperCase().includes("TOPICS DELIVERED") || l.toUpperCase().includes("CONTRIBUTION SCOPE") || l.toUpperCase().includes("TOPICS"));
           const founderIndex = lines.findIndex((l: string) => l.toUpperCase().includes("FOUNDER") || l.toUpperCase().includes("AKMAL FAUZAN"));
           
           let topicLines: string[] = [];
@@ -216,6 +218,10 @@ export default function CertificateVerify() {
             .split(/[•|]/)
             .map((t: string) => t.replace(/Founder\s+Seara\s+Data/gi, "").replace(/AKMAL\s+FAUZAN/gi, "").trim())
             .filter((t: string) => t.length > 0 && t.toUpperCase() !== "FOUNDER" && t.toUpperCase() !== "AKMAL FAUZAN");
+
+          if (technologies.length === 0 && isModerator) {
+            technologies = ["Session Moderation", "Participant Engagement", "Discussion Facilitation", "Program Support"];
+          }
         } else {
           const techIndex = lines.findIndex((l: string) => l.toUpperCase().includes("CORE TECHNOLOGIES"));
           if (techIndex !== -1 && techIndex + 1 < lines.length) {
@@ -225,7 +231,7 @@ export default function CertificateVerify() {
         }
 
         // 4. Extract Date of Completion and Duration
-        if (isInstructor) {
+        if (isStaff) {
           // Cari tanggal berdasarkan nama bulan
           const monthRegex = /(January|February|March|April|May|June|July|August|September|October|November|December)/i;
           const dateLine = lines.find((l: string) => monthRegex.test(l) && !l.toUpperCase().includes("PROUDLY") && !l.toUpperCase().includes("CONTRIBUTION"));
@@ -377,10 +383,18 @@ export default function CertificateVerify() {
                   </div>
                   <div>
                     <span className="text-emerald-700 text-xs font-black uppercase tracking-wider bg-emerald-100/75 px-3 py-1 rounded-full">
-                      {cert.role === "instructor" ? "Seara Instructor Verified" : "Seara Credential Verified"}
+                      {cert.role === "moderator" 
+                        ? "Seara Moderator Verified" 
+                        : cert.role === "instructor" 
+                        ? "Seara Instructor Verified" 
+                        : "Seara Credential Verified"}
                     </span>
                     <h2 className="text-xl font-bold text-gray-800 mt-0.5">
-                      {cert.role === "instructor" ? "Sertifikat Pemateri Terverifikasi" : "Sertifikat Terverifikasi"}
+                      {cert.role === "moderator" 
+                        ? "Sertifikat Moderator Terverifikasi" 
+                        : cert.role === "instructor" 
+                        ? "Sertifikat Pemateri Terverifikasi" 
+                        : "Sertifikat Terverifikasi"}
                     </h2>
                   </div>
                 </div>
@@ -416,13 +430,15 @@ export default function CertificateVerify() {
                         <Award className="w-8 h-8" />
                       </div>
                       <span className="text-xs font-bold text-seara-orange uppercase tracking-wider">
-                        {cert.role === "instructor" ? "Penerima Apresiasi" : "Penerima Penghargaan"}
+                        {cert.role === "moderator" || cert.role === "instructor" ? "Penerima Apresiasi" : "Penerima Penghargaan"}
                       </span>
                       <h3 className="text-2xl font-extrabold text-seara-dark mt-1 tracking-tight leading-snug">
                         {cert.name}
                       </h3>
-                      <p className="text-gray-500 text-sm mt-2">
-                        {cert.role === "instructor" 
+                      <p className="text-gray-500 text-sm mt-2 leading-relaxed">
+                        {cert.role === "moderator"
+                          ? "Telah berkontribusi secara luar biasa sebagai Moderator dalam memfasilitasi Pemateri serta membantu Peserta di Seara Data."
+                          : cert.role === "instructor" 
                           ? "Telah berkontribusi secara luar biasa sebagai Instruktur/Pemateri dalam menyampaikan materi berkualitas tinggi serta membimbing peserta di Seara Data." 
                           : "Telah berhasil menyelesaikan semua kurikulum, tugas praktek, dan final project dari program Seara Data."}
                       </p>
@@ -447,7 +463,7 @@ export default function CertificateVerify() {
                 <div className="md:col-span-7 p-8 md:p-10 space-y-8">
                   <div>
                     <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">
-                      {cert.role === "instructor" ? "Kontribusi Program" : "Spesifikasi Program"}
+                      {cert.role === "moderator" || cert.role === "instructor" ? "Kontribusi Program" : "Spesifikasi Program"}
                     </h4>
                     <h3 className="text-2xl font-extrabold text-seara-dark mt-1">
                       {cert.program}
@@ -460,7 +476,7 @@ export default function CertificateVerify() {
                       <Calendar className="text-seara-orange w-5 h-5 mt-0.5 shrink-0" />
                       <div>
                         <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
-                          {cert.role === "instructor" ? "Periode Pelaksanaan" : "Tanggal Selesai"}
+                          {cert.role === "moderator" || cert.role === "instructor" ? "Periode Pelaksanaan" : "Tanggal Selesai"}
                         </div>
                         <div className="text-sm font-bold text-gray-700">{cert.completionDate}</div>
                       </div>
@@ -470,7 +486,11 @@ export default function CertificateVerify() {
                       <Clock className="text-seara-orange w-5 h-5 mt-0.5 shrink-0" />
                       <div>
                         <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
-                          {cert.role === "instructor" ? "Durasi Pengajaran" : "Durasi Belajar"}
+                          {cert.role === "moderator" 
+                            ? "Durasi Moderasi" 
+                            : cert.role === "instructor" 
+                            ? "Durasi Pengajaran" 
+                            : "Durasi Belajar"}
                         </div>
                         <div className="text-sm font-bold text-gray-700">{cert.duration}</div>
                       </div>
@@ -481,7 +501,11 @@ export default function CertificateVerify() {
                   <div className="space-y-3">
                     <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-1.5">
                       <BookOpen className="w-4 h-4 text-seara-orange" />
-                      {cert.role === "instructor" ? "Materi & Topik yang Disampaikan" : "Teknologi & Kompetensi Terverifikasi"}
+                      {cert.role === "moderator"
+                        ? "Lingkup Kontribusi & Moderasi"
+                        : cert.role === "instructor" 
+                        ? "Materi & Topik yang Disampaikan" 
+                        : "Teknologi & Kompetensi Terverifikasi"}
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {cert.technologies.map((tech, idx) => (
