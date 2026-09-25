@@ -32,6 +32,20 @@ import {
 } from "lucide-react";
 
 // Types
+interface BatchMentor {
+  name: string;
+  role: string;
+  photo?: string;
+}
+
+interface BatchScheduleItem {
+  session: string;
+  date: string;
+  time: string;
+  topic: string;
+  tool?: string;
+}
+
 interface BatchDetail {
   id: string;
   batchNumber: string;
@@ -43,17 +57,28 @@ interface BatchDetail {
   highlight: string;
   skills: string[];
   posterImage: string;
+  scheduleImage?: string;
   sessionsCount?: string;
   hoursCount?: string;
   curriculumOverview: string[];
   keyOutcomes: string[];
   isComingSoon?: boolean;
+  isLive?: boolean;
+  pricePromo?: string;
+  priceNormal?: string;
+  mentors?: BatchMentor[];
+  schedule?: BatchScheduleItem[];
+  registrationUrl?: string;
 }
 
 export default function Bootcamp() {
   const [selectedBatch, setSelectedBatch] = useState<BatchDetail | null>(null);
   const [activeTool, setActiveTool] = useState<"excel" | "powerbi" | "python" | "sql">("excel");
   const [activeTestiFilter, setActiveTestiFilter] = useState<"all" | "tools" | "analytical" | "mentor" | "career">("all");
+  const [batch3VisualTab, setBatch3VisualTab] = useState<"poster" | "jadwal">("poster");
+  const [heroVisualTab, setHeroVisualTab] = useState<"poster" | "jadwal">("poster");
+  const [modalTab, setModalTab] = useState<"poster" | "jadwal" | "kurikulum">("poster");
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; title: string } | null>(null);
 
   const CLICKY_LINK = "https://clicky.id/searadata";
 
@@ -61,7 +86,7 @@ export default function Bootcamp() {
     {
       id: "batch-1",
       batchNumber: "Batch 1",
-      label: "THE BEGINNING",
+      label: "BATCH 1 · COMPLETED",
       title: "Batch 1",
       duration: "3 Weeks Intensive Bootcamp",
       date: "May – June 2026",
@@ -88,7 +113,7 @@ export default function Bootcamp() {
     {
       id: "batch-2",
       batchNumber: "Batch 2",
-      label: "BATCH 2",
+      label: "BATCH 2 · COMPLETED",
       title: "Batch 2",
       duration: "4 Weeks Intensive · 8 Sessions · 20+ Hours",
       date: "29 July – 22 August 2026",
@@ -115,30 +140,61 @@ export default function Bootcamp() {
     {
       id: "batch-3",
       batchNumber: "Batch 3",
-      label: "COMING SOON",
+      label: "LIVE NOW • OPEN REGISTRATION",
       title: "Batch 3",
       duration: "4 Weeks Intensive · 8 Sessions · 20+ Hours",
-      date: "Coming Soon 2026",
+      date: "28 Oct – 21 Nov 2026",
       description:
-        "Batch 3 memiliki kurikulum dan struktur yang sama dengan Batch 2: program 4 minggu intensif (8 sesi, 20+ jam) mencakup Excel, Power BI, Python, dan SQL dengan hands-on business cases serta pembuatan portofolio data.",
-      highlight: "Format intensif 4 minggu, 8 sesi & 4 tools data utama.",
+        "Batch 3 resmi dibuka! Program intensif 4 minggu (8 live sessions, 20+ jam) mencakup Excel, Power BI, Python, dan SQL dengan bimbingan langsung praktisi industri terkemuka, studi kasus bisnis riil, dan pembuatan portofolio profesional.",
+      highlight: "28 Oct – 21 Nov 2026 · Promo Rp 329.000 (Normal Rp 699.000) · 8 Live Sessions",
       skills: ["Excel", "Power BI", "Python", "SQL"],
-      posterImage: "/bootcamp-data-analyst-batch2.png",
+      posterImage: "/bootcamp-data-analyst-batch3.png",
+      scheduleImage: "/bootcamp-data-analyst-batch3-jadwal.png",
       sessionsCount: "8 Live Sessions",
       hoursCount: "20+ Hours Comprehensive Training",
+      isLive: true,
+      pricePromo: "Rp 329.000",
+      priceNormal: "Rp 699.000",
+      registrationUrl: CLICKY_LINK,
+      mentors: [
+        {
+          name: "Zahrul Wafi",
+          role: "Business Data Analyst at Bank Danamon",
+          photo: "/zahrulwafi.jpeg"
+        },
+        {
+          name: "Achmad Kurniansyah",
+          role: "Business Intelligence at Dekoruma",
+          photo: "/achmadkurniansyah.jpeg"
+        }
+      ],
+      schedule: [
+        { session: "Sesi 1", date: "28 OCT", time: "19.30 – 22.00 WIB", topic: "Excel Basic for Data Analysts & Become a Data Analyst", tool: "Excel" },
+        { session: "Sesi 2", date: "31 OCT", time: "09.30 – 12.00 WIB", topic: "Excel Intermediate & Power Query", tool: "Excel" },
+        { session: "Sesi 3", date: "4 NOV", time: "19.30 – 22.00 WIB", topic: "Power BI Basic, DAX & Data Calculation", tool: "Power BI" },
+        { session: "Sesi 4", date: "7 NOV", time: "09.30 – 12.00 WIB", topic: "Power BI Advanced & Data Visualization", tool: "Power BI" },
+        { session: "Sesi 5", date: "11 NOV", time: "19.30 – 22.00 WIB", topic: "Python Basic & Data Cleaning & Formatting", tool: "Python" },
+        { session: "Sesi 6", date: "14 NOV", time: "09.30 – 12.00 WIB", topic: "Python Advanced & Data Transformation", tool: "Python" },
+        { session: "Sesi 7", date: "18 NOV", time: "19.30 – 22.00 WIB", topic: "SQL Basic, Query & Filter Data", tool: "SQL" },
+        { session: "Sesi 8", date: "21 NOV", time: "09.30 – 12.00 WIB", topic: "SQL Intermediate, Join & Aggregation & Subquery", tool: "SQL" }
+      ],
       curriculumOverview: [
-        "Advanced Excel, Power Query & Pivot Modeling",
-        "Power BI DAX, Star Schema & Interactive KPI Reporting",
-        "Python Data Wrangling, Automation & Exploratory Analysis",
-        "Advanced SQL: Multi-table JOIN, Subqueries & Aggregations",
-        "End-to-End Capstone Project & Portfolio Consultation",
+        "Sesi 1 (28 Oct): Become a Data Analyst & Microsoft Excel Basic",
+        "Sesi 2 (31 Oct): Microsoft Excel Intermediate & Power Query",
+        "Sesi 3 (4 Nov): Microsoft Power BI Basic, DAX & Data Calculation",
+        "Sesi 4 (7 Nov): Microsoft Power BI Advanced & Data Visualization",
+        "Sesi 5 (11 Nov): Python Basic & Data Cleaning & Formatting",
+        "Sesi 6 (14 Nov): Python Advanced & Data Transformation",
+        "Sesi 7 (18 Nov): SQL Basic, Query & Filter Data",
+        "Sesi 8 (21 Nov): SQL Intermediate, Join & Aggregation & Subquery",
       ],
       keyOutcomes: [
-        "Comprehensive 4-tool end-to-end portfolio",
-        "Real-world business case study problem solving",
-        "1-on-1 feedback on final project deliverables",
+        "Kuasai 4 tools utama industri data: Excel, Power BI, Python, SQL",
+        "8 sesi live bimbingan interaktif & rekaman lifetime access",
+        "Bimbingan langsung dari praktisi Bank Danamon & Dekoruma",
+        "Studi kasus nyata & portofolio akhir siap pamer di LinkedIn/CV",
+        "Harga Promo Rp 329k (Hemat dari harga normal Rp 699k)",
       ],
-      isComingSoon: true,
     },
   ];
 
@@ -519,7 +575,7 @@ export default function Bootcamp() {
         <Navbar />
 
         {/* ========================================================
-            RUNNING TICKER / MARQUEE (Bootcamp Batch 3 Coming Soon)
+            RUNNING TICKER / MARQUEE (Bootcamp Batch 3 Live Now)
            ======================================================== */}
         <div className="w-full bg-gradient-to-r from-seara-dark via-stone-900 to-seara-dark text-white border-b border-orange-500/30 overflow-hidden relative shadow-md z-30 select-none py-2.5">
           {/* Gradient Edge Masks for Smooth Edge Fade */}
@@ -531,7 +587,7 @@ export default function Bootcamp() {
             target="_blank"
             rel="noopener noreferrer"
             className="flex w-max group cursor-pointer"
-            title="Klik untuk info pendaftaran Bootcamp Batch 3"
+            title="Klik untuk pendaftaran Bootcamp Batch 3 di Clicky"
           >
             <motion.div
               className="flex items-center gap-8 pr-8 whitespace-nowrap"
@@ -544,22 +600,22 @@ export default function Bootcamp() {
             >
               {[...Array(6)].map((_, idx) => (
                 <div key={idx} className="flex items-center gap-4 text-xs sm:text-sm font-bold tracking-wide">
-                  <span className="inline-flex items-center gap-1.5 bg-seara-orange text-white text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
-                    <Sparkles className="w-3 h-3 animate-spin" style={{ animationDuration: "3s" }} />
-                    <span>SOON</span>
+                  <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-rose-600 to-orange-500 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs animate-pulse">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                    <span>LIVE NOW</span>
                   </span>
 
                   <span className="font-display font-extrabold text-white sm:text-base tracking-wider uppercase flex items-center gap-2 group-hover:text-seara-orange transition-colors">
-                    <span>Bootcamp Batch 3 Coming Soon</span>
+                    <span>Bootcamp Data Analyst Batch 3 is Live!</span>
                     <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
                   </span>
 
                   <span className="text-gray-300 font-medium text-xs hidden md:inline">
-                    · 4 Weeks Intensive · Excel, Power BI, Python & SQL ·
+                    · 28 Okt – 21 Nov 2026 · Promo Rp 329k (Normal 699k) · Excel, Power BI, Python & SQL ·
                   </span>
 
                   <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-seara-orange bg-orange-950/60 border border-orange-500/30 px-2 py-0.5 rounded-md">
-                    <span>Nantikan Info & Waiting List</span>
+                    <span>Daftar di clicky.id/searadata</span>
                     <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                   </span>
 
@@ -573,162 +629,326 @@ export default function Bootcamp() {
         {/* ========================================================
             HERO SECTION
            ======================================================== */}
-        <header className="relative pt-12 pb-20 md:pt-20 md:pb-28 px-6 overflow-hidden">
+        {/* ========================================================
+            HERO SECTION WITH OFFICIAL BATCH 3 POSTER AT THE TOP
+           ======================================================== */}
+        <header className="relative pt-8 pb-16 md:pt-14 md:pb-20 px-4 sm:px-6 overflow-hidden">
           {/* Subtle Ambient Background Gradients */}
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[800px] h-[350px] bg-gradient-to-tr from-seara-orange/15 to-amber-200/20 rounded-full blur-[100px] pointer-events-none -z-10" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[900px] h-[400px] bg-gradient-to-tr from-seara-orange/15 to-amber-200/20 rounded-full blur-[110px] pointer-events-none -z-10" />
 
-          <div className="max-w-5xl mx-auto text-center relative z-10">
+          <div className="max-w-6xl mx-auto relative z-10">
             {/* Top Pill Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 bg-white/90 border border-orange-200/80 px-4 py-1.5 rounded-full shadow-xs mb-8 backdrop-blur-xs"
-            >
-              <span className="flex h-2 w-2 rounded-full bg-seara-orange animate-pulse" />
-              <span className="text-xs font-bold uppercase tracking-wider text-seara-orange">
-                Seara Data · Intensive Career Program
-              </span>
-            </motion.div>
-
-            {/* Main Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-seara-dark tracking-tight leading-[1.08] mb-6 font-display"
-            >
-              Bootcamp <br className="hidden sm:inline" />
-              <span className="text-seara-orange underline decoration-orange-200 decoration-wavy decoration-2 underline-offset-8">
-                Data Analyst
-              </span>
-            </motion.h1>
-
-            {/* Subheadline */}
-            <motion.h2
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 tracking-tight mb-6"
-            >
-              From Learning Data to Building Real-World Skills.
-            </motion.h2>
-
-            {/* Supporting Copy */}
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-10"
-            >
-              An intensive learning experience designed to help you build practical Data Analyst skills through Excel, Power BI, Python, SQL, hands-on practice, and portfolio projects.
-            </motion.p>
-
-            {/* Hero CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto"
-            >
-              <button
-                onClick={() => scrollToSection("journey")}
-                id="hero-explore-journey-btn"
-                className="w-full sm:w-auto bg-seara-dark text-white hover:bg-black font-bold px-8 py-3.5 rounded-full transition-all shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center gap-2 group cursor-pointer"
+            <div className="text-center lg:text-left mb-6">
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 bg-white/90 border border-orange-200/80 px-4 py-1.5 rounded-full shadow-xs backdrop-blur-xs"
               >
-                <span>Explore Our Journey</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+                <span className="flex h-2 w-2 rounded-full bg-seara-orange animate-pulse" />
+                <span className="text-xs font-bold uppercase tracking-wider text-seara-orange">
+                  🔥 PENDAFTARAN RESMI DIBUKA · BATCH 3 LIVE NOW
+                </span>
+              </motion.div>
+            </div>
 
-              <a
-                href={CLICKY_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                id="hero-coming-soon-btn"
-                className="w-full sm:w-auto bg-seara-orange text-white hover:brightness-95 font-bold px-8 py-3.5 rounded-full transition-all shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center gap-2 text-center"
-              >
-                <Sparkles className="w-4 h-4" />
-                <span>Coming Soon — Batch 3</span>
-              </a>
-            </motion.div>
-
-            {/* Hero Visual Mockup: Clean Data Analytics Interactive Preview */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="mt-14 max-w-4xl mx-auto bg-white rounded-3xl p-5 md:p-8 border border-gray-200/80 shadow-xl shadow-gray-200/40 relative text-left"
-            >
-              {/* Mockup Window Header */}
-              <div className="flex items-center justify-between pb-4 mb-6 border-b border-gray-100">
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full bg-red-400" />
-                  <span className="w-3 h-3 rounded-full bg-amber-400" />
-                  <span className="w-3 h-3 rounded-full bg-emerald-400" />
-                  <span className="ml-2 text-xs font-semibold text-gray-400">
-                    seara-data-analytics-workspace.sql
+            {/* Main 2-Column Hero: Left Headline/Details, Right Official Poster */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-12">
+              {/* Left Column: Headline, Highlights, Mentors, and CTAs */}
+              <div className="lg:col-span-7 text-center lg:text-left">
+                <motion.h1
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-seara-dark tracking-tight leading-[1.08] mb-4 font-display"
+                >
+                  Bootcamp <br className="hidden sm:inline" />
+                  <span className="text-seara-orange underline decoration-orange-200 decoration-wavy decoration-2 underline-offset-8">
+                    Data Analyst
+                  </span>{" "}
+                  <span className="inline-block text-2xl sm:text-3xl md:text-4xl font-black text-white bg-gradient-to-r from-rose-600 to-seara-orange px-3 py-1 rounded-2xl align-middle shadow-sm">
+                    Batch 3
                   </span>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-semibold text-seara-orange bg-orange-50 px-3 py-1 rounded-full border border-orange-200/60">
-                  <Zap className="w-3.5 h-3.5" />
-                  <span>4 Core Tools Integrated</span>
-                </div>
+                </motion.h1>
+
+                {/* Subheadline */}
+                <motion.h2
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 tracking-tight mb-4"
+                >
+                  From Learning Data to Building Real-World Skills.
+                </motion.h2>
+
+                {/* Supporting Copy */}
+                <motion.p
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-6"
+                >
+                  Program 4 minggu intensif (8 sesi live, 20+ jam) mencakup Excel, Power BI, Python, dan SQL dengan bimbingan praktisi Bank Danamon &amp; Dekoruma, studi kasus bisnis nyata, dan portofolio profesional siap kerja.
+                </motion.p>
+
+                {/* Batch 3 Key Info Badges */}
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.35 }}
+                  className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6"
+                >
+                  <div className="bg-white/90 border border-orange-200/80 rounded-2xl p-3 text-center shadow-xs">
+                    <span className="text-[10px] text-gray-400 block uppercase font-bold tracking-wider">Periode</span>
+                    <span className="text-xs sm:text-sm font-extrabold text-seara-dark">28 Okt – 21 Nov 2026</span>
+                  </div>
+                  <div className="bg-white/90 border border-orange-200/80 rounded-2xl p-3 text-center shadow-xs">
+                    <span className="text-[10px] text-gray-400 block uppercase font-bold tracking-wider">Durasi</span>
+                    <span className="text-xs sm:text-sm font-extrabold text-seara-dark">4 Minggu · 8 Sesi</span>
+                  </div>
+                  <div className="bg-white/90 border border-orange-200/80 rounded-2xl p-3 text-center shadow-xs">
+                    <span className="text-[10px] text-gray-400 block uppercase font-bold tracking-wider">4 Core Tools</span>
+                    <span className="text-xs sm:text-sm font-extrabold text-seara-orange">Excel, PBI, Py, SQL</span>
+                  </div>
+                  <div className="bg-gradient-to-br from-orange-50 to-amber-100/60 border border-orange-300 rounded-2xl p-3 text-center shadow-xs">
+                    <span className="text-[10px] text-seara-orange block uppercase font-bold tracking-wider">Promo Khusus</span>
+                    <span className="text-xs sm:text-sm font-black text-seara-dark">
+                      Rp 329.000 <span className="text-[10px] text-gray-400 line-through font-normal">699k</span>
+                    </span>
+                  </div>
+                </motion.div>
+
+                {/* Mentors Preview Chip */}
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="inline-flex items-center gap-3 bg-white/90 border border-gray-200/80 rounded-2xl p-2.5 pr-4 mb-6 shadow-xs text-left"
+                >
+                  <div className="flex -space-x-2">
+                    <img
+                      src="/zahrulwafi.jpeg"
+                      alt="Zahrul Wafi"
+                      className="w-9 h-9 rounded-full object-cover border-2 border-white shadow-xs"
+                    />
+                    <img
+                      src="/achmadkurniansyah.jpeg"
+                      alt="Achmad Kurniansyah"
+                      className="w-9 h-9 rounded-full object-cover border-2 border-white shadow-xs"
+                    />
+                  </div>
+                  <div className="text-xs">
+                    <p className="font-bold text-gray-800">
+                      Bimbingan Langsung Praktisi Industri:
+                    </p>
+                    <p className="text-gray-500 font-medium">
+                      Zahrul Wafi (Bank Danamon) &amp; Achmad Kurniansyah (Dekoruma)
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Hero CTAs */}
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.45 }}
+                  className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5"
+                >
+                  <a
+                    href={CLICKY_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id="hero-batch3-live-btn"
+                    className="w-full sm:w-auto bg-gradient-to-r from-orange-500 via-seara-orange to-amber-500 hover:brightness-105 text-white font-bold px-8 py-3.5 rounded-full transition-all shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center gap-2 text-center"
+                  >
+                    <Zap className="w-4 h-4 fill-white" />
+                    <span>Daftar Batch 3 Sekarang</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+
+                  <button
+                    onClick={() => scrollToSection("batch3")}
+                    id="hero-view-schedule-btn"
+                    className="w-full sm:w-auto bg-white hover:bg-orange-50/80 text-seara-dark font-bold px-7 py-3.5 rounded-full transition-all border border-gray-200/90 shadow-xs hover:border-orange-300 active:scale-95 flex items-center justify-center gap-2 group cursor-pointer"
+                  >
+                    <Calendar className="w-4 h-4 text-seara-orange" />
+                    <span>Lihat Jadwal Lengkap</span>
+                  </button>
+
+                  <button
+                    onClick={() => scrollToSection("journey")}
+                    id="hero-explore-journey-btn"
+                    className="w-full sm:w-auto bg-transparent hover:bg-gray-100 text-gray-600 font-bold px-5 py-3.5 rounded-full transition-all text-xs flex items-center justify-center gap-1.5 cursor-pointer"
+                  >
+                    <span>Timeline Journey</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </button>
+                </motion.div>
               </div>
 
-              {/* 4 Tool Mini Preview Bar */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-                <div className="bg-gray-50 hover:bg-orange-50/50 p-3 rounded-2xl border border-gray-100 transition-colors">
+              {/* Right Column: OFFICIAL POSTER & SCHEDULE PREVIEW CARD AT THE TOP */}
+              <div className="lg:col-span-5 flex flex-col items-center">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.2 }}
+                  className="w-full max-w-md bg-stone-900 text-white rounded-3xl p-4 sm:p-5 border-2 border-orange-500/40 shadow-2xl relative overflow-hidden"
+                >
+                  {/* Card Header & Switcher Tabs */}
+                  <div className="flex items-center justify-between gap-2 mb-3 pb-3 border-b border-white/10">
+                    <div className="inline-flex bg-black/50 p-1 rounded-xl border border-white/10 text-xs font-bold">
+                      <button
+                        onClick={() => setHeroVisualTab("poster")}
+                        className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
+                          heroVisualTab === "poster"
+                            ? "bg-seara-orange text-white shadow-xs"
+                            : "text-gray-400 hover:text-white"
+                        }`}
+                      >
+                        <FileText className="w-3.5 h-3.5" />
+                        <span>Poster Resmi</span>
+                      </button>
+                      <button
+                        onClick={() => setHeroVisualTab("jadwal")}
+                        className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
+                          heroVisualTab === "jadwal"
+                            ? "bg-seara-orange text-white shadow-xs"
+                            : "text-gray-400 hover:text-white"
+                        }`}
+                      >
+                        <Calendar className="w-3.5 h-3.5" />
+                        <span>Jadwal Sesi</span>
+                      </button>
+                    </div>
+
+                    <span className="inline-flex items-center gap-1 bg-rose-600/90 text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-full shadow-xs animate-pulse">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                      <span>LIVE</span>
+                    </span>
+                  </div>
+
+                  {/* Poster / Jadwal Image with Click to Zoom */}
+                  <div
+                    onClick={() =>
+                      setLightboxImage({
+                        src:
+                          heroVisualTab === "poster"
+                            ? "/bootcamp-data-analyst-batch3.png"
+                            : "/bootcamp-data-analyst-batch3-jadwal.png",
+                        title:
+                          heroVisualTab === "poster"
+                            ? "Poster Resmi Bootcamp Data Analyst Batch 3"
+                            : "Jadwal Sesi Bootcamp Data Analyst Batch 3",
+                      })
+                    }
+                    className="relative group cursor-zoom-in rounded-2xl overflow-hidden border border-white/15 bg-black/60 shadow-inner"
+                  >
+                    <img
+                      src={
+                        heroVisualTab === "poster"
+                          ? "/bootcamp-data-analyst-batch3.png"
+                          : "/bootcamp-data-analyst-batch3-jadwal.png"
+                      }
+                      alt={
+                        heroVisualTab === "poster"
+                          ? "Poster Resmi Bootcamp Data Analyst Batch 3"
+                          : "Jadwal Sesi Bootcamp Data Analyst Batch 3"
+                      }
+                      className="w-full h-auto object-cover group-hover:scale-103 transition-transform duration-300"
+                    />
+
+                    {/* Hover Hint Overlay */}
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <span className="bg-seara-orange text-white text-xs font-bold px-3.5 py-2 rounded-full flex items-center gap-1.5 shadow-lg">
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>Klik untuk Memperbesar</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Card Bottom CTA & Hint */}
+                  <div className="mt-3 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+                    <button
+                      onClick={() =>
+                        setLightboxImage({
+                          src:
+                            heroVisualTab === "poster"
+                              ? "/bootcamp-data-analyst-batch3.png"
+                              : "/bootcamp-data-analyst-batch3-jadwal.png",
+                          title:
+                            heroVisualTab === "poster"
+                              ? "Poster Resmi Bootcamp Data Analyst Batch 3"
+                              : "Jadwal Sesi Bootcamp Data Analyst Batch 3",
+                        })
+                      }
+                      className="text-gray-300 hover:text-white flex items-center gap-1.5 font-medium cursor-pointer"
+                    >
+                      <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                      <span>Perbesar Resolusi Penuh</span>
+                    </button>
+
+                    <a
+                      href={CLICKY_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-seara-orange hover:text-orange-400 font-bold flex items-center gap-1"
+                    >
+                      <span>clicky.id/searadata</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* 4 Tool Mini Preview Bar */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="bg-white/90 backdrop-blur-xs rounded-2xl p-4 border border-gray-200/80 shadow-md max-w-5xl mx-auto"
+            >
+              <div className="flex items-center justify-between mb-3 px-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-gray-500 flex items-center gap-2">
+                  <Zap className="w-3.5 h-3.5 text-seara-orange" />
+                  <span>4 Core Tools Terintegrasi di Batch 3</span>
+                </span>
+                <span className="text-[11px] font-semibold text-seara-orange bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-200/60">
+                  Hands-on &amp; Capstone Portfolio
+                </span>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="bg-gray-50 hover:bg-orange-50/50 p-3 rounded-xl border border-gray-100 transition-colors">
                   <div className="flex items-center gap-2 text-emerald-600 mb-1">
                     <FileSpreadsheet className="w-4 h-4" />
                     <span className="text-xs font-bold">01. Excel</span>
                   </div>
-                  <p className="text-[11px] text-gray-500 font-medium truncate">Data Cleaning & Power Query</p>
+                  <p className="text-[11px] text-gray-500 font-medium truncate">Data Cleaning &amp; Power Query</p>
                 </div>
 
-                <div className="bg-gray-50 hover:bg-orange-50/50 p-3 rounded-2xl border border-gray-100 transition-colors">
+                <div className="bg-gray-50 hover:bg-orange-50/50 p-3 rounded-xl border border-gray-100 transition-colors">
                   <div className="flex items-center gap-2 text-amber-600 mb-1">
                     <BarChart3 className="w-4 h-4" />
                     <span className="text-xs font-bold">02. Power BI</span>
                   </div>
-                  <p className="text-[11px] text-gray-500 font-medium truncate">DAX & KPI Dashboards</p>
+                  <p className="text-[11px] text-gray-500 font-medium truncate">DAX &amp; KPI Dashboards</p>
                 </div>
 
-                <div className="bg-gray-50 hover:bg-orange-50/50 p-3 rounded-2xl border border-gray-100 transition-colors">
+                <div className="bg-gray-50 hover:bg-orange-50/50 p-3 rounded-xl border border-gray-100 transition-colors">
                   <div className="flex items-center gap-2 text-blue-600 mb-1">
                     <Code2 className="w-4 h-4" />
                     <span className="text-xs font-bold">03. Python</span>
                   </div>
-                  <p className="text-[11px] text-gray-500 font-medium truncate">Pandas Wrangling & EDA</p>
+                  <p className="text-[11px] text-gray-500 font-medium truncate">Pandas Wrangling &amp; EDA</p>
                 </div>
 
-                <div className="bg-gray-50 hover:bg-orange-50/50 p-3 rounded-2xl border border-gray-100 transition-colors">
+                <div className="bg-gray-50 hover:bg-orange-50/50 p-3 rounded-xl border border-gray-100 transition-colors">
                   <div className="flex items-center gap-2 text-violet-600 mb-1">
                     <Database className="w-4 h-4" />
                     <span className="text-xs font-bold">04. SQL</span>
                   </div>
-                  <p className="text-[11px] text-gray-500 font-medium truncate">JOIN, Group By & Subqueries</p>
+                  <p className="text-[11px] text-gray-500 font-medium truncate">JOIN, Group By &amp; Subqueries</p>
                 </div>
-              </div>
-
-              {/* Code / Visual Pipeline Snippet */}
-              <div className="bg-seara-dark rounded-2xl p-5 text-gray-200 font-mono text-xs md:text-sm overflow-x-auto shadow-inner">
-                <div className="flex items-center justify-between text-gray-400 text-xs mb-3 border-b border-gray-700 pb-2">
-                  <span className="text-orange-400 font-semibold">-- Real-World Query & Business Metric Output</span>
-                  <span className="text-[10px] bg-gray-800 px-2 py-0.5 rounded text-gray-300">Live Execution</span>
-                </div>
-                <p className="text-purple-300 font-medium">
-                  WITH <span className="text-white">CohortAnalysis</span> AS (
-                </p>
-                <p className="pl-4 text-gray-300">
-                  <span className="text-cyan-400">SELECT</span> user_id, <span className="text-yellow-300">COUNT</span>(order_id) <span className="text-cyan-400">AS</span> total_orders, <span className="text-yellow-300">SUM</span>(revenue) <span className="text-cyan-400">AS</span> lifetime_val
-                </p>
-                <p className="pl-4 text-gray-300">
-                  <span className="text-cyan-400">FROM</span> transactions <span className="text-cyan-400">WHERE</span> status = <span className="text-emerald-400">&apos;COMPLETED&apos;</span> <span className="text-cyan-400">GROUP BY</span> user_id
-                </p>
-                <p className="text-purple-300 font-medium">)</p>
-                <p className="text-cyan-400">SELECT</p>
-                <p className="pl-4 text-emerald-300">AVG(lifetime_val) AS avg_clv, COUNT(user_id) AS active_retained_users</p>
-                <p className="text-cyan-400">FROM <span className="text-white">CohortAnalysis</span>;</p>
               </div>
             </motion.div>
           </div>
@@ -748,7 +968,7 @@ export default function Bootcamp() {
                 From Batch 1 to Batch 3
               </h2>
               <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-                Two batches. Hundreds of hours of learning. One continuous mission — helping learners take a more structured step into the world of data.
+                Tiga batch perjalanan akselerasi talenta data. Ratusan jam belajar intensif dan satu misi berkelanjutan: mendampingi perjalanan karir datamu dari nol hingga siap kerja.
               </p>
             </div>
 
@@ -756,6 +976,7 @@ export default function Bootcamp() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
               {batches.map((batch, index) => {
                 const isComing = batch.isComingSoon;
+                const isLive = batch.isLive;
 
                 return (
                   <motion.div
@@ -765,8 +986,10 @@ export default function Bootcamp() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.15 }}
                     className={`rounded-3xl p-7 flex flex-col justify-between transition-all relative ${
-                      isComing
-                        ? "bg-gradient-to-b from-orange-500/10 via-white to-orange-50 border-2 border-seara-orange shadow-lg shadow-orange-500/10"
+                      isLive
+                        ? "bg-gradient-to-b from-orange-500/10 via-white to-orange-50 border-2 border-seara-orange shadow-xl shadow-orange-500/15 ring-2 ring-orange-400/20"
+                        : isComing
+                        ? "bg-gradient-to-b from-orange-500/5 via-white to-orange-50/50 border-2 border-dashed border-seara-orange/60"
                         : "bg-seara-cream/60 border border-gray-200 hover:border-orange-300 hover:shadow-md"
                     }`}
                   >
@@ -775,12 +998,15 @@ export default function Bootcamp() {
                       <div className="flex items-center justify-between gap-2 mb-4">
                         <span
                           className={`text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider ${
-                            isComing
+                            isLive
+                              ? "bg-gradient-to-r from-rose-600 to-seara-orange text-white shadow-xs flex items-center gap-1.5 animate-pulse"
+                              : isComing
                               ? "bg-seara-orange text-white shadow-xs"
                               : "bg-gray-900 text-white"
                           }`}
                         >
-                          {batch.label}
+                          {isLive && <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />}
+                          <span>{batch.label}</span>
                         </span>
                         {batch.date && (
                           <span className="text-xs font-medium text-gray-500 flex items-center gap-1">
@@ -798,6 +1024,19 @@ export default function Bootcamp() {
                         <Clock className="w-4 h-4 shrink-0" />
                         <span>{batch.duration}</span>
                       </div>
+
+                      {/* Pricing Tag if Live */}
+                      {batch.pricePromo && (
+                        <div className="bg-orange-100/70 border border-orange-200 p-3 rounded-2xl mb-4 flex items-center justify-between">
+                          <div>
+                            <span className="text-[10px] text-gray-500 line-through block font-medium">Normal {batch.priceNormal}</span>
+                            <span className="text-sm font-black text-seara-orange">Promo {batch.pricePromo}</span>
+                          </div>
+                          <span className="text-[10px] font-black uppercase tracking-wider bg-seara-orange text-white px-2 py-0.5 rounded-full shadow-2xs">
+                            Hemat 53%
+                          </span>
+                        </div>
+                      )}
 
                       {/* Description */}
                       <p className="text-sm text-gray-600 leading-relaxed mb-6">
@@ -835,7 +1074,29 @@ export default function Bootcamp() {
 
                     {/* Action CTA */}
                     <div>
-                      {isComing ? (
+                      {isLive ? (
+                        <div className="space-y-2">
+                          <a
+                            href={CLICKY_LINK}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            id={`cta-journey-${batch.id}`}
+                            className="w-full bg-gradient-to-r from-orange-500 via-seara-orange to-amber-500 hover:brightness-105 text-white font-bold py-3.5 px-4 rounded-2xl transition-all text-center flex items-center justify-center gap-2 shadow-md hover:shadow-lg active:scale-95 text-sm"
+                          >
+                            <Zap className="w-4 h-4 fill-white" />
+                            <span>Daftar Batch 3 Sekarang</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </a>
+                          <button
+                            onClick={() => setSelectedBatch(batch)}
+                            id={`btn-view-${batch.id}`}
+                            className="w-full bg-white hover:bg-orange-50/50 border border-orange-200 text-seara-dark hover:text-seara-orange font-bold py-2.5 px-4 rounded-xl transition-all flex items-center justify-center gap-1.5 text-xs cursor-pointer shadow-2xs"
+                          >
+                            <span>Lihat Poster & Jadwal Sesi</span>
+                            <ChevronRight className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      ) : isComing ? (
                         <a
                           href={CLICKY_LINK}
                           target="_blank"
@@ -1464,93 +1725,337 @@ export default function Bootcamp() {
         </section>
 
         {/* ========================================================
-            BATCH 3 SECTION (Strongest CTA Area)
+            BATCH 3 SECTION (Live Now - Main Showcase Area)
            ======================================================== */}
-        <section id="batch3" className="py-24 px-6 bg-gradient-to-b from-orange-500 via-seara-orange to-[#e44d2d] text-white relative overflow-hidden">
+        <section id="batch3" className="py-24 px-6 bg-gradient-to-b from-stone-900 via-seara-dark to-stone-950 text-white relative overflow-hidden">
           {/* Decorative Backdrops */}
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-black/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-seara-orange/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-orange-600/15 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="max-w-4xl mx-auto text-center relative z-10">
-            {/* Eyebrow */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest text-white border border-white/30 mb-8"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>COMING SOON</span>
-            </motion.div>
+          <div className="max-w-6xl mx-auto relative z-10">
+            {/* Eyebrow & Live Status */}
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-rose-600 to-seara-orange px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider text-white border border-white/20 mb-6 shadow-md"
+              >
+                <span className="w-2 h-2 rounded-full bg-white animate-ping" />
+                <span>PENDAFTARAN DIBUKA • BATCH 3 LIVE NOW</span>
+              </motion.div>
 
-            {/* Headline */}
-            <motion.h2
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6 font-display leading-[1.1]"
-            >
-              Your Data Analyst Journey Starts Next.
-            </motion.h2>
+              {/* Headline */}
+              <motion.h2
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4 font-display leading-[1.1] text-white"
+              >
+                Bootcamp Data Analyst <span className="text-seara-orange">Batch 3</span>
+              </motion.h2>
 
-            {/* Copy */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-base sm:text-xl text-orange-50/95 max-w-2xl mx-auto leading-relaxed mb-10 space-y-4"
-            >
-              <p className="font-bold text-white text-lg sm:text-2xl">
-                Batch 3 is coming soon.
-              </p>
-              <p className="text-sm sm:text-base opacity-90">
-                Continue the journey with a more structured learning experience designed to help you build the skills, projects, and confidence needed to take your next step in data.
-              </p>
-            </motion.div>
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed"
+              >
+                Program 4 minggu intensif (8 sesi live, 20+ jam) mencakup Excel, Power BI, Python, dan SQL dengan bimbingan langsung praktisi industri, studi kasus nyata, dan portofolio profesional siap kerja.
+              </motion.p>
+            </div>
 
-            {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto"
-            >
+            {/* Quick Metrics Bar */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-12 max-w-4xl mx-auto">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center backdrop-blur-xs">
+                <Calendar className="w-5 h-5 text-seara-orange mx-auto mb-1.5" />
+                <span className="text-[11px] text-gray-400 block uppercase font-bold tracking-wider">Periode</span>
+                <span className="text-sm font-extrabold text-white">28 Okt – 21 Nov 2026</span>
+              </div>
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center backdrop-blur-xs">
+                <Clock className="w-5 h-5 text-amber-400 mx-auto mb-1.5" />
+                <span className="text-[11px] text-gray-400 block uppercase font-bold tracking-wider">Durasi</span>
+                <span className="text-sm font-extrabold text-white">4 Minggu · 8 Sesi (20+ Jam)</span>
+              </div>
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center backdrop-blur-xs">
+                <Layers className="w-5 h-5 text-cyan-400 mx-auto mb-1.5" />
+                <span className="text-[11px] text-gray-400 block uppercase font-bold tracking-wider">4 Core Tools</span>
+                <span className="text-sm font-extrabold text-white">Excel, Power BI, Python, SQL</span>
+              </div>
+              <div className="bg-gradient-to-br from-orange-500/20 to-rose-500/20 border border-orange-500/40 rounded-2xl p-4 text-center backdrop-blur-xs">
+                <Zap className="w-5 h-5 text-seara-orange mx-auto mb-1.5 fill-seara-orange" />
+                <span className="text-[11px] text-orange-200 block uppercase font-bold tracking-wider">Promo Khusus</span>
+                <div className="flex items-center justify-center gap-1.5">
+                  <span className="text-xs text-gray-400 line-through">699k</span>
+                  <span className="text-sm font-black text-white">Rp 329.000</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Mentors Spotlight for Batch 3 */}
+            <div className="mb-14 max-w-4xl mx-auto">
+              <div className="text-center mb-6">
+                <span className="text-xs font-bold uppercase tracking-wider text-orange-300">
+                  MENTOR & PRAKTISI INDUSTRI
+                </span>
+                <h3 className="text-xl sm:text-2xl font-extrabold text-white font-display mt-1">
+                  Dibimbing Langsung oleh Profesional
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-white/5 border border-white/10 hover:border-orange-500/50 rounded-2xl p-5 flex items-center gap-4 transition-all">
+                  <img
+                    src="/zahrulwafi.jpeg"
+                    alt="Zahrul Wafi"
+                    className="w-16 h-16 rounded-2xl object-cover border-2 border-orange-400/40 shrink-0"
+                  />
+                  <div>
+                    <h4 className="font-bold text-base text-white">Zahrul Wafi</h4>
+                    <p className="text-xs font-semibold text-seara-orange">Business Data Analyst</p>
+                    <p className="text-xs text-gray-400">PT Bank Danamon Indonesia</p>
+                  </div>
+                </div>
+
+                <div className="bg-white/5 border border-white/10 hover:border-orange-500/50 rounded-2xl p-5 flex items-center gap-4 transition-all">
+                  <img
+                    src="/achmadkurniansyah.jpeg"
+                    alt="Achmad Kurniansyah"
+                    className="w-16 h-16 rounded-2xl object-cover border-2 border-orange-400/40 shrink-0"
+                  />
+                  <div>
+                    <h4 className="font-bold text-base text-white">Achmad Kurniansyah</h4>
+                    <p className="text-xs font-semibold text-seara-orange">Business Intelligence</p>
+                    <p className="text-xs text-gray-400">Dekoruma</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Interactive Visual Switcher: Poster vs Jadwal */}
+            <div className="bg-stone-900/90 rounded-3xl border border-white/15 p-6 sm:p-10 mb-14 shadow-2xl backdrop-blur-md">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 pb-6 border-b border-white/10">
+                <div>
+                  <span className="text-xs font-bold text-seara-orange uppercase tracking-wider block mb-1">
+                    DOKUMEN RESMI BATCH 3
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-white font-display">
+                    Poster Resmi & Jadwal Pertemuan
+                  </h3>
+                </div>
+
+                {/* Tab Switcher */}
+                <div className="inline-flex bg-black/40 p-1.5 rounded-2xl border border-white/10">
+                  <button
+                    onClick={() => setBatch3VisualTab("poster")}
+                    className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-2 ${
+                      batch3VisualTab === "poster"
+                        ? "bg-seara-orange text-white shadow-md"
+                        : "text-gray-400 hover:text-white"
+                    }`}
+                  >
+                    <FileText className="w-4 h-4" />
+                    <span>Poster Program</span>
+                  </button>
+                  <button
+                    onClick={() => setBatch3VisualTab("jadwal")}
+                    className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-2 ${
+                      batch3VisualTab === "jadwal"
+                        ? "bg-seara-orange text-white shadow-md"
+                        : "text-gray-400 hover:text-white"
+                    }`}
+                  >
+                    <Calendar className="w-4 h-4" />
+                    <span>Jadwal Sesi (Schedule)</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Image Preview & Description Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                {/* Image Display */}
+                <div className="lg:col-span-6 flex flex-col items-center">
+                  <div
+                    onClick={() =>
+                      setLightboxImage({
+                        src:
+                          batch3VisualTab === "poster"
+                            ? "/bootcamp-data-analyst-batch3.png"
+                            : "/bootcamp-data-analyst-batch3-jadwal.png",
+                        title:
+                          batch3VisualTab === "poster"
+                            ? "Poster Resmi Bootcamp Data Analyst Batch 3"
+                            : "Jadwal Sesi Bootcamp Data Analyst Batch 3",
+                      })
+                    }
+                    className="relative group cursor-zoom-in rounded-2xl overflow-hidden border-2 border-orange-500/40 shadow-xl max-w-sm w-full bg-black/50"
+                  >
+                    <img
+                      src={
+                        batch3VisualTab === "poster"
+                          ? "/bootcamp-data-analyst-batch3.png"
+                          : "/bootcamp-data-analyst-batch3-jadwal.png"
+                      }
+                      alt={
+                        batch3VisualTab === "poster"
+                          ? "Poster Bootcamp Data Analyst Batch 3"
+                          : "Jadwal Bootcamp Data Analyst Batch 3"
+                      }
+                      className="w-full h-auto object-cover group-hover:scale-102 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                      <span className="bg-seara-orange text-white font-bold text-xs px-3.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-md">
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>Klik untuk Memperbesar</span>
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-gray-400 mt-3 text-center">
+                    Klik gambar untuk melihat resolusi penuh (1080 x 1350)
+                  </p>
+                </div>
+
+                {/* Right Breakdown / Schedule List */}
+                <div className="lg:col-span-6 space-y-4">
+                  {batch3VisualTab === "poster" ? (
+                    <div className="space-y-4">
+                      <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
+                        <span className="text-xs font-bold text-orange-300 uppercase tracking-wider block mb-2">
+                          Yang Akan Kamu Dapatkan di Batch 3:
+                        </span>
+                        <ul className="space-y-2.5 text-xs sm:text-sm text-gray-200">
+                          <li className="flex items-start gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                            <span><strong>8 Sesi Live Interactive</strong> bersama mentor praktisi industri</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                            <span><strong>Akses Rekaman Kelas & Bahan Belajar</strong> seumur hidup (lifetime access)</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                            <span><strong>Praktek Studi Kasus Bisnis Nyata</strong> end-to-end</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                            <span><strong>Bimbingan Portfolio Review</strong> untuk CV dan LinkedIn</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                            <span><strong>Sertifikat Kelulusan Resmi</strong> ber-ID unik terverifikasi di searadata.com</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                            <span><strong>Komunitas Eksklusif Seara Data</strong> untuk info lowongan & diskusi</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      {/* Pricing CTA Box */}
+                      <div className="bg-gradient-to-r from-orange-500/20 via-rose-500/20 to-amber-500/20 border border-orange-500/40 rounded-2xl p-5">
+                        <div className="flex items-center justify-between gap-4 mb-4">
+                          <div>
+                            <span className="text-xs text-gray-400 line-through">Harga Normal Rp 699.000</span>
+                            <div className="text-2xl sm:text-3xl font-black text-white">Rp 329.000</div>
+                          </div>
+                          <span className="bg-gradient-to-r from-rose-600 to-seara-orange text-white text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                            Promo Terbatas
+                          </span>
+                        </div>
+                        <a
+                          href={CLICKY_LINK}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full bg-seara-orange hover:bg-orange-600 text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg active:scale-95 text-sm sm:text-base"
+                        >
+                          <Zap className="w-4 h-4 fill-white" />
+                          <span>Daftar Sekarang di clicky.id/searadata</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </a>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-2 max-h-[460px] overflow-y-auto pr-1">
+                      <span className="text-xs font-bold text-orange-300 uppercase tracking-wider block mb-2">
+                        Rincian 8 Pertemuan Live Sesi Batch 3:
+                      </span>
+                      {[
+                        { sesi: "Sesi 1", tgl: "28 OCT", jam: "19.30 – 22.00 WIB", topic: "Excel Basic for Data Analysts & Become a Data Analyst", tool: "Excel" },
+                        { sesi: "Sesi 2", tgl: "31 OCT", jam: "09.30 – 12.00 WIB", topic: "Excel Intermediate & Power Query", tool: "Excel" },
+                        { sesi: "Sesi 3", tgl: "4 NOV", jam: "19.30 – 22.00 WIB", topic: "Power BI Basic, DAX & Data Calculation", tool: "Power BI" },
+                        { sesi: "Sesi 4", tgl: "7 NOV", jam: "09.30 – 12.00 WIB", topic: "Power BI Advanced & Data Visualization", tool: "Power BI" },
+                        { sesi: "Sesi 5", tgl: "11 NOV", jam: "19.30 – 22.00 WIB", topic: "Python Basic & Data Cleaning", tool: "Python" },
+                        { sesi: "Sesi 6", tgl: "14 NOV", jam: "09.30 – 12.00 WIB", topic: "Python Advanced & Data Transformation", tool: "Python" },
+                        { sesi: "Sesi 7", tgl: "18 NOV", jam: "19.30 – 22.00 WIB", topic: "SQL Basic, Query & Filter Data", tool: "SQL" },
+                        { sesi: "Sesi 8", tgl: "21 NOV", jam: "09.30 – 12.00 WIB", topic: "SQL Intermediate, Join & Aggregation", tool: "SQL" },
+                      ].map((item, i) => (
+                        <div
+                          key={i}
+                          className="bg-white/5 border border-white/10 hover:border-orange-500/40 p-3 rounded-xl flex items-center justify-between gap-3 text-xs transition-colors"
+                        >
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <span className="w-14 shrink-0 text-center font-black text-seara-orange bg-orange-500/10 border border-orange-500/20 py-1 rounded-lg">
+                              {item.tgl}
+                            </span>
+                            <div className="min-w-0">
+                              <p className="font-bold text-white truncate">{item.topic}</p>
+                              <p className="text-[10px] text-gray-400">{item.sesi} · {item.jam}</p>
+                            </div>
+                          </div>
+                          <span className="text-[10px] font-bold text-gray-300 bg-white/10 px-2 py-0.5 rounded shrink-0">
+                            {item.tool}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Section CTAs */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
               <a
                 href={CLICKY_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                id="batch3-waiting-list-cta"
-                className="w-full sm:w-auto bg-white text-seara-dark hover:bg-orange-50 font-black px-8 py-4 rounded-full transition-all shadow-xl hover:shadow-2xl active:scale-95 flex items-center justify-center gap-2 text-center text-base"
+                id="batch3-register-cta"
+                className="w-full sm:w-auto bg-gradient-to-r from-orange-500 via-seara-orange to-amber-500 hover:brightness-105 text-white font-black px-8 py-4 rounded-full transition-all shadow-xl hover:shadow-2xl active:scale-95 flex items-center justify-center gap-2 text-center text-base"
               >
-                <span>Join the Waiting List</span>
-                <ArrowRight className="w-4 h-4 text-seara-orange" />
+                <Zap className="w-5 h-5 fill-white" />
+                <span>Daftar Batch 3 Sekarang</span>
+                <ArrowRight className="w-4 h-4" />
               </a>
 
               <a
-                href="https://www.instagram.com/searadata"
+                href="https://wa.me/6287811856600?text=Halo%20Admin%20Seara,%20saya%20mau%20tanya%20tentang%20Bootcamp%20Batch%203!"
                 target="_blank"
                 rel="noopener noreferrer"
-                id="batch3-follow-cta"
-                className="w-full sm:w-auto bg-black/20 hover:bg-black/30 border border-white/40 text-white font-bold px-8 py-4 rounded-full transition-all text-center text-base flex items-center justify-center gap-2"
+                id="batch3-wa-cta"
+                className="w-full sm:w-auto bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-8 py-4 rounded-full transition-all text-center text-base flex items-center justify-center gap-2"
               >
-                <span>Follow Seara Data</span>
-                <ExternalLink className="w-4 h-4 opacity-80" />
+                <MessageSquare className="w-4 h-4 text-emerald-400" />
+                <span>Tanya Admin via WA</span>
               </a>
-            </motion.div>
+            </div>
 
             {/* Trust Badges */}
-            <div className="mt-12 pt-8 border-t border-white/20 flex flex-wrap items-center justify-center gap-6 text-xs text-orange-100 font-medium">
+            <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap items-center justify-center gap-6 text-xs text-gray-300 font-medium">
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-white" />
-                <span>Priority Early Bird Notification</span>
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <span>Live Interactive via Zoom</span>
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-white" />
-                <span>Direct Access to Mentors</span>
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <span>Mentoring Industri Nyata</span>
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-white" />
-                <span>Free Learning Resources</span>
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <span>Akses Lifetime Rekaman & Materi</span>
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <span>Portofolio & Sertifikat Resmi</span>
               </span>
             </div>
           </div>
@@ -1565,24 +2070,25 @@ export default function Bootcamp() {
               Ready to Take Your Next Step in Data?
             </h2>
             <p className="text-base sm:text-lg text-gray-300 mb-8 max-w-xl mx-auto">
-              Learn the tools. Build the skills. Create the portfolio. Start your data career.
+              Kuasai 4 tools utama, bangun portofolio komprehensif, dan mulai perjalanan karir datamu bersama Seara Data.
             </p>
             <a
               href={CLICKY_LINK}
               target="_blank"
               rel="noopener noreferrer"
               id="final-bootcamp-cta"
-              className="inline-flex items-center gap-2 bg-seara-orange text-white hover:brightness-95 font-bold px-10 py-4 rounded-full transition-all shadow-lg hover:shadow-xl active:scale-95 text-base"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 via-seara-orange to-amber-500 hover:brightness-105 text-white font-bold px-10 py-4 rounded-full transition-all shadow-lg hover:shadow-xl active:scale-95 text-base"
             >
-              <Sparkles className="w-5 h-5" />
-              <span>Coming Soon — Batch 3</span>
+              <Zap className="w-5 h-5 fill-white" />
+              <span>Daftar Bootcamp Batch 3 (Live Now)</span>
+              <ArrowRight className="w-5 h-5" />
             </a>
           </div>
         </section>
       </div>
 
       {/* ========================================================
-          BATCH DETAIL MODAL (For Batch 1 & Batch 2 Details)
+          BATCH DETAIL MODAL (For Batch 1, Batch 2 & Batch 3)
          ======================================================== */}
       <AnimatePresence>
         {selectedBatch && (
@@ -1614,7 +2120,11 @@ export default function Bootcamp() {
 
               {/* Modal Header */}
               <div className="flex items-center gap-2 mb-3">
-                <span className="text-xs font-black px-3 py-1 rounded-full uppercase bg-seara-orange text-white">
+                <span className={`text-xs font-black px-3 py-1 rounded-full uppercase ${
+                  selectedBatch.isLive
+                    ? "bg-gradient-to-r from-rose-600 to-seara-orange text-white animate-pulse"
+                    : "bg-seara-orange text-white"
+                }`}>
                   {selectedBatch.label}
                 </span>
                 {selectedBatch.date && (
@@ -1628,19 +2138,156 @@ export default function Bootcamp() {
               <h3 className="text-2xl sm:text-3xl font-extrabold text-seara-dark mb-1 font-display">
                 Bootcamp Data Analyst {selectedBatch.title}
               </h3>
-              <p className="text-xs font-bold text-seara-orange mb-6 flex items-center gap-1.5">
+              <p className="text-xs font-bold text-seara-orange mb-4 flex items-center gap-1.5">
                 <Clock className="w-4 h-4" />
                 <span>{selectedBatch.duration}</span>
               </p>
 
-              {/* Poster Preview if available */}
-              {selectedBatch.posterImage && (
-                <div className="mb-6 rounded-2xl overflow-hidden border border-gray-200 max-h-64 bg-gray-50 flex items-center justify-center">
+              {/* Pricing Box if available */}
+              {selectedBatch.pricePromo && (
+                <div className="bg-orange-50 border border-orange-200 p-3 rounded-2xl mb-5 flex items-center justify-between">
+                  <div>
+                    <span className="text-[11px] text-gray-500 line-through block">Harga Normal: {selectedBatch.priceNormal}</span>
+                    <span className="text-base font-black text-seara-orange">Harga Promo: {selectedBatch.pricePromo}</span>
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-wider bg-seara-orange text-white px-2.5 py-1 rounded-full">
+                    Hemat 53%
+                  </span>
+                </div>
+              )}
+
+              {/* Tab Selector if Batch has scheduleImage */}
+              {selectedBatch.scheduleImage && (
+                <div className="flex gap-2 mb-5 border-b border-gray-100 pb-3">
+                  <button
+                    onClick={() => setModalTab("poster")}
+                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                      modalTab === "poster"
+                        ? "bg-seara-orange text-white shadow-xs"
+                        : "bg-gray-100 text-gray-600 hover:text-seara-dark"
+                    }`}
+                  >
+                    <FileText className="w-3.5 h-3.5" />
+                    <span>Poster Resmi</span>
+                  </button>
+                  <button
+                    onClick={() => setModalTab("jadwal")}
+                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                      modalTab === "jadwal"
+                        ? "bg-seara-orange text-white shadow-xs"
+                        : "bg-gray-100 text-gray-600 hover:text-seara-dark"
+                    }`}
+                  >
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>Jadwal Sesi</span>
+                  </button>
+                  <button
+                    onClick={() => setModalTab("kurikulum")}
+                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                      modalTab === "kurikulum"
+                        ? "bg-seara-orange text-white shadow-xs"
+                        : "bg-gray-100 text-gray-600 hover:text-seara-dark"
+                    }`}
+                  >
+                    <Layers className="w-3.5 h-3.5" />
+                    <span>Rincian Modul</span>
+                  </button>
+                </div>
+              )}
+
+              {/* Poster Preview */}
+              {(!selectedBatch.scheduleImage || modalTab === "poster") && selectedBatch.posterImage && (
+                <div
+                  onClick={() =>
+                    setLightboxImage({
+                      src: selectedBatch.posterImage,
+                      title: `Poster Bootcamp ${selectedBatch.title}`,
+                    })
+                  }
+                  className="mb-6 rounded-2xl overflow-hidden border border-gray-200 bg-gray-50 flex items-center justify-center cursor-zoom-in relative group max-h-72"
+                >
                   <img
                     src={selectedBatch.posterImage}
                     alt={`Poster ${selectedBatch.title}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain max-h-72"
                   />
+                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span className="bg-white/90 text-seara-dark text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
+                      Perbesar Gambar
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {/* Schedule Image & Table Preview */}
+              {selectedBatch.scheduleImage && modalTab === "jadwal" && (
+                <div className="space-y-4 mb-6">
+                  <div
+                    onClick={() =>
+                      setLightboxImage({
+                        src: selectedBatch.scheduleImage!,
+                        title: `Jadwal Sesi Bootcamp ${selectedBatch.title}`,
+                      })
+                    }
+                    className="rounded-2xl overflow-hidden border border-gray-200 bg-gray-50 flex items-center justify-center cursor-zoom-in relative group max-h-64"
+                  >
+                    <img
+                      src={selectedBatch.scheduleImage}
+                      alt={`Jadwal ${selectedBatch.title}`}
+                      className="w-full h-full object-contain max-h-64"
+                    />
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <span className="bg-white/90 text-seara-dark text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
+                        Perbesar Jadwal
+                      </span>
+                    </div>
+                  </div>
+
+                  {selectedBatch.schedule && (
+                    <div className="space-y-2">
+                      <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider">
+                        Rincian Pertemuan & Jam WIB:
+                      </h4>
+                      <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+                        {selectedBatch.schedule.map((item, i) => (
+                          <div
+                            key={i}
+                            className="flex items-center justify-between gap-2 p-2 bg-gray-50 border border-gray-100 rounded-xl text-xs"
+                          >
+                            <span className="font-bold text-seara-orange shrink-0">{item.date}</span>
+                            <span className="text-gray-700 font-medium truncate flex-1">{item.topic}</span>
+                            <span className="text-[10px] text-gray-400 shrink-0">{item.time}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Mentors in Modal */}
+              {selectedBatch.mentors && (
+                <div className="mb-6">
+                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">
+                    Mentor Pengajar
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {selectedBatch.mentors.map((mentor, i) => (
+                      <div key={i} className="flex items-center gap-3 bg-gray-50 p-2.5 rounded-xl border border-gray-100">
+                        {mentor.photo && (
+                          <img
+                            src={mentor.photo}
+                            alt={mentor.name}
+                            className="w-10 h-10 rounded-xl object-cover shrink-0"
+                          />
+                        )}
+                        <div className="min-w-0">
+                          <p className="font-bold text-xs text-seara-dark truncate">{mentor.name}</p>
+                          <p className="text-[11px] text-gray-500 truncate">{mentor.role}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
 
@@ -1685,10 +2332,11 @@ export default function Bootcamp() {
                   href={CLICKY_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 bg-seara-orange text-white hover:brightness-95 font-bold py-3 px-4 rounded-xl text-center text-sm shadow-sm transition-all flex items-center justify-center gap-2"
+                  className="flex-1 bg-gradient-to-r from-orange-500 via-seara-orange to-amber-500 hover:brightness-105 text-white font-bold py-3 px-4 rounded-xl text-center text-sm shadow-md transition-all flex items-center justify-center gap-2"
                 >
-                  <Sparkles className="w-4 h-4" />
-                  <span>Join Next Batch (Batch 3)</span>
+                  <Zap className="w-4 h-4 fill-white" />
+                  <span>Daftar Batch 3 di Clicky.id</span>
+                  <ArrowRight className="w-4 h-4" />
                 </a>
                 <button
                   onClick={() => setSelectedBatch(null)}
@@ -1696,6 +2344,61 @@ export default function Bootcamp() {
                 >
                   Tutup
                 </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* ========================================================
+          IMAGE LIGHTBOX MODAL (Full Resolution View)
+         ======================================================== */}
+      <AnimatePresence>
+        {lightboxImage && (
+          <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="relative max-w-3xl max-h-[92vh] flex flex-col items-center"
+            >
+              <div className="w-full flex items-center justify-between text-white mb-3 px-2">
+                <span className="text-xs sm:text-sm font-bold truncate">{lightboxImage.title}</span>
+                <button
+                  onClick={() => setLightboxImage(null)}
+                  className="p-1.5 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors cursor-pointer ml-2"
+                  aria-label="Tutup"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="overflow-auto rounded-2xl border border-white/20 bg-stone-900 max-h-[80vh]">
+                <img
+                  src={lightboxImage.src}
+                  alt={lightboxImage.title}
+                  className="w-auto h-auto max-h-[78vh] object-contain mx-auto"
+                />
+              </div>
+              <div className="mt-3 flex items-center gap-3">
+                <a
+                  href={CLICKY_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-seara-orange hover:bg-orange-600 text-white text-xs font-bold px-5 py-2.5 rounded-full flex items-center gap-1.5 shadow-md"
+                >
+                  <Zap className="w-3.5 h-3.5 fill-white" />
+                  <span>Daftar Batch 3 Sekarang</span>
+                </a>
+                <a
+                  href={lightboxImage.src}
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/20 hover:bg-white/30 text-white text-xs font-bold px-4 py-2.5 rounded-full flex items-center gap-1.5"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>Buka di Tab Baru</span>
+                </a>
               </div>
             </motion.div>
           </div>

@@ -370,7 +370,7 @@ export default function About() {
 
                 <ul className="space-y-2 text-xs text-gray-300 list-disc list-inside leading-relaxed pt-2">
                   <li><strong>1,000+ Member Community:</strong> Ekosistem WhatsApp aktif dengan Q&A mingguan.</li>
-                  <li><strong>Bootcamp Batch 1 & 2:</strong> Program intensif 8 sesi dengan kelulusan portofolio 100%.</li>
+                  <li><strong>Bootcamp Batch 1, 2 & 3:</strong> Program intensif 8 sesi dengan kelulusan portofolio dan bimbingan industri nyata.</li>
                   <li><strong>20+ Digital Products:</strong> Template Excel, skrip Python, query SQL & dashboard BI.</li>
                   <li><strong>500+ Website Portofolio:</strong> Membantu alumni membangun personal brand Vercel.</li>
                   <li><strong>In-House Corporate Training:</strong> Sosialisasi EDW & Pentaho Cube untuk tim korporasi.</li>
@@ -405,7 +405,7 @@ export default function About() {
                 rel="noopener noreferrer"
                 className="bg-seara-dark text-white px-8 py-4 rounded-2xl font-bold text-base shadow-xl hover:bg-black transition-all flex items-center gap-2 active:scale-95"
               >
-                <span>Daftar Bootcamp Batch 2</span>
+                <span>Daftar Bootcamp Batch 3</span>
                 <ArrowRight className="w-5 h-5 text-seara-orange" />
               </a>
               <a 

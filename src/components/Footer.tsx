@@ -76,8 +76,9 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://clicky.id/searadata" target="_blank" rel="noopener noreferrer" className="hover:text-seara-orange transition-colors">
-                  Bootcamp Batch 2
+                <a href="https://clicky.id/searadata" target="_blank" rel="noopener noreferrer" className="hover:text-seara-orange transition-colors text-orange-200 font-medium flex items-center gap-1.5">
+                  <span>Bootcamp Batch 3</span>
+                  <span className="text-[10px] bg-seara-orange text-white px-1.5 py-0.5 rounded font-black tracking-wide">LIVE</span>
                 </a>
               </li>
               <li>
